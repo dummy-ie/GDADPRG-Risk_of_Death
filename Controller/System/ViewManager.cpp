@@ -1,6 +1,6 @@
 #include "ViewManager.hpp"
 
-using namespace controllers;
+using namespace systems;
 
 ViewManager* ViewManager::P_SHARED_INSTANCE = NULL;
 ViewManager::ViewManager() {}

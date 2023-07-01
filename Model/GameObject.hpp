@@ -1,11 +1,15 @@
 #ifndef MODELS_GAME_OBJECT_HPP
 #define MODELS_GAME_OBJECT_HPP
 
-#include "Enum/EnumAnimationType.hpp"
+#include "iostream"
+
+#include "Enum/EnumComponentType.hpp"
+
+#include "AnimatedTexture.hpp"
 #include "Component/Component.hpp"
 #include "Component/Input/GeneralInput.hpp"
 
-#include "AnimatedTexture.hpp"
+#include "Component/Renderer/Renderer.hpp"
 
 namespace models {
     using namespace components;
@@ -13,18 +17,16 @@ namespace models {
     class GameObject {
         protected:
             bool bEnabled;
-
             std::string strName;
             sf::Sprite* pSprite;
-
             AnimatedTexture* pTexture;
-            std::unordered_map<AnimationType, AnimatedTexture*> mapAnimatedTexture;
 
+            GameObject* pParent;
             std::vector<GameObject*> vecChildren;
             std::vector<Component*> vecComponent;
 
         public:
-            GameObject(std::string strName, AnimatedTexture* pTexture = NULL, float fX = 0.0f, float fY = 0.0f);
+            GameObject(std::string strName, AnimatedTexture* pTexture = NULL);
             virtual ~GameObject() = default;
 
         public:
@@ -41,8 +43,8 @@ namespace models {
             void detachComponent(Component* pComponent);
             Component* findComponentByName(std::string strName);
             std::vector<Component*> getComponents(ComponentType EType);
+            std::vector<Component*> getComponentsRecursively(ComponentType EType, bool bInclusive = true);
 
-            void setAnimationType(AnimationType EAnimationType);
             void incrementFrame();
             void centerSpriteOrigin();
 
@@ -54,10 +56,14 @@ namespace models {
             void setEnabled(bool bEnabled);
 
             std::string getName();
+            sf::Sprite* getSprite();
+            sf::FloatRect getGlobalBounds();
+
+            GameObject* getParent();
+            void setParent(GameObject* pParent);
+
             int getFrameSize();
             int getCurrentFrame();
-            sf::Sprite* getSprite();
-            
     };
 }
 

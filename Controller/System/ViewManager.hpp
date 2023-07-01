@@ -1,7 +1,7 @@
 #ifndef CONTROLLERS_VIEW_MANAGER_HPP
 #define CONTROLLERS_VIEW_MANAGER_HPP
 
-namespace controllers {
+namespace systems {
     class ViewManager {
         private:
 		    static ViewManager* P_SHARED_INSTANCE;

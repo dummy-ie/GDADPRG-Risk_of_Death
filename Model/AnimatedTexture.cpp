@@ -2,8 +2,7 @@
 
 using namespace models;
 
-AnimatedTexture::AnimatedTexture(AssetType EType, std::vector<sf::Texture*> vecFrames) {
-    this->EType = EType;
+AnimatedTexture::AnimatedTexture(std::vector<sf::Texture*> vecFrames) {
     this->vecFrames = vecFrames;
     this->nCurrentFrame = 0;
 }

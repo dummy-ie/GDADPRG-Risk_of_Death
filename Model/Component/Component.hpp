@@ -9,6 +9,7 @@ namespace models {
 
 namespace components {
     using namespace models;
+    
     class Component {
         protected:
             GameObject* pOwner;

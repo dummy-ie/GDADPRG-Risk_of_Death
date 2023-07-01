@@ -1,17 +1,16 @@
 #ifndef MODELS_ANIMATED_TEXTURE_H
 #define MODELS_ANIMATED_TEXTURE_H
 
-#include "Enum/EnumAssetType.hpp"
+#include "iostream"
 
 namespace models {
     class AnimatedTexture {
         private:
-            AssetType EType;
             std::vector<sf::Texture*> vecFrames;
             int nCurrentFrame;
         
         public:
-            AnimatedTexture(AssetType EType = AssetType::NONE, std::vector<sf::Texture*> vecFrames = {});
+            AnimatedTexture(std::vector<sf::Texture*> vecFrames = {});
 
         public:
             void incrementFrame();

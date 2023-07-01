@@ -2,23 +2,24 @@
 
 using namespace models;
 
-GameObject::GameObject(std::string strName, AnimatedTexture* pTexture, float fX, float fY) {
+GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
     this->bEnabled = true;
 
     this->strName = strName;
     this->pSprite = new sf::Sprite();
     this->pSprite->setOrigin(0.0f, 0.0f);
-    this->pSprite->setPosition(fX, fY);
+    this->pSprite->setPosition(0.0f, 0.0f);
 
     this->pTexture = pTexture;
     this->setFrame(0);
 
+    this->pParent = NULL;
     this->vecChildren = {};
     this->vecComponent = {};
 }
 
 void GameObject::processInput(sf::Event eEvent) {
-    std::vector<Component*> vecInputComponent = this->getComponents(ComponentType::INPUT);
+    std::vector<Component*> vecInputComponent = this->getComponentsRecursively(ComponentType::INPUT);
     GeneralInput* pGeneralInput;
 
     for(Component* pComponent : vecInputComponent) {
@@ -26,22 +27,14 @@ void GameObject::processInput(sf::Event eEvent) {
         pGeneralInput->assignEvent(eEvent);
         pGeneralInput->perform();
     }
-
-    for(GameObject* pChild : this->vecChildren) {
-        pChild->processInput(eEvent);
-    }
 }
 
 void GameObject::update(sf::Time tDeltaTime) {
-    std::vector<Component*> vecScriptComponents = this->getComponents(ComponentType::SCRIPT);
+    std::vector<Component*> vecScriptComponents = this->getComponentsRecursively(ComponentType::SCRIPT);
     
     for(Component* pComponent : vecScriptComponents) {
         pComponent->setDeltaTime(tDeltaTime);
         pComponent->perform();
-    }
-
-    for(GameObject* pChild : this->vecChildren) {
-        pChild->update(tDeltaTime);
     }
 }
 
@@ -49,8 +42,7 @@ void GameObject::draw(sf::RenderWindow* pWindow, sf::RenderStates CRenderStates)
     sf::RenderStates CTransformedRenderStates(CRenderStates);
     CTransformedRenderStates.transform = this->pSprite->getTransform() * CTransformedRenderStates.transform;
 
-    // Add this back in when we have some entities
-    /*std::vector<Component*> vecRendererComponent = this->getComponents(ComponentType::RENDERER);
+    std::vector<Component*> vecRendererComponent = this->getComponents(ComponentType::RENDERER);
     Renderer* pRenderer;
 
     for(Component* pComponent : vecRendererComponent) {
@@ -58,15 +50,21 @@ void GameObject::draw(sf::RenderWindow* pWindow, sf::RenderStates CRenderStates)
         pRenderer->assignTargetWindow(pWindow);
         pRenderer->setRenderStates(CRenderStates);
         pRenderer->perform();
-    }*/
+    }
 
-    for(GameObject* pChild : this->vecChildren) {
-        pChild->draw(pWindow, CTransformedRenderStates);
+    vecRendererComponent = this->getComponentsRecursively(ComponentType::RENDERER, false);
+
+    for(Component* pComponent : vecRendererComponent) {
+        pRenderer = (Renderer*)pComponent;
+        pRenderer->assignTargetWindow(pWindow);
+        pRenderer->setRenderStates(CTransformedRenderStates);
+        pRenderer->perform();
     }
 }
 
 void GameObject::attachChild(GameObject* pChild) {
     this->vecChildren.push_back(pChild);
+    pChild->setParent(this);
     pChild->initialize();
 }
 
@@ -122,9 +120,20 @@ std::vector<Component*> GameObject::getComponents(ComponentType EType) {
     return vecFound;
 }
 
-void GameObject::setAnimationType(AnimationType EAnimationType) {
-    this->pTexture = this->mapAnimatedTexture[EAnimationType];
-    this->pTexture->setCurrentFrame(0);
+std::vector<Component*> GameObject::getComponentsRecursively(ComponentType EType, bool bInclusive) {
+    std::vector<Component*> vecFound = {};
+
+    if(bInclusive) 
+        vecFound = this->getComponents(EType);
+
+    for(GameObject* pChild : this->vecChildren) {
+        for(Component* pComponent : pChild->getComponents(EType)) {
+            if(pComponent->getType() == EType)
+                vecFound.push_back(pComponent);
+        }
+    }
+
+    return vecFound;
 }
 
 void GameObject::incrementFrame() {
@@ -163,6 +172,22 @@ std::string GameObject::getName() {
     return this->strName;
 }
 
+sf::Sprite* GameObject::getSprite() {
+    return this->pSprite;
+}
+
+sf::FloatRect GameObject::getGlobalBounds() {
+    return this->pSprite->getGlobalBounds();
+}
+
+GameObject* GameObject::getParent() {
+    return this->pParent;
+}
+
+void GameObject::setParent(GameObject* pParent) {
+    this->pParent = pParent;
+}
+
 int GameObject::getFrameSize() {
     if(this->pTexture != NULL) {
         return this->pTexture->getFrameSize();
@@ -175,8 +200,4 @@ int GameObject::getCurrentFrame() {
         return this->pTexture->getCurrentFrame();
     }
     return -1;
-}
-
-sf::Sprite* GameObject::getSprite() {
-    return this->pSprite;
 }
