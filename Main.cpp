@@ -23,6 +23,7 @@
 #include "Controller/Singleton/GameObjectManager.cpp"
 #include "Controller/Singleton/BlockerManager.cpp"
 #include "Controller/Singleton/EnemyManager.cpp"
+#include "Controller/Singleton/FontManager.cpp"
 #include "Controller/Singleton/ItemManager.cpp"
 #include "Controller/Singleton/ObjectPoolManager.cpp"
 #include "Controller/Singleton/TextureManager.cpp"
