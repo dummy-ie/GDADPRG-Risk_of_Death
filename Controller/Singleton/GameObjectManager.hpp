@@ -1,7 +1,7 @@
 #ifndef CONTROLLERS_GAME_OBJECT_MANAGER_HPP
 #define CONTROLLERS_GAME_OBJECT_MANAGER_HPP
 
-//#include "../../Model/Enum/EnumAssetType.hpp"
+#include "../../Model/Enum/EnumAssetType.hpp"
 #include "../../Model/Enum/EnumComponentType.hpp"
 
 #include "../../Model/GameObject.hpp"
