@@ -6,4 +6,6 @@ const int SCREEN_HEIGHT = 760;
 
 const float FRAME_RATE_LIMIT = 60.0f;
 
+const float GAME_SPEED = 1.0f;
+
 #endif
