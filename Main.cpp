@@ -12,13 +12,23 @@
 
 #include "Model/Component/Component.cpp"
 
+#include "Model/Component/Input/ButtonInput.cpp"
 #include "Model/Component/Input/GeneralInput.cpp"
 
 #include "Model/Component/Renderer/Renderer.cpp"
 
+#include "Model/Entity/Background.cpp"
+
 #include "Model/Pooling/PoolableObject.cpp"
 
-#include "Controller/Game.cpp"
+#include "Model/Scene/GameMenu.cpp"
+
+#include "View/Button.cpp"
+#include "View/Image.cpp"
+#include "View/Text.cpp"
+#include "View/View.cpp"
+
+#include "View/Screen/TitleScreen.cpp"
 
 #include "Controller/Singleton/GameObjectManager.cpp"
 #include "Controller/Singleton/BlockerManager.cpp"
@@ -32,6 +42,8 @@
 
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
+
+#include "Controller/Game.cpp"
 
 using namespace controllers;
 

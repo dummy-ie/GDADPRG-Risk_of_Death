@@ -3,6 +3,16 @@
 
 namespace systems {
     class ViewManager {
+		private:
+            std::unordered_map<ViewTag, View*> mapView;
+
+        public:
+            void registerView(View* pView);
+            void unregisterView(View* pView);
+        
+        public:
+            View* getView(ViewTag ETag);
+			
         private:
 		    static ViewManager* P_SHARED_INSTANCE;
 

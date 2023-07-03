@@ -12,6 +12,9 @@ namespace controllers {
             std::vector<sf::Texture*> getTexture(AssetType EType);
             sf::Texture* getTextureAt(AssetType EType, int nFrame);
 
+		private:
+			void loadBackgroundFolder();
+
         private:
 		    static TextureManager* P_SHARED_INSTANCE;
 

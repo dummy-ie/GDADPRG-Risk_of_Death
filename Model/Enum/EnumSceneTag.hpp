@@ -2,10 +2,8 @@
 #define ENUM_SCENE_TAG_HPP
 
 enum class SceneTag : int {
-    TITLE_SCREEN = 0,
-    GAME_SPACE,
-    // Additional scenes that split the game space?
-    LEADERBOARDS
+    GAME_MENU = 0,
+    GAME_SPACE
 };
 
 #endif

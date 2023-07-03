@@ -4,6 +4,14 @@ using namespace controllers;
 
 Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Risk of Death", sf::Style::Titlebar | sf::Style::Close) {
     this->rwWindow.setFramerateLimit(FRAME_RATE_LIMIT);
+
+    TextureManager::getInstance()->loadAll();
+    //SFXManager::getInstance()->loadAll();
+    FontManager::getInstance()->loadAll();
+
+    SceneManager::getInstance()->registerScene(new GameMenu());
+
+    SceneManager::getInstance()->loadScene(SceneTag::GAME_MENU);
 }
 
 void Game::run() {
@@ -17,6 +25,7 @@ void Game::run() {
             tLastUpdate -= tTimePerFrame;
             this->update(tTimePerFrame);
         }
+        SceneManager::getInstance()->checkLoadScene();
         this->render();
     }
 }

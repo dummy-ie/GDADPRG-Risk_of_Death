@@ -3,7 +3,7 @@
 
 enum class AssetType : int {
     NONE = -1,
-    BACKGROUND
+    MENU_BACKGROUND
 };
 
 #endif

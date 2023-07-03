@@ -3,7 +3,7 @@
 using namespace controllers;
 
 void FontManager::loadAll() {
-    //this->create(FontType::DEFAULT, "Orbitron");
+    this->create(FontType::DEFAULT, "Orbitron");
 }
 
 sf::Font* FontManager::getFont(FontType EType) {
