@@ -8,6 +8,7 @@
 #include "Model/AnimatedTexture.cpp"
 #include "Model/EmptyGameObject.hpp"
 #include "Model/GameObject.cpp"
+#include "Model/Scene.cpp"
 
 #include "Model/Component/Component.cpp"
 
