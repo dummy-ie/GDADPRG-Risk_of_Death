@@ -31,18 +31,18 @@ void Game::processEvents() {
                 break;
   
             default:
-                // GameObjectManager::getInstance()->processInput(eEvent);
+                GameObjectManager::getInstance()->processInput(eEvent);
                 break;
         }
     }
 }
 
 void Game::update(sf::Time tDeltaTime) {
-    // GameObjectManager::getInstance()->update(tDeltaTime);
+    GameObjectManager::getInstance()->update(tDeltaTime);
 }
 
 void Game::render() {
     this->rwWindow.clear();
-    // GameObjectManager::getInstance()->draw(&this->rwWindow);
+    GameObjectManager::getInstance()->draw(&this->rwWindow);
     this->rwWindow.display();
 }
