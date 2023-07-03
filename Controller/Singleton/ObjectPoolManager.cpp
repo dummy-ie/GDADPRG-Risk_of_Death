@@ -14,9 +14,6 @@ GameObjectPool* ObjectPoolManager::getPool(PoolTag ETag) {
     return this->mapObjectPool[ETag];
 }
 
-/* * * * * * * * * * * * * * * * * * * * * 
- *       SINGLETON-RELATED CONTENT       * 
- * * * * * * * * * * * * * * * * * * * * */
 ObjectPoolManager* ObjectPoolManager::P_SHARED_INSTANCE = NULL;
 ObjectPoolManager::ObjectPoolManager() {}
 ObjectPoolManager::ObjectPoolManager(const ObjectPoolManager&) {}
@@ -27,4 +24,3 @@ ObjectPoolManager* ObjectPoolManager::getInstance() {
 
     return P_SHARED_INSTANCE;
 }
-/* * * * * * * * * * * * * * * * * * * * */

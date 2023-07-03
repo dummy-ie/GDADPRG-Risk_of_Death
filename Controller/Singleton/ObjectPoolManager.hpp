@@ -18,9 +18,6 @@ namespace controllers {
         public:
             GameObjectPool* getPool(PoolTag ETag);
 
-        /* * * * * * * * * * * * * * * * * * * * * 
-         *       SINGLETON-RELATED CONTENT       * 
-         * * * * * * * * * * * * * * * * * * * * */
         private:
             static ObjectPoolManager* P_SHARED_INSTANCE;
 
@@ -31,7 +28,6 @@ namespace controllers {
 
         public:
             static ObjectPoolManager* getInstance();
-        /* * * * * * * * * * * * * * * * * * * * */
     };
 }
 
