@@ -25,3 +25,7 @@ sf::Text* Text::getText() {
 void Text::setText(std::string strText) {
     this->pText->setString(strText);
 }
+
+void Text::setColor(sf::Color CColor) {
+    this->pText->setFillColor(CColor);
+}

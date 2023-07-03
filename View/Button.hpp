@@ -19,9 +19,11 @@ namespace views {
     class Button : public GameObject {
         private:
             ButtonListener* pListener;
+            sf::FloatRect CBounds;
 
         public:
             Button(std::string strName, AnimatedTexture* pTexture);
+            Button(std::string strName, sf::FloatRect CBounds, AnimatedTexture* pTexture = NULL);
             ~Button();
 
         public:
@@ -30,6 +32,9 @@ namespace views {
 
         public:
             void setListener(ButtonListener* pListener);
+
+        public:
+            sf::FloatRect getGlobalBounds();
     };
 }
 

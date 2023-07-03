@@ -47,7 +47,7 @@ void ButtonInput::processMouseInput(bool bPressed) {
 }
 
 bool ButtonInput::contains(Button* pButton, sf::Vector2f vecLocation) {
-    if(pButton->getGlobalBounds().contains(vecLocation))
+    if(pButton->getGlobalBounds().contains(vecLocation)) 
         return true;
 
     return false;   

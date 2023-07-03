@@ -4,21 +4,29 @@ using namespace views;
 
 Button::Button(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture) {}
 
+Button::Button(std::string strName, sf::FloatRect CBounds, AnimatedTexture* pTexture) : GameObject(strName, pTexture) {
+    this->CBounds = CBounds;
+}
+
 Button::~Button() {}
 
 void Button::initialize() {
-    this->setFrame(0);
-    this->centerSpriteOrigin();
+    //this->centerSpriteOrigin();
 
-    Renderer* pRendererComponent = new Renderer(this->strName + " Button");
-    pRendererComponent->assignDrawable(this->pSprite);
-
-    this->attachComponent(pRendererComponent);
+    if (this->pTexture != NULL) {
+        this->setFrame(0);
+        Renderer* pRendererComponent = new Renderer(this->strName + " Button");
+        pRendererComponent->assignDrawable(this->pSprite);
+        this->CBounds = this->pSprite->getGlobalBounds();
+        this->attachComponent(pRendererComponent);
+    }
 }
 
 void Button::changeState(ButtonState EState) {
-    this->pTexture->setCurrentFrame((int)EState);
-    this->setFrame(this->pTexture->getCurrentFrame());
+    if (this->pTexture != NULL) {
+        this->pTexture->setCurrentFrame((int)EState);
+        this->setFrame(this->pTexture->getCurrentFrame());
+    }
 }
 
 void Button::setListener(ButtonListener* pListener) {
@@ -26,4 +34,8 @@ void Button::setListener(ButtonListener* pListener) {
     
     ButtonInput* pInputComponent = new ButtonInput(this->strName + " Input", this->pListener);
     this->attachComponent(pInputComponent);
+}
+
+sf::FloatRect Button::getGlobalBounds() {
+    return this->CBounds;
 }

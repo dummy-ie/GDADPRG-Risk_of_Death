@@ -21,6 +21,7 @@ namespace views {
         public:
             sf::Text* getText();
             void setText(std::string strText);
+            void setColor(sf::Color CColor);
     };
 }
 

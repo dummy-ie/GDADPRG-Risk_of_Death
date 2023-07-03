@@ -3,6 +3,9 @@
 
 #include "../View.hpp"
 #include "../Text.hpp"
+#include "../Button.hpp"
+
+#include "../Interface/ButtonListener.hpp"
 
 #include "../../Model/Enum/EnumFontType.hpp"
 #include "../../Model/Enum/EnumViewTag.hpp"
@@ -12,13 +15,22 @@
 
 namespace views {
     using namespace systems;
-    class TitleScreen : public View {
+    class TitleScreen : public View, public ButtonListener {
+        private:
+            Text* pStart;
+            Text* pLeaderboards;
+            Text* pExit;
+
         public:
             TitleScreen(std::string strName);
             ~TitleScreen();
 
         public:
             void initialize();
+            
+        public:
+            void onClick(Button* pButton);
+            void onRelease(Button* pButton);
     };
 }
 
