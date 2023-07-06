@@ -14,6 +14,7 @@ namespace listeners {
 
         public:
             virtual void onClick(Button* pButton) = 0;
+            virtual void onHover(Button* pButton) = 0;
             virtual void onRelease(Button* pButton) = 0;
     };
 }

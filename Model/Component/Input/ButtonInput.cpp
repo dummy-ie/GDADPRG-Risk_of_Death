@@ -30,6 +30,13 @@ void ButtonInput::processMouseInput(bool bPressed) {
         case sf::Mouse::Left:
             this->bLeftClick = bPressed;
 
+            if (this->contains(pButton, vecLocation))
+            {
+                // add to enums if using textures for buttons!
+                // pButton->changeState(ButtonState::HOVER);
+                this->pListener->onHover(pButton);
+            }   
+
             if(this->bLeftClick && this->contains(pButton, vecLocation)) {
                 pButton->changeState(ButtonState::PRESSED);
                 this->pListener->onClick(pButton);

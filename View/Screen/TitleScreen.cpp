@@ -48,10 +48,29 @@ void TitleScreen::onClick(Button* pButton) {
     // buggy
     if (pButton->getName().find("Start Button") != std::string::npos)
         this->pStart->setColor(sf::Color::White);
+
     if (pButton->getName().find("Leaderboards Button") != std::string::npos)
         this->pLeaderboards->setColor(sf::Color::White);
+
     if (pButton->getName().find("Exit Button") != std::string::npos)
+    {
         this->pExit->setColor(sf::Color::White);
+        std::exit(0);
+    }
+    
+}
+
+void TitleScreen::onHover(Button *pButton)
+{
+    // id kwaht im doing
+    // if (pButton->getName().find("Start Button") != std::string::npos)
+    //     this->pStart->getText()->setOutlineColor(sf::Color::White);
+
+    // if (pButton->getName().find("Leaderboards Button") != std::string::npos)
+    //     this->pLeaderboards->setColor(sf::Color::White);
+
+    // if (pButton->getName().find("Exit Button") != std::string::npos)
+    //     this->pExit->setColor(sf::Color::White);
     
 }
 

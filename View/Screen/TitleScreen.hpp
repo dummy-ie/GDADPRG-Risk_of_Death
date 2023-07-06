@@ -12,6 +12,7 @@
 
 #include "../../Controller/Singleton/FontManager.hpp"
 #include "../../Controller/System/ViewManager.hpp"
+#include "../../Controller/System/SceneManager.hpp"
 
 namespace views {
     using namespace systems;
@@ -30,6 +31,7 @@ namespace views {
             
         public:
             void onClick(Button* pButton);
+            void onHover(Button* pButton);
             void onRelease(Button* pButton);
     };
 }
