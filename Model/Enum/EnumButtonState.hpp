@@ -3,6 +3,7 @@
 
 enum class ButtonState : int {
     NORMAL = 0,
+    HOVER,
     PRESSED
 };
 
