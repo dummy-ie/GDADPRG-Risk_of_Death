@@ -15,6 +15,8 @@
 #include "Model/Component/Input/ButtonInput.cpp"
 #include "Model/Component/Input/GeneralInput.cpp"
 
+#include "Model/Component/Physics/Collider.cpp"
+
 #include "Model/Component/Renderer/Renderer.cpp"
 
 #include "Model/Entity/Background.cpp"
@@ -40,6 +42,7 @@
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 
+#include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
 
