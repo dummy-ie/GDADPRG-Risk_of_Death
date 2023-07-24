@@ -2,7 +2,10 @@
 
 using namespace models;
 
-Crosshair::Crosshair(std::string strName, AnimatedTexture* pTexture, float fX, float fY) : GameObject(strName, pTexture, fX, fY) {}
+Crosshair::Crosshair(std::string strName, AnimatedTexture* pTexture, float fX, float fY) : GameObject(strName, pTexture) 
+{
+    this->pSprite->setPosition(fX, fY);
+}
 
 Crosshair::~Crosshair() {}
 

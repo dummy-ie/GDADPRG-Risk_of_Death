@@ -4,8 +4,8 @@
 #include "GameObject.hpp"
 #include "AnimatedTexture.hpp"
 
-#include "Component/CrosshairMouseInput.hpp"
-#include "Component/CrosshairMovement.hpp"
+#include "Component/Input/CrosshairMouseInput.hpp"
+#include "Component/Input/CrosshairMovement.hpp"
 
 namespace models {
     class Crosshair : public GameObject {

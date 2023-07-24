@@ -1,8 +1,8 @@
 #ifndef COMPONENTS_CROSSHAIR_MOUSE_INPUT_HPP
 #define COMPONENTS_CROSSHAIR_MOUSE_INPUT_HPP
 
-#include "../../Config/Settings.hpp"
-#include "../Enum/EnumComponentType.hpp"
+#include "../../../Config/Settings.hpp"
+#include "../../Enum/EnumComponentType.hpp"
 
 #include "GeneralInput.hpp"
 

@@ -1,9 +1,9 @@
 #ifndef COMPONENTS_CROSSHAIR_MOVEMENT_HPP
 #define COMPONENTS_CROSSHAIR_MOVEMENT_HPP
 
-#include "../Enum/EnumComponentType.hpp"
+#include "../../Enum/EnumComponentType.hpp"
 
-#include "Component.hpp"
+#include "../Component.hpp"
 #include "CrosshairMouseInput.hpp"
 
 namespace components {
