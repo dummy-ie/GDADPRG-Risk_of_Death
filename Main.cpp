@@ -13,9 +13,13 @@
 #include "Model/Component/Component.cpp"
 
 #include "Model/Component/Input/ButtonInput.cpp"
+#include "Model/Component/Input/CrosshairMouseInput.cpp"
+#include "Model/Component/Input/CrosshairMovement.cpp"
 #include "Model/Component/Input/GeneralInput.cpp"
 
 #include "Model/Component/Renderer/Renderer.cpp"
+
+#include "Model/Crosshair.cpp"
 
 #include "Model/Entity/Background.cpp"
 
