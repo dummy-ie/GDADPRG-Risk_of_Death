@@ -55,36 +55,45 @@ void TitleScreen::onClick(Button* pButton) {
     if (pButton->getName().find("Exit Button") != std::string::npos)
     {
         this->pExit->setColor(sf::Color::White);
-        std::exit(0);
     }
     
 }
 
 void TitleScreen::onHover(Button *pButton)
 {
-    // id kwaht im doing
-    // if (pButton->getName().find("Start Button") != std::string::npos)
-    //     this->pStart->getText()->setOutlineColor(sf::Color::White);
+    if (pButton->getName().find("Start Button") != std::string::npos)
+        this->pStart->setColor(sf::Color::Green);
+    
 
-    // if (pButton->getName().find("Leaderboards Button") != std::string::npos)
-    //     this->pLeaderboards->setColor(sf::Color::White);
+    if (pButton->getName().find("Leaderboards Button") != std::string::npos)
+        this->pLeaderboards->setColor(sf::Color::Green);
 
-    // if (pButton->getName().find("Exit Button") != std::string::npos)
-    //     this->pExit->setColor(sf::Color::White);
+    if (pButton->getName().find("Exit Button") != std::string::npos)
+        this->pExit->setColor(sf::Color::Green);
     
 }
 
 void TitleScreen::onRelease(Button* pButton) {
     if (pButton->getName().find("Start Button") != std::string::npos) {
         std::cout << "[GAME START]" << std::endl;
-        this->pStart->setColor(sf::Color::Black);
     }
     if (pButton->getName().find("Leaderboards Button") != std::string::npos) {
         std::cout << "[LEADERBOARDS]" << std::endl;
-        this->pLeaderboards->setColor(sf::Color::Black);
     }
     if (pButton->getName().find("Exit Button") != std::string::npos) {
         std::cout << "[GAME EXIT]" << std::endl;
+        std::exit(0);
+    }
+}
+
+void TitleScreen::reset(Button* pButton) {
+    if (pButton->getName().find("Start Button") != std::string::npos) {
+        this->pStart->setColor(sf::Color::Black);
+    }
+    if (pButton->getName().find("Leaderboards Button") != std::string::npos) {
+        this->pLeaderboards->setColor(sf::Color::Black);
+    }
+    if (pButton->getName().find("Exit Button") != std::string::npos) {
         this->pExit->setColor(sf::Color::Black);
     }
 }

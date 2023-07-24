@@ -23,6 +23,7 @@ namespace components {
 
         private:
             void processMouseInput(bool bPressed);
+            void processMouseMove();
             bool contains(Button* pButton, sf::Vector2f vecLocation);
     };
 }

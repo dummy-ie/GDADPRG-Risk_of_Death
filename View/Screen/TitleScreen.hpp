@@ -33,6 +33,7 @@ namespace views {
             void onClick(Button* pButton);
             void onHover(Button* pButton);
             void onRelease(Button* pButton);
+            void reset(Button* pButton);
     };
 }
 
