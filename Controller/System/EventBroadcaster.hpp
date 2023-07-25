@@ -7,6 +7,7 @@
 namespace systems {
     using namespace controllers;
     using namespace models;
+    using namespace interfaces;
     /**
      * @brief The Singleton class that keeps track of all [EventListener] objects,
      * and handles the broadcasting of events. It is a Singleton so that ANY class

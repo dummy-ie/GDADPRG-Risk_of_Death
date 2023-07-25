@@ -38,7 +38,7 @@ void EventBroadcaster::unregisterAllListeners() {
 
 void EventBroadcaster::broadcast(EventKey EKey, std::unordered_map<std::string, void*> mapParameter) {
     for(int i = 0; i < this->mapListener[EKey].size(); i++) {
-        this->mapListener[EKey][i]->onEventTrigger(EKey, mapParameter);
+        this->mapListener[EKey][i]->onEventTrigger(mapParameter);
     }
 }
 
