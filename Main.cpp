@@ -16,10 +16,13 @@
 #include "Model/Component/Input/CrosshairMouseInput.cpp"
 #include "Model/Component/Input/CrosshairMovement.cpp"
 #include "Model/Component/Input/GeneralInput.cpp"
+#include "Model/Component/Input/PlayerInput.cpp"
 
 #include "Model/Component/Physics/Collider.cpp"
 
 #include "Model/Component/Renderer/Renderer.cpp"
+
+#include "Model/Component/Script/PlayerControls.cpp"
 
 #include "Model/Crosshair.cpp"
 
@@ -35,6 +38,7 @@
 #include "View/Text.cpp"
 #include "View/View.cpp"
 
+#include "View/Screen/PlayerUI.cpp"
 #include "View/Screen/TitleScreen.cpp"
 
 #include "Controller/Singleton/GameObjectManager.cpp"

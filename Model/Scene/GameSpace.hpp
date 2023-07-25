@@ -14,6 +14,8 @@
 
 #include "../Entity/Background.hpp"
 
+#include "../../View/Screen/PlayerUI.hpp"
+
 namespace scenes {
     using namespace models;
     class GameSpace : public Scene {
@@ -27,7 +29,9 @@ namespace scenes {
             void onUnloadResources();
 
         private:
-            void createBackground();
+            void createBackground(std::string strName, AssetType EType);
+            void createUserInterface();
+            void createCrosshair();
     };
 }
 
