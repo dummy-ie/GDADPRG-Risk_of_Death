@@ -49,6 +49,7 @@
 #include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
+#include "Controller/System/EventBroadcaster.cpp"
 
 #include "Controller/Game.cpp"
 
