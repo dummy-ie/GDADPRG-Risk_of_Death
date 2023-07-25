@@ -12,6 +12,14 @@ void TextureManager::loadBackgroundFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/menu_background.jpg");
     this->mapTexture[AssetType::MENU_BACKGROUND].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/game_background_front.png");
+    this->mapTexture[AssetType::GAME_BACKGROUND_FRONT].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/game_background_side.png");
+    this->mapTexture[AssetType::GAME_BACKGROUND_SIDE].push_back(pTexture);
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {

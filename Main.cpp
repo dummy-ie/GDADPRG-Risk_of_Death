@@ -28,6 +28,7 @@
 #include "Model/Pooling/PoolableObject.cpp"
 
 #include "Model/Scene/GameMenu.cpp"
+#include "Model/Scene/GameSpace.cpp"
 
 #include "View/Button.cpp"
 #include "View/Image.cpp"

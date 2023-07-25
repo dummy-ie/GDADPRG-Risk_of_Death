@@ -76,6 +76,7 @@ void TitleScreen::onHover(Button *pButton)
 void TitleScreen::onRelease(Button* pButton) {
     if (pButton->getName().find("Start Button") != std::string::npos) {
         std::cout << "[GAME START]" << std::endl;
+        SceneManager::getInstance()->loadScene(SceneTag::GAME_SPACE);
     }
     if (pButton->getName().find("Leaderboards Button") != std::string::npos) {
         std::cout << "[LEADERBOARDS]" << std::endl;
