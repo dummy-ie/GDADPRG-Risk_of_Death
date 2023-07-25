@@ -4,6 +4,7 @@
 #include "vector"
 
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 
 #include "Model/AnimatedTexture.cpp"
 #include "Model/EmptyGameObject.hpp"
@@ -46,6 +47,7 @@
 #include "Controller/Singleton/FontManager.cpp"
 #include "Controller/Singleton/ItemManager.cpp"
 #include "Controller/Singleton/ObjectPoolManager.cpp"
+#include "Controller/Singleton/SFXManager.cpp"
 #include "Controller/Singleton/TextureManager.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"

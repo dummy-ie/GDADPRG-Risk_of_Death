@@ -5,12 +5,13 @@
 
 #include "Singleton/GameObjectManager.hpp"
 #include "Singleton/TextureManager.hpp"
-//#include "Singleton/SFXManager.hpp"
+#include "Singleton/SFXManager.hpp"
 #include "Singleton/FontManager.hpp"
 #include "System/SceneManager.hpp"
 
 #include "../Model/Enum/EnumSceneTag.hpp"
 #include "../Model/Scene/GameMenu.hpp"
+#include "../Model/Scene/GameSpace.hpp"
 namespace controllers {
     class Game {
         private:

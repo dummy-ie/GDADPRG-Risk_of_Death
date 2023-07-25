@@ -6,7 +6,7 @@ Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Risk of Dea
     this->rwWindow.setFramerateLimit(FRAME_RATE_LIMIT);
 
     TextureManager::getInstance()->loadAll();
-    //SFXManager::getInstance()->loadAll();
+    SFXManager::getInstance()->loadAll();
     FontManager::getInstance()->loadAll();
 
     SceneManager::getInstance()->registerScene(new GameMenu());

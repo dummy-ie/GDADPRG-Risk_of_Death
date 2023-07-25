@@ -32,8 +32,10 @@ void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPre
     switch(inMouse) {
         case sf::Mouse::Left:
             this->bLeftClick = bPressed;
-            if(this->bLeftClick)
+            if(this->bLeftClick) {
                 std::cout << "CrosshairMouseInput::processMouseInput() >> [LEFT]." << std::endl;
+                SFXManager::getInstance()->getSound(SFXType::PLAYER_SHOOT)->play();
+            }
             break;
 
         case sf::Mouse::Right:

@@ -3,6 +3,9 @@
 
 #include "../../../Config/Settings.hpp"
 #include "../../Enum/EnumComponentType.hpp"
+#include "../../Enum/EnumSFXType.hpp"
+
+#include "../../../Controller/Singleton/SFXManager.hpp"
 
 #include "GeneralInput.hpp"
 
