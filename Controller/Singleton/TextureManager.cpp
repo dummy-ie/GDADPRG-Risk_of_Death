@@ -4,6 +4,7 @@ using namespace controllers;
 
 void TextureManager::loadAll() {
     this->loadBackgroundFolder();
+    this->loadCrosshairFolder();
 }
 
 void TextureManager::loadBackgroundFolder() {
@@ -20,6 +21,14 @@ void TextureManager::loadBackgroundFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/game_background_side.png");
     this->mapTexture[AssetType::GAME_BACKGROUND_SIDE].push_back(pTexture);
+}
+
+void TextureManager::loadCrosshairFolder() {
+    sf::Texture* pTexture = NULL;
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/crosshair.png");
+    this->mapTexture[AssetType::CROSSHAIR].push_back(pTexture);
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {

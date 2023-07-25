@@ -24,9 +24,8 @@
 
 #include "Model/Component/Script/PlayerControls.cpp"
 
-#include "Model/Crosshair.cpp"
-
 #include "Model/Entity/Background.cpp"
+#include "Model/Entity/Crosshair.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 

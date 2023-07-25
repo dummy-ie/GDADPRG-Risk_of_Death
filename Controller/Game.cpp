@@ -27,6 +27,11 @@ void Game::run() {
             this->update(tTimePerFrame);
         }
         SceneManager::getInstance()->checkLoadScene();
+        // Temporary
+        if (SceneManager::getInstance()->isLoaded(SceneTag::GAME_SPACE))
+            this->rwWindow.setMouseCursorVisible(false);
+        else
+            this->rwWindow.setMouseCursorVisible(true);
         this->render();
     }
 }

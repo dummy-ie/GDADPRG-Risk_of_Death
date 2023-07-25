@@ -13,6 +13,7 @@
 #include "../AnimatedTexture.hpp"
 
 #include "../Entity/Background.hpp"
+#include "../Entity/Crosshair.hpp"
 
 #include "../../View/Screen/PlayerUI.hpp"
 

@@ -16,6 +16,7 @@ void GameSpace::onLoadObjects() {
     GameObjectManager::getInstance()->findObjectByName("Game Background Side")->setEnabled(false);
 
     this->createUserInterface();
+    this->createCrosshair();
 }
 
 void GameSpace::onUnloadResources() {
@@ -34,5 +35,7 @@ void GameSpace::createUserInterface() {
 }
 
 void GameSpace::createCrosshair() {
-
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::CROSSHAIR));
+    Crosshair* pCrosshair = new Crosshair("Crosshair", pTexture);
+    this->registerObject(pCrosshair);
 }
