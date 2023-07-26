@@ -3,10 +3,23 @@
 
 enum class AssetType : int {
     NONE = -1,
+
     MENU_BACKGROUND,
     GAME_BACKGROUND_FRONT,
     GAME_BACKGROUND_SIDE,
-    CROSSHAIR
+
+    CROSSHAIR,
+
+    GREEN_SLIME_1,
+    GREEN_SLIME_2,
+    PURPLE_SLIME_1,
+    PURPLE_SLIME_2,
+    YELLOW_SLIME_1,
+    YELLOW_SLIME_2,
+    RED_SLIME_1,
+    RED_SLIME_2,
+    BLUE_SLIME_1,
+    BLUE_SLIME_2
 };
 
 #endif

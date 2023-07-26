@@ -15,6 +15,7 @@ namespace controllers {
 		private:
 			void loadBackgroundFolder();
             void loadCrosshairFolder();
+            void loadEnemyFolder();
 
         private:
 		    static TextureManager* P_SHARED_INSTANCE;

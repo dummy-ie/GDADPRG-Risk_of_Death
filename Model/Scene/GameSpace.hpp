@@ -14,6 +14,7 @@
 
 #include "../Entity/Background.hpp"
 #include "../Entity/Crosshair.hpp"
+#include "../Entity/Enemy.hpp"
 
 #include "../../View/Screen/PlayerUI.hpp"
 

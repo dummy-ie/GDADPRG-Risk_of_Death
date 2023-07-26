@@ -27,6 +27,7 @@
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Crosshair.cpp"
+#include "Model/Entity/Enemy.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 

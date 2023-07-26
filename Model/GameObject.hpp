@@ -26,7 +26,7 @@ namespace models {
             std::vector<Component*> vecComponent;
 
         public:
-            GameObject(std::string strName, AnimatedTexture* pTexture = NULL);
+            GameObject(std::string strName, AnimatedTexture* pTexture = NULL, float fX = 0.0f, float fY = 0.0f);
             virtual ~GameObject() = default;
 
         public:

@@ -2,13 +2,13 @@
 
 using namespace models;
 
-GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
+GameObject::GameObject(std::string strName, AnimatedTexture* pTexture, float fX, float fY) {
     this->bEnabled = true;
 
     this->strName = strName;
     this->pSprite = new sf::Sprite();
     this->pSprite->setOrigin(0.0f, 0.0f);
-    this->pSprite->setPosition(0.0f, 0.0f);
+    this->pSprite->setPosition(fX, fY);
 
     this->pTexture = pTexture;
     this->setFrame(0);
