@@ -6,6 +6,7 @@
 #include "../../Config/Settings.hpp"
 
 #include "../../Controller/Singleton/TextureManager.hpp"
+#include "../../Controller/System/PoolableKillerSystem.hpp"
 
 #include "../../Controller/Pooling/Component/Director/EnemyDirector.hpp"
 

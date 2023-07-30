@@ -2,6 +2,7 @@
 #include "string"
 #include "unordered_map"
 #include "vector"
+#include "cmath"
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
@@ -24,6 +25,7 @@
 #include "Model/Component/Renderer/Renderer.cpp"
 
 #include "Model/Component/Script/PlayerControls.cpp"
+#include "Model/Component/Script/Killable.cpp"
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Crosshair.cpp"
@@ -56,6 +58,7 @@
 #include "Controller/Pooling/Component/Director/EnemyDirector.cpp"
 
 #include "Controller/System/PhysicsManager.cpp"
+#include "Controller/System/PoolableKillerSystem.cpp"
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
 #include "Controller/System/EventBroadcaster.cpp"

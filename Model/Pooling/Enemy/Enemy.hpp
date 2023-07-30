@@ -3,16 +3,23 @@
 
 #include "../../../Config/Settings.hpp"
 
+
 #include "../../Enum/EnumEnemyType.hpp"
 #include "../../Enum/EnumPooLTag.hpp"
 
+#include "../../Component/Script/Killable.hpp"
+
 #include "../PoolableObject.hpp"
 
+#include "../../../Controller/System/PoolableKillerSystem.hpp"
+
 namespace models {
+    using namespace systems;
     class Enemy : public PoolableObject {
         private:
             EnemyType EType;
             int nHealth;
+            float fDistance;
             float fSpeed;
 
         public:
@@ -21,6 +28,7 @@ namespace models {
 
         private:
             void randomizePosition();
+            void randomizeType();
 
         public:
             void initialize();

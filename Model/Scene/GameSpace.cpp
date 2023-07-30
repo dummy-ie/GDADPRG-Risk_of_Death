@@ -29,7 +29,11 @@ void GameSpace::onUnloadResources() {
 void GameSpace::createNullObjectComponents() {
     std::srand(std::time(NULL));
 
-    EmptyGameObject* pComponentHolder = new EmptyGameObject("Enemy Director Holder");
+    EmptyGameObject* pComponentHolder = new EmptyGameObject("Killer System Holder");
+    PoolableKillerSystem::initialize("Poolable Killer System", pComponentHolder);
+    GameObjectManager::getInstance()->addObject(pComponentHolder);
+
+    pComponentHolder = new EmptyGameObject("Enemy Director Holder");
     EnemyDirector* pEnemyDirector = new EnemyDirector("Enemy Director");
     pComponentHolder->attachComponent(pEnemyDirector);
     GameObjectManager::getInstance()->addObject(pComponentHolder);

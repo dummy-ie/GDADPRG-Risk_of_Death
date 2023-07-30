@@ -43,8 +43,6 @@ void TextureManager::loadEnemyFolder() {
         pTexture1 = new sf::Texture();
         pTexture2 = new sf::Texture();
         pTexture1->loadFromFile("View/Image/slimesheet.png", sf::IntRect(0 + (nOffset * 2 * i), 0, 212, 159));
-        std::cout << "Texture 1: " << 0 + (nOffset * 2 * i) << std::endl; 
-        std::cout << "Texture 2: " << 212 + (nOffset * 2 * i) << std::endl; 
         pTexture2->loadFromFile("View/Image/slimesheet.png", sf::IntRect(212 + (nOffset * 2 * i), 0, 212, 159));
         this->mapTexture[EType].push_back(pTexture1);
         this->mapTexture[EType].push_back(pTexture2);

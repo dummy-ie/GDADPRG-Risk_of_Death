@@ -16,7 +16,7 @@ void Killable::perform() {
             this->getOwner()->incrementFrame();
             if (this->getOwner()->getCurrentFrame() >= this->getOwner()->getFrameSize() - 1) {
                 PoolableObject* pPoolableObject = (PoolableObject*)this->getOwner();
-                //ObjectPoolManager::getInstance()->getPool(pPoolableObject->getTag())->releasePoolable(pPoolableObject);
+                ObjectPoolManager::getInstance()->getPool(pPoolableObject->getTag())->releasePoolable(pPoolableObject);
                 this->bKilled = false;
             }
         }
