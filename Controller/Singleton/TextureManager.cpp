@@ -33,7 +33,7 @@ void TextureManager::loadCrosshairFolder() {
 }
 
 void TextureManager::loadEnemyFolder() {
-    int nOffset = 211;
+    int nOffset = 212;
     sf::Texture* pTexture1 = NULL;
     sf::Texture* pTexture2 = NULL;
 
@@ -43,7 +43,7 @@ void TextureManager::loadEnemyFolder() {
         pTexture1 = new sf::Texture();
         pTexture2 = new sf::Texture();
         pTexture1->loadFromFile("View/Image/slimesheet.png", sf::IntRect(0 + (nOffset * i), 0, 212, 159));
-        pTexture2->loadFromFile("View/Image/slimesheet.png", sf::IntRect(nOffset + (nOffset * i), 0, 212, 159));
+        pTexture2->loadFromFile("View/Image/slimesheet.png", sf::IntRect(212 + (nOffset * i), 0, 212, 159));
         this->mapTexture[EType].push_back(pTexture1);
         this->mapTexture[EType].push_back(pTexture2);
     }
