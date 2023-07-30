@@ -21,5 +21,11 @@ void PlayerControls::perform() {
             GameObjectManager::getInstance()->findObjectByName("Game Background Front")->setEnabled(true);
         }
 
+        if(pInput->isPartition())
+        {
+            sf::View vwView(sf::Vector2f(SCREEN_WIDTH / 8, SCREEN_HEIGHT / 8), sf::Vector2f(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4));
+            WindowManager::getInstance()->getWindow()->setView(vwView);
+        }
+
     }
 }

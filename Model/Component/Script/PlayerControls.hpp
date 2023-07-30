@@ -7,6 +7,7 @@
 #include "../../Enum/EnumComponentType.hpp"
 
 #include "../../../Controller/Singleton/GameObjectManager.hpp"
+#include "../../../Controller/Singleton/WindowManager.hpp"
 
 namespace components {
     using namespace controllers;

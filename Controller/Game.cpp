@@ -5,6 +5,7 @@ using namespace controllers;
 Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Risk of Death", sf::Style::Titlebar | sf::Style::Close) {
     this->rwWindow.setFramerateLimit(FRAME_RATE_LIMIT);
 
+    WindowManager::getInstance()->setWindow(&this->rwWindow);
     TextureManager::getInstance()->loadAll();
     SFXManager::getInstance()->loadAll();
     FontManager::getInstance()->loadAll();

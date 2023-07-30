@@ -10,6 +10,7 @@ namespace components {
         private:
             bool bLeft;
             bool bRight;
+            bool bPartition;
 
         public:
             PlayerInput(std::string strName);
@@ -23,6 +24,7 @@ namespace components {
         public:
             bool isLeft();
             bool isRight();
+            bool isPartition();
     };
 }
 

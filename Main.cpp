@@ -50,6 +50,7 @@
 #include "Controller/Singleton/ObjectPoolManager.cpp"
 #include "Controller/Singleton/SFXManager.cpp"
 #include "Controller/Singleton/TextureManager.cpp"
+#include "Controller/Singleton/WindowManager.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 

@@ -34,6 +34,10 @@ void PlayerInput::processKeyInput(bool bPressed) {
             this->bRight = bPressed;
             break;
 
+        case sf::Keyboard::Space: // temporary
+            this->bPartition = bPressed;
+            break;
+
         default:
             break;
     }
@@ -45,4 +49,9 @@ bool PlayerInput::isLeft() {
 
 bool PlayerInput::isRight() {
     return this->bRight;
+}
+
+bool PlayerInput::isPartition()
+{
+    return this->bPartition;
 }
