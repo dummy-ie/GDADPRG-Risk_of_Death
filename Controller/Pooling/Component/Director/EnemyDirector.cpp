@@ -25,12 +25,7 @@ void EnemyDirector::createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType
 }
 
 void EnemyDirector::randomizedSpawn() {
-    /* [TODO] : Randomly select a Pool among [ENEMY_BUG_1], [ENEMY_BUG_2], or [ENEMY_BUG_3]
-                to request an enemy spawn.
-                
-                If the selected Pool can't accommodate requests, select a different Pool.
-                If ALL Pools can't accommodate requests, then DON'T spawn an enemy. */
-    int nRandom = rand() % 3;
+    int nRandom = rand() % 5;
     switch (nRandom) {
         case 0:
             ObjectPoolManager::getInstance()->getPool(PoolTag::GREEN_SLIME)->requestPoolable();
