@@ -27,5 +27,10 @@ void PlayerControls::perform() {
             WindowManager::getInstance()->getWindow()->setView(vwView);
         }
 
+        if(pInput->isZoomOut())
+        {
+            WindowManager::getInstance()->getWindow()->setView(WindowManager::getInstance()->getWindow()->getDefaultView());
+        }
+
     }
 }

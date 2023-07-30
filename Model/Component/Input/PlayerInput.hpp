@@ -11,6 +11,7 @@ namespace components {
             bool bLeft;
             bool bRight;
             bool bPartition;
+            bool bZoomOut;
 
         public:
             PlayerInput(std::string strName);
@@ -25,6 +26,7 @@ namespace components {
             bool isLeft();
             bool isRight();
             bool isPartition();
+            bool isZoomOut();
     };
 }
 

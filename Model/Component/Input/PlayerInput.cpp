@@ -38,6 +38,10 @@ void PlayerInput::processKeyInput(bool bPressed) {
             this->bPartition = bPressed;
             break;
 
+        case sf::Keyboard::Q: // temporary
+            this->bZoomOut = bPressed;
+            break;
+
         default:
             break;
     }
@@ -54,4 +58,9 @@ bool PlayerInput::isRight() {
 bool PlayerInput::isPartition()
 {
     return this->bPartition;
+}
+
+bool components::PlayerInput::isZoomOut()
+{
+    return this->bZoomOut;
 }
