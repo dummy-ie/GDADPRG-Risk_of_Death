@@ -7,7 +7,7 @@
 #include "SFML/Audio.hpp"
 
 #include "Model/AnimatedTexture.cpp"
-#include "Model/EmptyGameObject.hpp"
+#include "Model/EmptyGameObject.cpp"
 #include "Model/GameObject.cpp"
 #include "Model/Scene.cpp"
 
@@ -27,9 +27,9 @@
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Crosshair.cpp"
-#include "Model/Entity/Enemy.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
+#include "Model/Pooling/Enemy/Enemy.cpp"
 
 #include "Model/Scene/GameMenu.cpp"
 #include "Model/Scene/GameSpace.cpp"
@@ -53,6 +53,7 @@
 #include "Controller/Singleton/WindowManager.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
+#include "Controller/Pooling/Component/Director/EnemyDirector.cpp"
 
 #include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/SceneManager.cpp"

@@ -7,19 +7,24 @@
 
 #include "../../Controller/Singleton/TextureManager.hpp"
 
+#include "../../Controller/Pooling/Component/Director/EnemyDirector.hpp"
+
 #include "../Enum/EnumAssetType.hpp"
 #include "../Enum/EnumSceneTag.hpp"
 
 #include "../AnimatedTexture.hpp"
 
+#include "../EmptyGameObject.hpp"
+
 #include "../Entity/Background.hpp"
 #include "../Entity/Crosshair.hpp"
-#include "../Entity/Enemy.hpp"
+#include "../Pooling/Enemy/Enemy.hpp"
 
 #include "../../View/Screen/PlayerUI.hpp"
 
 namespace scenes {
     using namespace models;
+    using namespace directors;
     class GameSpace : public Scene {
         public:
             GameSpace();
@@ -31,6 +36,7 @@ namespace scenes {
             void onUnloadResources();
 
         private:
+            void createNullObjectComponents();
             void createBackground(std::string strName, AssetType EType);
             void createUserInterface();
             void createCrosshair();

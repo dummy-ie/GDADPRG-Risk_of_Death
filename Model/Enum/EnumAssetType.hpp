@@ -10,16 +10,11 @@ enum class AssetType : int {
 
     CROSSHAIR,
 
-    GREEN_SLIME_1,
-    GREEN_SLIME_2,
-    PURPLE_SLIME_1,
-    PURPLE_SLIME_2,
-    YELLOW_SLIME_1,
-    YELLOW_SLIME_2,
-    RED_SLIME_1,
-    RED_SLIME_2,
-    BLUE_SLIME_1,
-    BLUE_SLIME_2
+    GREEN_SLIME,
+    PURPLE_SLIME,
+    YELLOW_SLIME,
+    RED_SLIME,
+    BLUE_SLIME
 };
 
 #endif
