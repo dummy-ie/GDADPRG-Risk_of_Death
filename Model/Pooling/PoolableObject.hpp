@@ -10,7 +10,7 @@ namespace models {
             PoolTag ETag;
 
         public:
-            PoolableObject(PoolTag ETag, std::string strName, AnimatedTexture* pTexture = NULL); 
+            PoolableObject(PoolTag ETag, std::string strName, AnimatedTexture* pTexture = NULL, float fX = 0.0f, float fY = 0.0f); 
             ~PoolableObject();
 
         public:

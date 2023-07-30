@@ -2,12 +2,13 @@
 #include "string"
 #include "unordered_map"
 #include "vector"
+#include "cmath"
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 
 #include "Model/AnimatedTexture.cpp"
-#include "Model/EmptyGameObject.hpp"
+#include "Model/EmptyGameObject.cpp"
 #include "Model/GameObject.cpp"
 #include "Model/Scene.cpp"
 
@@ -24,12 +25,13 @@
 #include "Model/Component/Renderer/Renderer.cpp"
 
 #include "Model/Component/Script/PlayerControls.cpp"
+#include "Model/Component/Script/Killable.cpp"
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Crosshair.cpp"
-#include "Model/Entity/Enemy.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
+#include "Model/Pooling/Enemy/Enemy.cpp"
 
 #include "Model/Scene/GameMenu.cpp"
 #include "Model/Scene/GameSpace.cpp"
@@ -53,8 +55,10 @@
 #include "Controller/Singleton/WindowManager.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
+#include "Controller/Pooling/Component/Director/EnemyDirector.cpp"
 
 #include "Controller/System/PhysicsManager.cpp"
+#include "Controller/System/PoolableKillerSystem.cpp"
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
 #include "Controller/System/EventBroadcaster.cpp"

@@ -3,7 +3,11 @@
 
 enum class PoolTag : int {
     NONE = -1,
-    ENEMY
+    GREEN_SLIME,
+    PURPLE_SLIME,
+    YELLOW_SLIME,
+    RED_SLIME,
+    BLUE_SLIME
 };
 
 #endif

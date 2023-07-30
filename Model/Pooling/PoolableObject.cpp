@@ -2,8 +2,8 @@
 
 using namespace models;
 
-PoolableObject::PoolableObject(PoolTag ETag, std::string strName, AnimatedTexture* pTexture)
-               : GameObject(strName, pTexture) {
+PoolableObject::PoolableObject(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, float fX, float fY)
+               : GameObject(strName, pTexture, fX, fY) {
     this->ETag = ETag;
 }
 

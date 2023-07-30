@@ -33,18 +33,20 @@ void TextureManager::loadCrosshairFolder() {
 }
 
 void TextureManager::loadEnemyFolder() {
-    int nOffset = 211;
-    sf::Texture* pTexture = NULL;
+    int nOffset = 212;
+    sf::Texture* pTexture1 = NULL;
+    sf::Texture* pTexture2 = NULL;
 
-    for (int i = 0; i < 10; i++) {
-        int nTemp = static_cast<int>(AssetType::GREEN_SLIME_1) + i;
+    for (int i = 0; i < 5; i++) {
+        int nTemp = static_cast<int>(AssetType::GREEN_SLIME) + i;
         AssetType EType = static_cast<AssetType>(nTemp);
-        pTexture = new sf::Texture();
-        pTexture->loadFromFile("View/Image/slimesheet.png", sf::IntRect(0 + (nOffset * i), 0, 212, 159));
-        this->mapTexture[EType].push_back(pTexture);
+        pTexture1 = new sf::Texture();
+        pTexture2 = new sf::Texture();
+        pTexture1->loadFromFile("View/Image/slimesheet.png", sf::IntRect(0 + (nOffset * 2 * i), 0, 212, 159));
+        pTexture2->loadFromFile("View/Image/slimesheet.png", sf::IntRect(212 + (nOffset * 2 * i), 0, 212, 159));
+        this->mapTexture[EType].push_back(pTexture1);
+        this->mapTexture[EType].push_back(pTexture2);
     }
-
-    
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {

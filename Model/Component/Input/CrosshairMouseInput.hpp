@@ -27,6 +27,7 @@ namespace components {
             void processMouseInput(sf::Mouse::Button inMouse, bool bPressed);
 
         public:
+            void resetLeftClick();
             bool isLeftClick();
             bool isRightClick();
             sf::Vector2f getLocation();

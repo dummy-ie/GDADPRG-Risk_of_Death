@@ -2,6 +2,7 @@
 #define COMPONENTS_KILLABLE_HPP
 
 #include "../../../Controller/Singleton/TextureManager.hpp"
+#include "../../../Controller/Singleton/ObjectPoolManager.hpp"
 
 #include "../../Enum/EnumAnimationType.hpp"
 #include "../../Enum/EnumAssetType.hpp"
