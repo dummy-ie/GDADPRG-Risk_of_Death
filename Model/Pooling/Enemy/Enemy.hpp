@@ -3,9 +3,8 @@
 
 #include "../../../Config/Settings.hpp"
 
-
 #include "../../Enum/EnumEnemyType.hpp"
-#include "../../Enum/EnumPooLTag.hpp"
+#include "../../Enum/EnumPoolTag.hpp"
 
 #include "../../Component/Script/Killable.hpp"
 

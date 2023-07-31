@@ -15,6 +15,9 @@ void PlayerControls::perform() {
         for(float& fTimer : this->vecTimer){
             if(fTimer > 0.f){
                 fTimer -= 0.5f;
+                if(fTimer < 0.f){
+                    fTimer = 0.f;
+                }
             }
         }
     }
