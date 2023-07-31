@@ -7,11 +7,11 @@
  * values as you see fit.
  */
 enum class ItemType : int {
-    PWR_HEALTH = 0,
-    PWR_DAMAGE,
-    PWR_PIERCE,
-    PWR_INVINCIBILITY,
-    PWR_FREEZE
+    PWR_HEALTH = 0,     //active
+    PWR_DAMAGE,         //acquire
+    PWR_PIERCE,         //acquire
+    PWR_INVINCIBILITY,  //active
+    PWR_FREEZE          //acquire
 };
 
 #endif
