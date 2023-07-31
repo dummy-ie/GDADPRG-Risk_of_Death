@@ -7,6 +7,9 @@
 
 #include "../../Controller/Singleton/TextureManager.hpp"
 #include "../../Controller/System/PoolableKillerSystem.hpp"
+#include "../../Controller/System/EventBroadcaster.hpp"
+
+#include "../../Controller/System/Interface/EventListener.hpp"
 
 #include "../../Controller/Pooling/Component/Director/EnemyDirector.hpp"
 

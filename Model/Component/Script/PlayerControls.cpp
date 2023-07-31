@@ -2,9 +2,23 @@
 
 using namespace components;
 
-PlayerControls::PlayerControls(std::string strName) : Component(strName, ComponentType::SCRIPT) {}
+PlayerControls::PlayerControls(std::string strName) : Component(strName, ComponentType::SCRIPT) {
+    this->fCooldown = 0.5f;
+    this->vecTimer = {0.f,0.f,0.f};
+}
 
 void PlayerControls::perform() {
+    this->fTicks += this->tDeltaTime.asSeconds();
+
+    if(this->fTicks > 0.5f){
+        this->fTicks = 0.f;
+        for(float& fTimer : this->vecTimer){
+            if(fTimer > 0.f){
+                fTimer -= 0.5f;
+            }
+        }
+    }
+
     PlayerInput* pInput = (PlayerInput*)this->getOwner()->findComponentByName(this->pOwner->getName() + " Input");
     
     if(pInput == NULL) {
@@ -21,16 +35,37 @@ void PlayerControls::perform() {
             GameObjectManager::getInstance()->findObjectByName("Game Background Front")->setEnabled(true);
         }
 
-        if(pInput->is1()){
-            ItemManager::getInstance()->useItem(ItemType::PWR_DAMAGE);
+        if(pInput->is1() && this->vecTimer[0] == 0.f){
+            if(ItemManager::getInstance()->useItem(ItemType::PWR_DAMAGE)){
+                std::cout << "[ITEM] : Damage item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_DAMAGE) << " left." << std::endl;
+                this->vecTimer[0] = this->fCooldown * 2.f;
+            }
+            else{
+                std::cout << "[ERROR] : No damage items left." << std::endl;
+                this->vecTimer[0] = this->fCooldown;
+            }
         }
 
-        if(pInput->is2()){
-            ItemManager::getInstance()->useItem(ItemType::PWR_PIERCE);
+        if(pInput->is2() && this->vecTimer[1] == 0.f){
+            if(ItemManager::getInstance()->useItem(ItemType::PWR_PIERCE)){
+                std::cout << "[ITEM] : Pierce item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_PIERCE) << " left." << std::endl;
+                this->vecTimer[1] = this->fCooldown * 2.f;
+            }
+            else{
+                std::cout << "[ERROR] : No pierce items left." << std::endl;
+                this->vecTimer[1] = this->fCooldown;
+            }
         }
 
-        if(pInput->is3()){
-            ItemManager::getInstance()->useItem(ItemType::PWR_FREEZE);
+        if(pInput->is3() && this->vecTimer[2] == 0.f){
+            if(ItemManager::getInstance()->useItem(ItemType::PWR_FREEZE)){
+                std::cout << "[ITEM] : Freeze item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_FREEZE) << " left." << std::endl;
+                this->vecTimer[2] = this->fCooldown * 2.f;
+            }
+            else{
+                std::cout << "[ERROR] : No freeze items left." << std::endl;
+                this->vecTimer[2] = this->fCooldown;
+            }
         }
 
         if(pInput->isPartition())
@@ -45,4 +80,5 @@ void PlayerControls::perform() {
         }
 
     }
+    
 }

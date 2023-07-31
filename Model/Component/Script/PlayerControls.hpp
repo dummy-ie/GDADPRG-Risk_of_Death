@@ -17,6 +17,11 @@ namespace components {
     using namespace controllers;
 
     class PlayerControls : public Component {
+        private:
+            std::vector<float> vecTimer;
+            float fCooldown;
+            float fTicks;
+
         public:
             PlayerControls(std::string strName);
 
