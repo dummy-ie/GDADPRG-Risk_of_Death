@@ -8,4 +8,12 @@ const float FRAME_RATE_LIMIT = 60.0f;
 
 const float GAME_SPEED = 1.0f;
 
+const float COMMON_ENEMY_SPEED = 1.0f;
+const float UNCOMMON_ENEMY_SPEED = 1.0f;
+const float ELITE_ENEMY_SPEED = 1.0f;
+
+const float COMMON_SPRITE_SIZE = 0.3f;
+const float UNCOMMON_SPRITE_SIZE = 0.6f;
+const float ELITE_SPRITE_SIZE = 1.0f;
+
 #endif

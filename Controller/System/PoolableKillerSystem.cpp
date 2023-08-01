@@ -34,24 +34,18 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
 
     for (int i = this->vecKillable.size() - 1; i >= 0; i--) {
         float fDistance = sqrt(pow(vecLocation.x - this->vecKillable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecKillable[i]->getOwner()->getSprite()->getPosition().y, 2));
+        // Change this to if hitbox (not yet implemented) contains vecLocation
         if (fDistance < fKillThreshold && nKill != 1) {
-            if (this->vecKillable[i]->getOwner()->isEnabled()) {
-                //this->vecKillable[i]->getOwner()->setAnimationType(AnimationType::KILLED);
-                this->vecKillable[i]->setKilled(true);
-                nKill = 1;
+            Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
+            if (pEnemy->isEnabled()) {
+                pEnemy->decrementHealth();
+                if (pEnemy->getHealth() <= 0) {
+                    this->vecKillable[i]->setKilled(true);
+                    nKill = 1;
+                }
             }
         }
     }
-    /*for (Killable* pKillable : this->vecKillable) {
-        fDistance = sqrt(pow(vecLocation.x - pKillable->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - pKillable->getOwner()->getSprite()->getPosition().y, 2));
-        if (fDistance < fKillThreshold && nKill != 1) {
-            if (pKillable->getOwner()->isEnabled()) {
-                pKillable->getOwner()->setAnimationType(AnimationType::KILLED);
-                pKillable->setKilled(true);
-                nKill = 1;
-            }
-        }
-    }*/
 }
 
 void PoolableKillerSystem::perform() {

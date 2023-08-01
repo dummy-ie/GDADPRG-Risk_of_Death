@@ -19,16 +19,16 @@ void Enemy::initialize() {
     Killable* pKillableComponent = new Killable(this->strName + " Killable", 0.07f);
     this->attachComponent(pKillableComponent);
 
-    this->randomizeType();
-
     PoolableKillerSystem::getInstance()->registerComponent(pKillableComponent);
+
+    this->initializeType();
     this->randomizePosition();
 }
 
 void Enemy::randomizePosition() {
     float fX = std::rand() % SCREEN_WIDTH;
     float fY = std::rand() % SCREEN_HEIGHT;
-    float fZ = std::rand() % 10 / 50.0f;
+    this->fDistance = std::rand() % (SCREEN_WIDTH / 2);
 
     float fWidth = this->pSprite->getTexture()->getSize().x;
     float fHeight = this->pSprite->getTexture()->getSize().y;
@@ -45,21 +45,52 @@ void Enemy::randomizePosition() {
         fY = fHalfHeight;
     else if(fY > (SCREEN_HEIGHT - fHalfHeight))
         fY = (SCREEN_HEIGHT - fHalfHeight);
-        
+    
+    float fZ = this->fDistance * 0.0001f;
     this->pSprite->setPosition(fX, fY);
-    this->pSprite->setScale(this->pSprite->getScale().x + fZ, this->pSprite->getScale().y + fZ);
+    this->pSprite->setScale(this->fSize + fZ, this->fSize + fZ);
     this->centerSpriteOrigin();
 }
 
-void Enemy::randomizeType() {
-
+void Enemy::initializeType() {
+    if (this->EType == EnemyType::COMMON) {
+        this->nHealth = 1;
+        this->fSpeed = COMMON_ENEMY_SPEED;
+        this->fSize = COMMON_SPRITE_SIZE;
+    }
+    if (this->EType == EnemyType::UNCOMMON) {
+        this->nHealth = 3;
+        this->fSpeed = UNCOMMON_ENEMY_SPEED;
+        this->fSize = UNCOMMON_SPRITE_SIZE;
+    }
+    if (this->EType == EnemyType::ELITE) {
+        this->nHealth = 5;
+        this->fSpeed = ELITE_ENEMY_SPEED;
+        this->fSize = ELITE_SPRITE_SIZE;
+    }
 }
 
-void Enemy::onActivate() {}
+void Enemy::decrementHealth() {
+    this->nHealth--;
+}
+
+void Enemy::onActivate() {
+    this->setFrame(0);
+    this->initializeType();
+    this->randomizePosition();
+}
 
 void Enemy::onRelease() {}
 
 PoolableObject* Enemy::clone() {
     PoolableObject* pClone = new Enemy(this->ETag, this->strName, new AnimatedTexture(*this->pTexture), this->EType);
     return pClone;
+}
+
+int Enemy::getHealth() {
+    return this->nHealth;
+}
+
+void Enemy::setDistance(float fDistance) {
+    this->fDistance = fDistance;
 }
