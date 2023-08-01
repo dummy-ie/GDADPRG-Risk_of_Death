@@ -8,7 +8,6 @@
 #include "../../Enum/EnumAssetType.hpp"
 #include "../../Enum/EnumComponentType.hpp"
 #include "../../Pooling/PoolableObject.hpp"
-#include "../../Pooling/Item/Item.hpp"
 #include "../../AnimatedTexture.hpp"
 
 #include "../Component.hpp"

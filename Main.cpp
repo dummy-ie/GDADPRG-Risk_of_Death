@@ -24,7 +24,7 @@
 
 #include "Model/Component/Renderer/Renderer.cpp"
 
-//#include "Model/Component/Script/Collectable.cpp"
+#include "Model/Component/Script/Collectable.cpp"
 #include "Model/Component/Script/PlayerControls.cpp"
 #include "Model/Component/Script/Killable.cpp"
 
@@ -33,7 +33,7 @@
 
 #include "Model/Pooling/PoolableObject.cpp"
 #include "Model/Pooling/Enemy/Enemy.cpp"
-//#include "Model/Pooling/Item/Item.cpp"
+#include "Model/Pooling/Item/Item.cpp"
 
 #include "Model/Scene/GameMenu.cpp"
 #include "Model/Scene/GameSpace.cpp"
@@ -59,7 +59,7 @@
 #include "Controller/Pooling/GameObjectPool.cpp"
 #include "Controller/Pooling/Component/Director/EnemyDirector.cpp"
 
-//#include "Controller/System/ItemCollectorSystem.cpp"
+#include "Controller/System/ItemCollectorSystem.cpp"
 #include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/PoolableKillerSystem.cpp"
 #include "Controller/System/SceneManager.cpp"

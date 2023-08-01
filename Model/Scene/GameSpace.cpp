@@ -31,7 +31,7 @@ void GameSpace::createNullObjectComponents() {
 
     EmptyGameObject* pComponentHolder = new EmptyGameObject("Killer System Holder");
     PoolableKillerSystem::initialize("Poolable Killer System", pComponentHolder);
-    //ItemCollectorSystem::initialize("Item Collector System", pComponentHolder);
+    ItemCollectorSystem::initialize("Item Collector System", pComponentHolder);
     GameObjectManager::getInstance()->addObject(pComponentHolder);
 
     pComponentHolder = new EmptyGameObject("Enemy Director Holder");
