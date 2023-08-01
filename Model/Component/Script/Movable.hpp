@@ -1,6 +1,11 @@
 #ifndef COMPONENTS_MOVABLE_HPP
 #define COMPONENTS_MOVABLE_HPP
 
+#include "../../Enum/EnumComponentType.hpp"
+#include "../../Pooling/PoolableObject.hpp"
+
+#include "../../Pooling/Enemy/Enemy.hpp"
+
 #include "../Component.hpp"
 
 namespace models {

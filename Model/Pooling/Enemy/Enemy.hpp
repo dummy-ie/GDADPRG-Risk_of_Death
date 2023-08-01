@@ -7,6 +7,7 @@
 #include "../../Enum/EnumPoolTag.hpp"
 
 #include "../../Component/Script/Killable.hpp"
+#include "../../Component/Script/Movable.hpp"
 
 #include "../PoolableObject.hpp"
 
@@ -41,6 +42,9 @@ namespace models {
 
         public:
             int getHealth();
+            float getSpeed();
+            float getSize();
+            float getDistance();
             void setDistance(float fDistance);
         
     };

@@ -19,6 +19,9 @@ void Enemy::initialize() {
     Killable* pKillableComponent = new Killable(this->strName + " Killable", 0.07f);
     this->attachComponent(pKillableComponent);
 
+    Movable* pMovableComponent = new Movable(this->strName + " Movable");
+    this->attachComponent(pMovableComponent);
+
     PoolableKillerSystem::getInstance()->registerComponent(pKillableComponent);
 
     this->initializeType();
@@ -46,7 +49,7 @@ void Enemy::randomizePosition() {
     else if(fY > (SCREEN_HEIGHT - fHalfHeight))
         fY = (SCREEN_HEIGHT - fHalfHeight);
     
-    float fZ = this->fDistance * 0.0001f;
+    float fZ = this->fDistance / SCREEN_WIDTH;
     this->pSprite->setPosition(fX, fY);
     this->pSprite->setScale(this->fSize + fZ, this->fSize + fZ);
     this->centerSpriteOrigin();
@@ -89,6 +92,18 @@ PoolableObject* Enemy::clone() {
 
 int Enemy::getHealth() {
     return this->nHealth;
+}
+
+float Enemy::getSpeed() {
+    return this->fSpeed;
+}
+
+float Enemy::getSize() {
+    return this->fSize;
+}
+
+float Enemy::getDistance() {
+    return this->fDistance;
 }
 
 void Enemy::setDistance(float fDistance) {
