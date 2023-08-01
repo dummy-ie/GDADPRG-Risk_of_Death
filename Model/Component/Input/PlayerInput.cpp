@@ -5,6 +5,8 @@ using namespace components;
 PlayerInput::PlayerInput(std::string strName) : GeneralInput(strName) {
     this->bLeft = false;
     this->bRight = false;
+    this->bPartition = false;
+    this->bZoomOut = false;
 }
 
 void PlayerInput::perform() {

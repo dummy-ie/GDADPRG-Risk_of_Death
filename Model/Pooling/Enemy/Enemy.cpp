@@ -19,6 +19,8 @@ void Enemy::initialize() {
     Killable* pKillableComponent = new Killable(this->strName + " Killable", 0.07f);
     this->attachComponent(pKillableComponent);
 
+    this->randomizeType();
+
     PoolableKillerSystem::getInstance()->registerComponent(pKillableComponent);
     this->randomizePosition();
 }
@@ -26,7 +28,7 @@ void Enemy::initialize() {
 void Enemy::randomizePosition() {
     float fX = std::rand() % SCREEN_WIDTH;
     float fY = std::rand() % SCREEN_HEIGHT;
-    float fZ = std::rand() % 10 / 1.0f;
+    float fZ = std::rand() % 10 / 50.0f;
 
     float fWidth = this->pSprite->getTexture()->getSize().x;
     float fHeight = this->pSprite->getTexture()->getSize().y;
@@ -45,8 +47,12 @@ void Enemy::randomizePosition() {
         fY = (SCREEN_HEIGHT - fHalfHeight);
         
     this->pSprite->setPosition(fX, fY);
-    this->pSprite->setScale(fZ, fZ);
+    this->pSprite->setScale(this->pSprite->getScale().x + fZ, this->pSprite->getScale().y + fZ);
     this->centerSpriteOrigin();
+}
+
+void Enemy::randomizeType() {
+
 }
 
 void Enemy::onActivate() {}
