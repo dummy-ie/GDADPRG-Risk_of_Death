@@ -10,6 +10,9 @@ namespace components {
         private:
             bool bLeft;
             bool bRight;
+            bool b1;
+            bool b2;
+            bool b3;
             bool bPartition;
             bool bZoomOut;
 
@@ -25,6 +28,9 @@ namespace components {
         public:
             bool isLeft();
             bool isRight();
+            bool is1();
+            bool is2();
+            bool is3();
             bool isPartition();
             bool isZoomOut();
     };

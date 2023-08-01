@@ -7,8 +7,11 @@
  * values as you see fit.
  */
 enum class EventKey : int {
-    EVENT_KEY_1 = 0,
-    EVENT_KEY_2
+    PWR_HEALTH = 0,
+    PWR_DAMAGE,
+    PWR_PIERCE,
+    PWR_INVINCIBILITY,
+    PWR_FREEZE
 };
 
 #endif

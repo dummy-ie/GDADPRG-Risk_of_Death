@@ -13,6 +13,7 @@ void Killable::perform() {
         this->fTicks += this->tDeltaTime.asSeconds();
         
         if (this->fTicks > this->fFrameInterval) {
+            this->fTicks = 0.0f;
             this->getOwner()->incrementFrame();
             if (this->getOwner()->getCurrentFrame() >= this->getOwner()->getFrameSize() - 1) {
                 PoolableObject* pPoolableObject = (PoolableObject*)this->getOwner();
