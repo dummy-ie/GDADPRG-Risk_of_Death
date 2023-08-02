@@ -7,7 +7,9 @@
 #include "../../Enum/EnumPoolTag.hpp"
 
 #include "../../Component/Script/Killable.hpp"
-#include "../../Component/Script/Movable.hpp"
+#include "../../Component/Script/Mover.hpp"
+
+#include "../../Component/Script/Interface/Movable.hpp"
 
 #include "../PoolableObject.hpp"
 
@@ -15,13 +17,18 @@
 
 namespace models {
     using namespace systems;
-    class Enemy : public PoolableObject {
+    class Enemy : public PoolableObject, public Movable {
         private:
+            Mover* pMover;
+            sf::Color CColor;
             EnemyType EType;
+
             int nHealth;
             float fSpeed;
             float fSize;
             float fDistance;
+
+            float fBottom;
 
         public:
             Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType);
@@ -41,8 +48,10 @@ namespace models {
             PoolableObject* clone();
 
         public:
+            void move(sf::Time tDeltaTime);
+
+        public:
             int getHealth();
-            float getSpeed();
             float getSize();
             float getDistance();
             void setDistance(float fDistance);

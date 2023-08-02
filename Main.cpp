@@ -27,7 +27,7 @@
 #include "Model/Component/Script/Collectable.cpp"
 #include "Model/Component/Script/PlayerControls.cpp"
 #include "Model/Component/Script/Killable.cpp"
-#include "Model/Component/Script/Movable.cpp"
+#include "Model/Component/Script/Mover.cpp"
 #include "Model/Component/Script/Reloader.cpp"
 
 #include "Model/Entity/Background.cpp"

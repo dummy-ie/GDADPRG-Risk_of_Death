@@ -80,8 +80,10 @@ void Enemy::onActivate() {
     this->initializeType();
     this->randomizePosition();
     
-    Movable* pMovableComponent = new Movable(this->strName + " Movable");
-    this->attachComponent(pMovableComponent);
+    this->pMover = new Mover(this->strName + " Mover");
+    this->pMover->setMovable(this);
+
+    this->attachComponent(this->pMover); 
 }
 
 void Enemy::onRelease() {}
@@ -91,12 +93,15 @@ PoolableObject* Enemy::clone() {
     return pClone;
 }
 
-int Enemy::getHealth() {
-    return this->nHealth;
+void Enemy::move(sf::Time tDeltaTime) {
+    float fMovement = this->fSpeed * tDeltaTime.asSeconds();
+    this->fDistance = this->fDistance + fMovement;
+    float fDistance = this->fDistance / SCREEN_WIDTH;
+    this->getSprite()->setScale(this->fSize + fDistance, this->fSize + fDistance);
 }
 
-float Enemy::getSpeed() {
-    return this->fSpeed;
+int Enemy::getHealth() {
+    return this->nHealth;
 }
 
 float Enemy::getSize() {
