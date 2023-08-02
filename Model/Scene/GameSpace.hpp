@@ -23,6 +23,8 @@
 
 #include "../Entity/Background.hpp"
 #include "../Entity/Crosshair.hpp"
+#include "../Entity/Player.hpp"
+
 #include "../Pooling/Enemy/Enemy.hpp"
 
 #include "../../View/Screen/GameSpaceUI/GameSpaceUI.hpp"
@@ -44,6 +46,7 @@ namespace scenes {
         private:
             void createNullObjectComponents();
             void createBackground();
+            void createPlayer();
             void createUserInterface();
             void createCrosshair();
     };

@@ -14,9 +14,10 @@ void GameSpace::onLoadResources() {
 void GameSpace::onLoadObjects() {
     //GameObjectManager::getInstance()->findObjectByName("Game Background Side")->setEnabled(false);
 
+    this->createUserInterface();
     this->createBackground();
     this->createNullObjectComponents();
-    this->createUserInterface();
+    this->createPlayer();
     this->createCrosshair();
 }
 
@@ -50,6 +51,11 @@ void GameSpace::createBackground() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BACKGROUND));
     Background* pBackground = new Background("Background", pTexture);
     this->registerObject(pBackground);
+}
+
+void GameSpace::createPlayer() {
+    Player* pPlayer = new Player("Player");
+    this->registerObject(pPlayer);
 }
 
 void GameSpace::createUserInterface() {

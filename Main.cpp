@@ -31,6 +31,7 @@
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Crosshair.cpp"
+#include "Model/Entity/Player.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 #include "Model/Pooling/Enemy/Enemy.cpp"
@@ -44,8 +45,9 @@
 #include "View/Text.cpp"
 #include "View/View.cpp"
 
-#include "View/Screen/GameSpaceUI/GameSpaceUI.cpp"
 #include "View/Screen/TitleScreen.cpp"
+#include "View/Screen/GameSpaceUI/GameSpaceUI.cpp"
+#include "View/Screen/GameSpaceUI/Parts/GameTimer.cpp"
 
 #include "Controller/Singleton/GameObjectManager.cpp"
 #include "Controller/Singleton/BlockerManager.cpp"

@@ -23,8 +23,9 @@ namespace directors {
 
     class EnemyDirector : public Component {
         private:
-            float fSpawnInterval;
             float fTicks;
+            float fUpdateInterval;
+            float fUpdateTicks;
 
         public:
             EnemyDirector(std::string strName);
@@ -32,7 +33,7 @@ namespace directors {
 
         private:
             void createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType, AssetType ETexture);
-            void randomizedSpawn();
+            void spawnWave();
             float randomizePercent(float fMax);
 
         public:

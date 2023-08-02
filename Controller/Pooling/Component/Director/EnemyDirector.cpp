@@ -3,7 +3,8 @@
 using namespace directors;
 
 EnemyDirector::EnemyDirector(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpawnInterval = 8.0f;
+    this->fUpdateInterval = 8.0f;
+    this->fUpdateTicks = 0.0f;
     this->fTicks = 0.0f;
 
     this->createEnemyPool(PoolTag::GREEN_SLIME, 20, EnemyType::COMMON, AssetType::GREEN_SLIME);
@@ -24,12 +25,12 @@ void EnemyDirector::createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType
     ObjectPoolManager::getInstance()->registerObjectPool(pGameObjectPool);
 }
 
-void EnemyDirector::randomizedSpawn() {
-    int nEnemySpawnCount = /*timer*/5.0f * /*subscreen count*/1.0f;
+void EnemyDirector::spawnWave() {
+    int nEnemySpawnCount = this->fTicks * /*subscreen count*/1.0f;
     float fLuck = (float)nEnemySpawnCount * randomizePercent(0.20f);
     nEnemySpawnCount -= fLuck;
 
-    float fSpawnDecay = 0.02f * (/*timer*/5.0f / 5.0f);
+    float fSpawnDecay = 0.02f * (this->fTicks / 5.0f);
     float fCommonSpawn = 0.7f - fSpawnDecay;
     float fUncommonSpawn = (1 - fCommonSpawn) * 0.6f;
     float fEliteSpawn = 1 - (fCommonSpawn + fUncommonSpawn);
@@ -48,13 +49,13 @@ float EnemyDirector::randomizePercent(float fMax) {
     int nRandom = (std::rand() % nMax);
     std::cout << (float)nRandom / 100.f << std::endl;
     return (float)nRandom / 100.f;
-}
+} 
 
 void EnemyDirector::perform() {
     this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
-
-    if(this->fTicks > this->fSpawnInterval) {
-        this->fTicks = 0.0f;
-        this->randomizedSpawn();
+    this->fUpdateTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
+    if(this->fUpdateTicks > this->fUpdateInterval) {
+        this->fUpdateTicks = 0.0f;
+        this->spawnWave();
     }
 }

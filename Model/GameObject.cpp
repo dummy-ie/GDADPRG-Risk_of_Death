@@ -201,3 +201,11 @@ int GameObject::getCurrentFrame() {
     }
     return -1;
 }
+
+sf::Vector2f GameObject::getPosition() {
+    return this->pSprite->getPosition();
+}
+
+void GameObject::setPosition(sf::Vector2f vecPosition) {
+    this->pSprite->setPosition(vecPosition);
+}

@@ -50,6 +50,8 @@ namespace models {
 
         public:
             virtual void setFrame(int nFrame);
+            virtual sf::Vector2f getPosition();
+            virtual void setPosition(sf::Vector2f vecPosition);
 
         public:
             bool isEnabled();

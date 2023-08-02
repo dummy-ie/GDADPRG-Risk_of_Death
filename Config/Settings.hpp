@@ -4,6 +4,8 @@
 const int SCREEN_WIDTH  = 1230;
 const int SCREEN_HEIGHT = 760;
 
+const float SCREEN_SCALE = 10.0f;
+
 const float FRAME_RATE_LIMIT = 60.0f;
 
 const float GAME_SPEED = 1.0f;
