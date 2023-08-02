@@ -6,16 +6,23 @@ namespace controllers {
     class TextureManager {
         private:
             std::unordered_map<AssetType, std::vector<sf::Texture*>> mapTexture;
+            std::vector<AssetType> vecKey;
 
         public:
-            void loadAll();
-            std::vector<sf::Texture*> getTexture(AssetType EType);
-            sf::Texture* getTextureAt(AssetType EType, int nFrame);
+            void loadGameMenuFolder();
+            void loadGameSpaceFolder();
+            void clearAll();
 
 		private:
-			void loadBackgroundFolder();
+			void loadGameMenuBackgroundFolder();
+
+			void loadGameSpaceBackgroundFolder();
             void loadCrosshairFolder();
             void loadEnemyFolder();
+
+        public:
+            std::vector<sf::Texture*> getTexture(AssetType EType);
+            sf::Texture* getTextureAt(AssetType EType, int nFrame);
 
         private:
 		    static TextureManager* P_SHARED_INSTANCE;

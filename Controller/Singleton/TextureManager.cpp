@@ -2,26 +2,48 @@
 
 using namespace controllers;
 
-void TextureManager::loadAll() {
-    this->loadBackgroundFolder();
+void TextureManager::loadGameMenuFolder() {
+    this->loadGameMenuBackgroundFolder();
+}
+
+void TextureManager::loadGameSpaceFolder() {
+    this->loadGameSpaceBackgroundFolder();
     this->loadCrosshairFolder();
     this->loadEnemyFolder();
 }
 
-void TextureManager::loadBackgroundFolder() {
+void TextureManager::loadGameMenuBackgroundFolder() {
     sf::Texture* pTexture = NULL;
 
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Backgrounds/menu_background.jpg");
-    this->mapTexture[AssetType::MENU_BACKGROUND].push_back(pTexture);
+    this->mapTexture[AssetType::BACKGROUND].push_back(pTexture);
+
+    this->vecKey.push_back(AssetType::BACKGROUND);
+}
+
+void TextureManager::loadGameSpaceBackgroundFolder() {
+    sf::Texture* pTexture = NULL;
 
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Backgrounds/game_background_front.png");
-    this->mapTexture[AssetType::GAME_BACKGROUND_FRONT].push_back(pTexture);
+    this->mapTexture[AssetType::BACKGROUND].push_back(pTexture);
 
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Backgrounds/game_background_side.png");
-    this->mapTexture[AssetType::GAME_BACKGROUND_SIDE].push_back(pTexture);
+    this->mapTexture[AssetType::BACKGROUND].push_back(pTexture);
+
+    this->vecKey.push_back(AssetType::BACKGROUND);
+}
+
+void TextureManager::clearAll() {
+    for(AssetType EKey : this->vecKey) {
+        for(sf::Texture* pTexture : this->mapTexture[EKey]) {
+            delete pTexture;
+        }
+        this->mapTexture[EKey].clear();
+        this->mapTexture.erase(EKey);
+    }
 }
 
 void TextureManager::loadCrosshairFolder() {
@@ -30,6 +52,8 @@ void TextureManager::loadCrosshairFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Crosshairs/crosshair.png");
     this->mapTexture[AssetType::CROSSHAIR].push_back(pTexture);
+
+    this->vecKey.push_back(AssetType::CROSSHAIR);
 }
 
 void TextureManager::loadEnemyFolder() {
@@ -46,6 +70,8 @@ void TextureManager::loadEnemyFolder() {
         pTexture2->loadFromFile("View/Image/slimesheet.png", sf::IntRect(212 + (nOffset * 2 * i), 0, 212, 159));
         this->mapTexture[EType].push_back(pTexture1);
         this->mapTexture[EType].push_back(pTexture2);
+
+        this->vecKey.push_back(EType);
     }
 }
 
