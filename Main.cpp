@@ -44,7 +44,7 @@
 #include "View/Text.cpp"
 #include "View/View.cpp"
 
-#include "View/Screen/PlayerUI.cpp"
+#include "View/Screen/GameSpaceUI/GameSpaceUI.cpp"
 #include "View/Screen/TitleScreen.cpp"
 
 #include "Controller/Singleton/GameObjectManager.cpp"

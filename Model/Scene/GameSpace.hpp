@@ -25,7 +25,7 @@
 #include "../Entity/Crosshair.hpp"
 #include "../Pooling/Enemy/Enemy.hpp"
 
-#include "../../View/Screen/PlayerUI.hpp"
+#include "../../View/Screen/GameSpaceUI/GameSpaceUI.hpp"
 
 namespace scenes {
     using namespace models;
@@ -39,10 +39,11 @@ namespace scenes {
             void onLoadResources();
             void onLoadObjects();
             void onUnloadResources();
+            void onUnloadObjects();
 
         private:
             void createNullObjectComponents();
-            void createBackground(std::string strName, AssetType EType);
+            void createBackground();
             void createUserInterface();
             void createCrosshair();
     };

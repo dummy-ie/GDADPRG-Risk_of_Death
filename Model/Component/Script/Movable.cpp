@@ -13,7 +13,7 @@ void Movable::perform() {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
-        this->fTicks += this->tDeltaTime.asSeconds();
+        this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
 
         if (this->fTicks > fFrameInterval) {
             this->fTicks = 0.0f;

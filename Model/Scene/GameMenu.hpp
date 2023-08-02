@@ -29,6 +29,7 @@ namespace scenes {
             void onLoadResources();
             void onLoadObjects();
             void onUnloadResources();
+            void onUnloadObjects();
 
         private:
             void createUserInterface();

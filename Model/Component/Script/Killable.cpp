@@ -10,7 +10,7 @@ Killable::Killable(std::string strName, float fFrameInterval) : Component(strNam
 
 void Killable::perform() {
     if(this->bKilled) {
-        this->fTicks += this->tDeltaTime.asSeconds();
+        this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
         
         if (this->fTicks > this->fFrameInterval) {
             this->fTicks = 0.0f;

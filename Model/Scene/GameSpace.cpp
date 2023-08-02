@@ -7,23 +7,26 @@ GameSpace::GameSpace() : Scene(SceneTag::GAME_SPACE) {}
 GameSpace::~GameSpace() {}
 
 void GameSpace::onLoadResources() {
-    
+    TextureManager::getInstance()->loadGameSpaceFolder();
+    SFXManager::getInstance()->loadAll();
 }
 
 void GameSpace::onLoadObjects() {
-    this->createBackground("Game Background Front", AssetType::GAME_BACKGROUND_FRONT);
-    this->createBackground("Game Background Side", AssetType::GAME_BACKGROUND_SIDE);
-    GameObjectManager::getInstance()->findObjectByName("Game Background Side")->setEnabled(false);
+    //GameObjectManager::getInstance()->findObjectByName("Game Background Side")->setEnabled(false);
 
+    this->createBackground();
     this->createNullObjectComponents();
     this->createUserInterface();
     this->createCrosshair();
-
-
 }
 
 void GameSpace::onUnloadResources() {
-    
+    TextureManager::getInstance()->clearAll();
+    SFXManager::getInstance()->unloadAll();
+}
+
+void GameSpace::onUnloadObjects() {
+    Scene::onUnloadObjects();
 }
 
 void GameSpace::createNullObjectComponents() {
@@ -31,25 +34,28 @@ void GameSpace::createNullObjectComponents() {
 
     EmptyGameObject* pComponentHolder = new EmptyGameObject("Killer System Holder");
     PoolableKillerSystem::initialize("Poolable Killer System", pComponentHolder);
+    this->registerObject(pComponentHolder);
+
+    pComponentHolder = new EmptyGameObject("Collector System Holder");
     ItemCollectorSystem::initialize("Item Collector System", pComponentHolder);
-    GameObjectManager::getInstance()->addObject(pComponentHolder);
+    this->registerObject(pComponentHolder);
 
     pComponentHolder = new EmptyGameObject("Enemy Director Holder");
     EnemyDirector* pEnemyDirector = new EnemyDirector("Enemy Director");
     pComponentHolder->attachComponent(pEnemyDirector);
-    GameObjectManager::getInstance()->addObject(pComponentHolder);
+    this->registerObject(pComponentHolder);
 }
 
-void GameSpace::createBackground(std::string strName, AssetType EType) {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
-    Background* pBackground = new Background(strName, pTexture);
+void GameSpace::createBackground() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BACKGROUND));
+    Background* pBackground = new Background("Background", pTexture);
     this->registerObject(pBackground);
 }
 
 void GameSpace::createUserInterface() {
-    PlayerUI* pPlayerUI = new PlayerUI("Player UI");
-    this->registerObject(pPlayerUI);
-    float nOffset = 211;
+    GameSpaceUI* pGameSpaceUI = new GameSpaceUI("Game Space UI");
+    this->registerObject(pGameSpaceUI);
+    //float nOffset = 211;
 
     //for (int i = 0; i < 10; i++) {
     //    int nTemp = static_cast<int>(AssetType::GREEN_SLIME_1) + i;

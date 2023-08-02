@@ -29,13 +29,11 @@ void PlayerControls::perform() {
     }
     else {
         if(pInput->isLeft()) {
-            GameObjectManager::getInstance()->findObjectByName("Game Background Side")->setEnabled(true);
-            GameObjectManager::getInstance()->findObjectByName("Game Background Front")->setEnabled(false);
+            GameObjectManager::getInstance()->findObjectByName("Background")->setFrame(1);
         }
 
         if(pInput->isRight()) {
-            GameObjectManager::getInstance()->findObjectByName("Game Background Side")->setEnabled(false);
-            GameObjectManager::getInstance()->findObjectByName("Game Background Front")->setEnabled(true);
+            GameObjectManager::getInstance()->findObjectByName("Background")->setFrame(0);
         }
 
         if(pInput->is1() && this->vecTimer[0] == 0.f){

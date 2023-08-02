@@ -7,7 +7,7 @@ GameMenu::GameMenu() : Scene(SceneTag::GAME_MENU) {}
 GameMenu::~GameMenu() {}
 
 void GameMenu::onLoadResources() {
-    
+    TextureManager::getInstance()->loadGameMenuFolder();
 }
 
 void GameMenu::onLoadObjects() {
@@ -17,14 +17,17 @@ void GameMenu::onLoadObjects() {
 }
 
 void GameMenu::onUnloadResources() {
-    
+    TextureManager::getInstance()->clearAll();
+}
+
+void GameMenu::onUnloadObjects() {
+    Scene::onUnloadObjects();
 }
 
 void GameMenu::createBackground() {
-    AssetType EType = AssetType::MENU_BACKGROUND;
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BACKGROUND));
 
-    Background* pBackground = new Background("Menu Background", pTexture);
+    Background* pBackground = new Background("Background", pTexture);
     this->registerObject(pBackground);
 }
 
