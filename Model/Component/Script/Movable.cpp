@@ -19,7 +19,7 @@ void Movable::perform() {
             this->fTicks = 0.0f;
             float fMovement = pEnemy->getSpeed() * this->tDeltaTime.asSeconds();
             //float fMovement = 0.00001f;
-            std::cout << fMovement << std::endl;
+            //std::cout << fMovement << std::endl;
             float fSize = pEnemy->getSize();
             pEnemy->setDistance(pEnemy->getDistance() + fMovement);
             float fDistance = pEnemy->getDistance() / SCREEN_WIDTH;

@@ -19,9 +19,6 @@ void Enemy::initialize() {
     Killable* pKillableComponent = new Killable(this->strName + " Killable", 0.07f);
     this->attachComponent(pKillableComponent);
 
-    Movable* pMovableComponent = new Movable(this->strName + " Movable");
-    this->attachComponent(pMovableComponent);
-
     PoolableKillerSystem::getInstance()->registerComponent(pKillableComponent);
 
     this->initializeType();
@@ -79,8 +76,12 @@ void Enemy::decrementHealth() {
 
 void Enemy::onActivate() {
     this->setFrame(0);
+
     this->initializeType();
     this->randomizePosition();
+    
+    Movable* pMovableComponent = new Movable(this->strName + " Movable");
+    this->attachComponent(pMovableComponent);
 }
 
 void Enemy::onRelease() {}
