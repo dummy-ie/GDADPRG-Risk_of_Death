@@ -33,6 +33,7 @@ namespace directors {
         private:
             void createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType, AssetType ETexture);
             void randomizedSpawn();
+            float randomizePercent(float fMax);
 
         public:
             void perform();

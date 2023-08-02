@@ -3,7 +3,7 @@
 using namespace directors;
 
 EnemyDirector::EnemyDirector(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpawnInterval = 1.0f;
+    this->fSpawnInterval = 8.0f;
     this->fTicks = 0.0f;
 
     this->createEnemyPool(PoolTag::GREEN_SLIME, 3, EnemyType::COMMON, AssetType::GREEN_SLIME);
@@ -25,7 +25,7 @@ void EnemyDirector::createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType
 }
 
 void EnemyDirector::randomizedSpawn() {
-    int nRandom = rand() % 3;
+    /*int nRandom = rand() % 3;
     switch (nRandom) {
         case 0:
             ObjectPoolManager::getInstance()->getPool(PoolTag::GREEN_SLIME)->requestPoolable();
@@ -41,8 +41,19 @@ void EnemyDirector::randomizedSpawn() {
             break;
         case 4:
             ObjectPoolManager::getInstance()->getPool(PoolTag::BLUE_SLIME)->requestPoolable();
-            break;*/
-    }
+            break;
+    }*/
+    float fSpawnDecay = 0.02f * (/*timer*/5.0f / 5.0f);
+    float fCommonSpawn = 0.7f - fSpawnDecay;
+    float fUncommonSpawn = (1 - fCommonSpawn) * 0.6f;
+    float fEliteSpawn = 1 - (fCommonSpawn + fUncommonSpawn);
+
+}
+
+float EnemyDirector::randomizePercent(float fMax) {
+    int nMax = (int)fMax * 100;
+    int nRandom = (std::rand() % nMax);
+    return (float)nRandom / 100.f;
 }
 
 void EnemyDirector::perform() {
