@@ -11,10 +11,13 @@
 #include "../../../Controller/Singleton/WindowManager.hpp"
 #include "../../../Controller/Singleton/ItemManager.hpp"
 
+#include "../../Entity/Player.hpp"
+
 //#include "../../../Controller/System/EventBroadcaster.hpp"
 
 namespace components {
     using namespace controllers;
+    using namespace models;
 
     class PlayerControls : public Component {
         private:

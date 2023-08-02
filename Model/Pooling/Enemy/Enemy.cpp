@@ -2,7 +2,7 @@
 
 using namespace models;
 
-Enemy::Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType, float fX, float fY) : PoolableObject(ETag, strName, pTexture, fX, fY) {
+Enemy::Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType) : PoolableObject(ETag, strName, pTexture) {
     this->EType = EType;
 }
 

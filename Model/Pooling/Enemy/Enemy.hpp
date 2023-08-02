@@ -24,7 +24,7 @@ namespace models {
             float fDistance;
 
         public:
-            Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType, float fX = 0.0f, float fY = 0.0f);
+            Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType);
             ~Enemy();
 
         private:

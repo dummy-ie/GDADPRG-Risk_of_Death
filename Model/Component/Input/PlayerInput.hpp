@@ -15,6 +15,7 @@ namespace components {
             bool b3;
             bool bPartition;
             bool bZoomOut;
+            bool bR;
 
         public:
             PlayerInput(std::string strName);
@@ -33,6 +34,7 @@ namespace components {
             bool is3();
             bool isPartition();
             bool isZoomOut();
+            bool isR();
     };
 }
 

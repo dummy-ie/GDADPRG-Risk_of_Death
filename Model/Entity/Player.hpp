@@ -3,12 +3,18 @@
 
 #include "../GameObject.hpp"
 
-#include "../../Model/Component/Input/PlayerInput.hpp"
-#include "../../Model/Component/Script/PlayerControls.hpp"
+#include "../Component/Input/PlayerInput.hpp"
+#include "../Component/Script/PlayerControls.hpp"
+
+#include "../Component/Script/Reloader.hpp"
+#include "../Component/Script/Interface/Reloadable.hpp"
 
 namespace models {
-    class Player : public GameObject {
+    using namespace components;
+    using namespace interfaces;
+    class Player : public GameObject, public Reloadable {
         private:
+            Reloader* pReloader;
             int nHealth;
             int nBullets;
 
@@ -18,10 +24,16 @@ namespace models {
 
         public:
             void initialize();
-        
+            void start();
+            void stop();
+            void reload();
+
         public:
             void decrementHealth();
             void decrementBullets();
+
+        public:
+            bool hasBullets();
 
     };
 }

@@ -35,9 +35,10 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
     for (int i = this->vecKillable.size() - 1; i >= 0; i--) {
         float fDistance = sqrt(pow(vecLocation.x - this->vecKillable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecKillable[i]->getOwner()->getSprite()->getPosition().y, 2));
         // Change this to if hitbox (not yet implemented) contains vecLocation
+        Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
         if (fDistance < fKillThreshold && nKill != 1) {
             Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
-            if (pEnemy->isEnabled()) {
+            if (pEnemy->isEnabled() && pPlayer->hasBullets()) {
                 pEnemy->decrementHealth();
                 if (pEnemy->getHealth() <= 0) {
                     this->vecKillable[i]->setKilled(true);

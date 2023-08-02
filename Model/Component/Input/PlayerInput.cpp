@@ -10,6 +10,7 @@ PlayerInput::PlayerInput(std::string strName) : GeneralInput(strName) {
     this->b3 = false;
     this->bPartition = false;
     this->bZoomOut = false;
+    this->bR = false;
 }
 
 void PlayerInput::perform() {
@@ -58,6 +59,9 @@ void PlayerInput::processKeyInput(bool bPressed) {
         case sf::Keyboard::Q: // temporary
             this->bZoomOut = bPressed;
             break;
+        case sf::Keyboard::R:
+            this->bR = bPressed;
+            break;
 
         default:
             break;
@@ -92,4 +96,8 @@ bool PlayerInput::isPartition()
 bool components::PlayerInput::isZoomOut()
 {
     return this->bZoomOut;
+}
+
+bool PlayerInput::isR() {
+    return this->bR;
 }

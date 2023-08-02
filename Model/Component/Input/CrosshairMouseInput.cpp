@@ -29,12 +29,16 @@ void CrosshairMouseInput::perform() {
 }
 
 void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPressed) {
+    Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
     switch(inMouse) {
         case sf::Mouse::Left:
             this->bLeftClick = bPressed;
             if(this->bLeftClick) {
                 std::cout << "CrosshairMouseInput::processMouseInput() >> [LEFT]." << std::endl;
-                SFXManager::getInstance()->getSound(SFXType::PLAYER_SHOOT)->play();
+                if (pPlayer->hasBullets()) {
+                    pPlayer->decrementBullets();
+                    SFXManager::getInstance()->getSound(SFXType::PLAYER_SHOOT)->play();
+                }
             }
             break;
 

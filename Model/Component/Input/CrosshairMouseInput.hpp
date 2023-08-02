@@ -7,10 +7,15 @@
 
 #include "../../../Controller/Singleton/SFXManager.hpp"
 
+#include "../../../Controller/Singleton/GameObjectManager.hpp"
+
+#include "../../Entity/Player.hpp"
+
 #include "GeneralInput.hpp"
 
 namespace components {
     using namespace controllers;
+    using namespace models;
     class CrosshairMouseInput : public GeneralInput {
         private:
             bool bLeftClick;
