@@ -12,7 +12,7 @@ void GameObjectManager::processInput(sf::Event eEvent) {
 void GameObjectManager::update(sf::Time tDeltaTime) {
     for(GameObject* pGameObject : this->vecGameObject) {
         if(pGameObject->isEnabled())
-            pGameObject->update(tDeltaTime);
+            pGameObject->update(tDeltaTime * GAME_SPEED);
     }
 }
 
