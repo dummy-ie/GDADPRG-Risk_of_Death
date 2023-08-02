@@ -5,7 +5,7 @@ enum class ViewTag : int {
     NONE = -1,
     TITLE_SCREEN,
     SETTINGS_SCREEN,
-    PLAYER_UI
+    GAME_SPACE_UI
 };
 
 #endif

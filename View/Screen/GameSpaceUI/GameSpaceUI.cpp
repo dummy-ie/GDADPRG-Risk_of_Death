@@ -1,20 +1,16 @@
-#include "PlayerUI.hpp"
+#include "GameSpaceUI.hpp"
 
 using namespace views;
 
-PlayerUI::PlayerUI(std::string strName) : View(ViewTag::PLAYER_UI, strName) {
+GameSpaceUI::GameSpaceUI(std::string strName) : View(ViewTag::GAME_SPACE_UI, strName) {
     ViewManager::getInstance()->registerView(this);
 }
 
-PlayerUI::~PlayerUI() {}
+GameSpaceUI::~GameSpaceUI() {}
 
-void PlayerUI::initialize() {
+void GameSpaceUI::initialize() {
     PlayerInput* pInputComponent = new PlayerInput(this->strName + " Input");
     PlayerControls* pControlsComponent = new PlayerControls(this->strName + " Controls");
     this->attachComponent(pInputComponent);
     this->attachComponent(pControlsComponent);
 }
-
-void PlayerUI::decrementHealth() {}
-
-void PlayerUI::decrementBullets() {}

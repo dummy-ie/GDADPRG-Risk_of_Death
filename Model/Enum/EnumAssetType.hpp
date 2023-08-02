@@ -4,10 +4,8 @@
 enum class AssetType : int {
     NONE = -1,
 
-    MENU_BACKGROUND,
-    GAME_BACKGROUND_FRONT,
-    GAME_BACKGROUND_SIDE,
-
+    BACKGROUND,
+    
     CROSSHAIR,
 
     GREEN_SLIME,
