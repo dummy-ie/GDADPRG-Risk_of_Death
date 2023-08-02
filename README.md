@@ -5,14 +5,14 @@ Pain and suffering inbound
 - Timer-Based Difficulty
 ## Entities
 ### Player
-- Player Perspective (View thing)
+- Player Perspective (View thing) (Done)
 - Player Hitbox
-- Shooting
+- Shooting                        (Partially Done)
 - Hotkey Inventory
 ### Enemies
-- Different Enemies
+- Different Enemies               (Implement more Enemies)
 - Enemy Hitbox
-- Enemy Spawning
+- Enemy Spawning                  (Done)
 ### Items
 - Item Spawning
 - Item Activation
@@ -24,20 +24,20 @@ Pain and suffering inbound
 - Immobile Blockers
 ## Screens
 ### Title
-- Game Name
-- Start Button
+- Game Name                      (Done)
+- Start Button                   (Done)
 - Leaderboard Button
-- Exit Button
+- Exit Button                    (Done)
 ### Game Proper
-- Front View
-- Right Side View
-- Game Speed
-- Enemy Spawn Rate
+- Front View                     (Done)
+- Right Side View                (Still needs the enemies to show)
+- Game Speed                     (Done)
+- Enemy Spawn Rate               (Done)
 ### Leaderboard
 - Display Players and their Time
 # Managers
-- GameObjectManager
-- TextureManager
-- EnemyManager
-- ItemManager
+- GameObjectManager              (Implemented)
+- TextureManager                 (Implemented)
+- EnemyManager                   (how)
+- ItemManager                    (Implemented)
 - BlockerManager
