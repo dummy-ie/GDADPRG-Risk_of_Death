@@ -2,7 +2,13 @@
 
 using namespace models;
 
-Background::Background(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture) {}
+Background::Background(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture) {
+    this->fDistance = 0.0f;
+}
+
+Background::Background(std::string strName, AnimatedTexture* pTexture, float fDistance) : GameObject(strName, pTexture) {
+    this->fDistance = fDistance;
+}
 
 Background::~Background() {}
 
