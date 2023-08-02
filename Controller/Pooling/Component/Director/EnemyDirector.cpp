@@ -25,24 +25,6 @@ void EnemyDirector::createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType
 }
 
 void EnemyDirector::randomizedSpawn() {
-    /*int nRandom = rand() % 3;
-    switch (nRandom) {
-        case 0:
-            ObjectPoolManager::getInstance()->getPool(PoolTag::GREEN_SLIME)->requestPoolable();
-            break;
-        case 1:
-            ObjectPoolManager::getInstance()->getPool(PoolTag::PURPLE_SLIME)->requestPoolable();
-            break;
-        case 2:
-            ObjectPoolManager::getInstance()->getPool(PoolTag::RED_SLIME)->requestPoolable();
-            break;
-        /*    ObjectPoolManager::getInstance()->getPool(PoolTag::YELLOW_SLIME)->requestPoolable();
-        case 3:
-            break;
-        case 4:
-            ObjectPoolManager::getInstance()->getPool(PoolTag::BLUE_SLIME)->requestPoolable();
-            break;
-    }*/
     int nEnemySpawnCount = /*timer*/5.0f * /*subscreen count*/1.0f;
     float fLuck = (float)nEnemySpawnCount * randomizePercent(0.20f);
     nEnemySpawnCount -= fLuck;
@@ -69,7 +51,7 @@ float EnemyDirector::randomizePercent(float fMax) {
 }
 
 void EnemyDirector::perform() {
-    this->fTicks += this->tDeltaTime.asSeconds();
+    this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
 
     if(this->fTicks > this->fSpawnInterval) {
         this->fTicks = 0.0f;
