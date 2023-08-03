@@ -3,11 +3,11 @@
 using namespace models;
 
 Background::Background(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture) {
-    this->fDistance = 0.0f;
+    this->fZ = 0.0f;
 }
 
-Background::Background(std::string strName, AnimatedTexture* pTexture, float fDistance) : GameObject(strName, pTexture) {
-    this->fDistance = fDistance;
+Background::Background(std::string strName, AnimatedTexture* pTexture, float fZ) : GameObject(strName, pTexture) {
+    this->fZ = fZ;
 }
 
 Background::~Background() {}

@@ -20,15 +20,16 @@ namespace models {
     class Enemy : public PoolableObject, public Movable {
         private:
             Mover* pMover;
-            sf::Color CColor;
+
             EnemyType EType;
+            sf::Color CColor;
+            sf::RectangleShape* pRectangle;
 
             int nHealth;
             float fSpeed;
             float fSize;
-            float fDistance;
 
-            float fBottom;
+            //float fTop;
 
         public:
             Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType);
@@ -53,8 +54,6 @@ namespace models {
         public:
             int getHealth();
             float getSize();
-            float getDistance();
-            void setDistance(float fDistance);
         
     };
 }

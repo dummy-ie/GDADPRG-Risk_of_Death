@@ -16,6 +16,8 @@ void Enemy::initialize() {
 
     this->attachComponent(pRendererComponent);
 
+
+
     Killable* pKillableComponent = new Killable(this->strName + " Killable", 0.07f);
     this->attachComponent(pKillableComponent);
 
@@ -23,12 +25,25 @@ void Enemy::initialize() {
 
     this->initializeType();
     this->randomizePosition();
+
+    this->pRectangle = new sf::RectangleShape(sf::Vector2f(50, this->pSprite->getTexture()->getSize().y));
+    pRendererComponent = new Renderer(this->strName + " Rectangle");
+    pRendererComponent->assignDrawable(this->pRectangle);
+    this->pRectangle->setPosition(sf::Vector2f(this->fZ, this->pSprite->getPosition().y));
+    this->attachComponent(pRendererComponent);
+
+    this->pRectangle->setFillColor(this->CColor);
+    int nHeight = this->pSprite->getTexture()->getSize().y;
+
+    float fHalfWidth = 50 / 2.0f;
+    float fHalfHeight = nHeight / 2.0f;
+    this->pRectangle->setOrigin(fHalfWidth, fHalfHeight);
 }
 
 void Enemy::randomizePosition() {
     float fX = std::rand() % SCREEN_WIDTH;
     float fY = std::rand() % SCREEN_HEIGHT;
-    this->fDistance = std::rand() % (SCREEN_WIDTH / 2);
+    this->fZ = (3 * SCREEN_WIDTH / 4) + std::rand() % (SCREEN_WIDTH / 4);
 
     float fWidth = this->pSprite->getTexture()->getSize().x;
     float fHeight = this->pSprite->getTexture()->getSize().y;
@@ -46,8 +61,9 @@ void Enemy::randomizePosition() {
     else if(fY > (SCREEN_HEIGHT - fHalfHeight))
         fY = (SCREEN_HEIGHT - fHalfHeight);
     
-    float fZ = this->fDistance / SCREEN_WIDTH;
+    float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
     this->pSprite->setPosition(fX, fY);
+    //this->fBottom = this->pSprite->getGlobalBounds().top - this->pSprite->getGlobalBounds().height;
     this->pSprite->setScale(this->fSize + fZ, this->fSize + fZ);
     this->centerSpriteOrigin();
 }
@@ -55,16 +71,19 @@ void Enemy::randomizePosition() {
 void Enemy::initializeType() {
     if (this->EType == EnemyType::COMMON) {
         this->nHealth = 1;
+        this->CColor = sf::Color::Green;
         this->fSpeed = COMMON_ENEMY_SPEED;
         this->fSize = COMMON_SPRITE_SIZE;
     }
     if (this->EType == EnemyType::UNCOMMON) {
         this->nHealth = 3;
+        this->CColor = sf::Color::Magenta;
         this->fSpeed = UNCOMMON_ENEMY_SPEED;
         this->fSize = UNCOMMON_SPRITE_SIZE;
     }
     if (this->EType == EnemyType::ELITE) {
         this->nHealth = 5;
+        this->CColor = sf::Color::Red;
         this->fSpeed = ELITE_ENEMY_SPEED;
         this->fSize = ELITE_SPRITE_SIZE;
     }
@@ -95,9 +114,10 @@ PoolableObject* Enemy::clone() {
 
 void Enemy::move(sf::Time tDeltaTime) {
     float fMovement = this->fSpeed * tDeltaTime.asSeconds();
-    this->fDistance = this->fDistance + fMovement;
-    float fDistance = this->fDistance / SCREEN_WIDTH;
-    this->getSprite()->setScale(this->fSize + fDistance, this->fSize + fDistance);
+    this->fZ = this->fZ - fMovement;
+    float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
+    this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
+    this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
 }
 
 int Enemy::getHealth() {
@@ -106,12 +126,4 @@ int Enemy::getHealth() {
 
 float Enemy::getSize() {
     return this->fSize;
-}
-
-float Enemy::getDistance() {
-    return this->fDistance;
-}
-
-void Enemy::setDistance(float fDistance) {
-    this->fDistance = fDistance;
 }

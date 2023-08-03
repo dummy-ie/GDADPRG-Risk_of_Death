@@ -20,13 +20,14 @@ namespace models {
             std::string strName;
             sf::Sprite* pSprite;
             AnimatedTexture* pTexture;
+            float fZ;
 
             GameObject* pParent;
             std::vector<GameObject*> vecChildren;
             std::vector<Component*> vecComponent;
 
         public:
-            GameObject(std::string strName, AnimatedTexture* pTexture = NULL, float fX = 0.0f, float fY = 0.0f);
+            GameObject(std::string strName, AnimatedTexture* pTexture = NULL, float fX = 0.0f, float fY = 0.0f, float fZ = 0.0f);
             virtual ~GameObject() = default;
 
         public:
