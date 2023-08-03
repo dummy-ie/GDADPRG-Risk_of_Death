@@ -22,6 +22,7 @@ namespace systems {
     class ViewSwitcherSystem : public Component {
         private:
             bool bFront = true;
+            bool bSort = false;
             std::vector<Switcher*> vecSwitcher;
 
         public:

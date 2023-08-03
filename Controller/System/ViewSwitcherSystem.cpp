@@ -29,14 +29,28 @@ void ViewSwitcherSystem::perform() {
             std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
         }
         else {
-            if(pPlayerInput->isLeft())
+            if(pPlayerInput->isLeft()) {
+                this->bSort = true;
                 this->bFront = false;
-            if(pPlayerInput->isRight())
+            }
+            if(pPlayerInput->isRight()) {
+                this->bSort = true;
                 this->bFront = true;
-            if (bFront)
+            }
+            if (bFront) {
+                if (bSort) {
+                    GameObjectManager::getInstance()->sortObjectsByZ();
+                    this->bSort = false;
+                }
                 this->switchFrontView();
-            else
+            }
+            else {
+                if (bSort) {
+                    GameObjectManager::getInstance()->sortObjectsByX();
+                    this->bSort = false;
+                }
                 this->switchLeftView();
+            }
         }
     }
 }
