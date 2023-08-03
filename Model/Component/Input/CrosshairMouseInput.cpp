@@ -35,7 +35,7 @@ void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPre
             this->bLeftClick = bPressed;
             if(this->bLeftClick) {
                 std::cout << "CrosshairMouseInput::processMouseInput() >> [LEFT]." << std::endl;
-                if (pPlayer->hasBullets()) {
+                if (pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading()) {
                     pPlayer->decrementBullets();
                     SFXManager::getInstance()->getSound(SFXType::PLAYER_SHOOT)->play();
                 }

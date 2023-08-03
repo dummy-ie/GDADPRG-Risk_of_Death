@@ -10,13 +10,13 @@ Enemy::~Enemy() {}
 
 void Enemy::initialize() {
     this->setFrame(0);
+    
+    this->pRectangle = new sf::RectangleShape(sf::Vector2f(50, this->pSprite->getTexture()->getSize().y));
 
-    Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
-    pRendererComponent->assignDrawable(this->pSprite);
+    this->pSpriteRenderer = new Renderer(this->strName + " Sprite");
+    this->pSpriteRenderer->assignDrawable(this->pSprite);
 
-    this->attachComponent(pRendererComponent);
-
-
+    this->attachComponent(this->pSpriteRenderer);
 
     Killable* pKillableComponent = new Killable(this->strName + " Killable", 0.07f);
     this->attachComponent(pKillableComponent);
@@ -26,24 +26,20 @@ void Enemy::initialize() {
     this->initializeType();
     this->randomizePosition();
 
-    this->pRectangle = new sf::RectangleShape(sf::Vector2f(50, this->pSprite->getTexture()->getSize().y));
-    pRendererComponent = new Renderer(this->strName + " Rectangle");
-    pRendererComponent->assignDrawable(this->pRectangle);
-    this->pRectangle->setPosition(sf::Vector2f(this->fZ, this->pSprite->getPosition().y));
-    this->attachComponent(pRendererComponent);
-
+    this->pRectangleRenderer = new Renderer(this->strName + " Rectangle");
+    this->pRectangleRenderer->assignDrawable(this->pRectangle);
+    this->attachComponent(this->pRectangleRenderer);
     this->pRectangle->setFillColor(this->CColor);
-    int nHeight = this->pSprite->getTexture()->getSize().y;
 
-    float fHalfWidth = 50 / 2.0f;
-    float fHalfHeight = nHeight / 2.0f;
-    this->pRectangle->setOrigin(fHalfWidth, fHalfHeight);
+
+    
+    //this->pRectangleRenderer->disable();
 }
 
 void Enemy::randomizePosition() {
     float fX = std::rand() % SCREEN_WIDTH;
     float fY = std::rand() % SCREEN_HEIGHT;
-    this->fZ = (3 * SCREEN_WIDTH / 4) + std::rand() % (SCREEN_WIDTH / 4);
+    this->fZ = SCREEN_WIDTH;
 
     float fWidth = this->pSprite->getTexture()->getSize().x;
     float fHeight = this->pSprite->getTexture()->getSize().y;
@@ -65,6 +61,13 @@ void Enemy::randomizePosition() {
     this->pSprite->setPosition(fX, fY);
     //this->fBottom = this->pSprite->getGlobalBounds().top - this->pSprite->getGlobalBounds().height;
     this->pSprite->setScale(this->fSize + fZ, this->fSize + fZ);
+
+    this->pRectangle->setPosition(sf::Vector2f(this->fZ, fY));
+    int nHeight = this->pSprite->getTexture()->getSize().y;
+    fHalfWidth = 50 / 2.0f;
+    fHalfHeight = nHeight / 2.0f;
+    this->pRectangle->setOrigin(fHalfWidth, fHalfHeight);
+
     this->centerSpriteOrigin();
 }
 

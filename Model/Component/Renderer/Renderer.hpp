@@ -8,6 +8,7 @@
 namespace components {
     class Renderer : public Component {
         private:
+            bool bRendering;
             sf::RenderWindow* pWindow;
             sf::Drawable* pDrawable;
             sf::RenderStates CRenderStates;
@@ -20,6 +21,8 @@ namespace components {
             void flip();
             void assignTargetWindow(sf::RenderWindow* pWindow);
             void assignDrawable(sf::Drawable* pDrawable);
+            void enable();
+            void disable();
             void setRenderStates(sf::RenderStates CRenderStates);
     };
 }

@@ -3,11 +3,13 @@
 using namespace components;
 
 Renderer::Renderer(std::string strName) : Component(strName, ComponentType::RENDERER) {
+    this->bRendering = true;
     this->CRenderStates = sf::RenderStates::Default;
 }
 
 void Renderer::perform() {
-    this->pWindow->draw(*this->pDrawable, this->CRenderStates);
+    if (this->bRendering)
+        this->pWindow->draw(*this->pDrawable, this->CRenderStates);
 }
 void Renderer::flip() {
     sf::Sprite* pSprite = (sf::Sprite*)this->pDrawable;
@@ -20,6 +22,14 @@ void Renderer::assignTargetWindow(sf::RenderWindow* pWindow) {
 
 void Renderer::assignDrawable(sf::Drawable* pDrawable) {
     this->pDrawable = pDrawable;
+}
+
+void Renderer::enable() {
+    this->bRendering = true;
+}
+
+void Renderer::disable() {
+    this->bRendering = false;
 }
 
 void Renderer::setRenderStates(sf::RenderStates CRenderStates) {

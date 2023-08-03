@@ -48,3 +48,7 @@ bool Player::hasBullets() {
         return true;
     return false;
 }
+
+Reloader* Player::getReloader() {
+    return this->pReloader;
+}

@@ -34,6 +34,7 @@ namespace models {
 
         public:
             bool hasBullets();
+            Reloader* getReloader();
 
     };
 }

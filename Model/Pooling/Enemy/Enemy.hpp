@@ -20,6 +20,8 @@ namespace models {
     class Enemy : public PoolableObject, public Movable {
         private:
             Mover* pMover;
+            Renderer* pSpriteRenderer;
+            Renderer* pRectangleRenderer;
 
             EnemyType EType;
             sf::Color CColor;
