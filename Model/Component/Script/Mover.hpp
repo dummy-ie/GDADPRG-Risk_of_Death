@@ -5,11 +5,14 @@
 
 #include "../Component.hpp"
 
+#include "../../../Controller/System/PowerUpSystem.hpp"
+
 #include "Interface/Movable.hpp"
 
 namespace components {
    // using namespace controllers;
     using namespace models;
+    using namespace systems;
     class Mover : public Component {
         private:
             Movable* pMovable;

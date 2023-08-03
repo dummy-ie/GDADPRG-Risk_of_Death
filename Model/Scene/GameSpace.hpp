@@ -7,6 +7,7 @@
 
 #include "../../Controller/Singleton/TextureManager.hpp"
 #include "../../Controller/System/PoolableKillerSystem.hpp"
+#include "../../Controller/System/PowerUpSystem.hpp"
 #include "../../Controller/System/ItemCollectorSystem.hpp"
 #include "../../Controller/System/EventBroadcaster.hpp"
 

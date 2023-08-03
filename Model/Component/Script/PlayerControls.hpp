@@ -11,6 +11,8 @@
 #include "../../../Controller/Singleton/WindowManager.hpp"
 #include "../../../Controller/Singleton/ItemManager.hpp"
 
+#include "../../../Controller/System/PowerUpSystem.hpp"
+
 #include "../../Entity/Player.hpp"
 
 //#include "../../../Controller/System/EventBroadcaster.hpp"
@@ -18,6 +20,7 @@
 namespace components {
     using namespace controllers;
     using namespace models;
+    using namespace systems;
 
     class PlayerControls : public Component {
         private:
