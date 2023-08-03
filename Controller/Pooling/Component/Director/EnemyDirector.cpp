@@ -8,9 +8,9 @@ EnemyDirector::EnemyDirector(std::string strName) : Component(strName, Component
     this->fTicks = 0.0f;
 
     this->createEnemyPool(PoolTag::GREEN_SLIME, 20, EnemyType::COMMON, AssetType::GREEN_SLIME);
-    this->createEnemyPool(PoolTag::PURPLE_SLIME, 15, EnemyType::UNCOMMON, AssetType::PURPLE_SLIME);
+    this->createEnemyPool(PoolTag::PURPLE_SLIME, 10, EnemyType::UNCOMMON, AssetType::PURPLE_SLIME);
     //this->createEnemyPool(PoolTag::YELLOW_SLIME, 3, EnemyType::COMMON, AssetType::YELLOW_SLIME);
-    this->createEnemyPool(PoolTag::RED_SLIME, 10, EnemyType::ELITE, AssetType::RED_SLIME);
+    this->createEnemyPool(PoolTag::RED_SLIME, 5, EnemyType::ELITE, AssetType::RED_SLIME);
     //this->createEnemyPool(PoolTag::BLUE_SLIME, 3, EnemyType::COMMON, AssetType::BLUE_SLIME);
 }
 
