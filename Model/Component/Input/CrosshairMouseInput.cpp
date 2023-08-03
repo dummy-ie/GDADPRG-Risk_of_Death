@@ -44,6 +44,7 @@ void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPre
                 else if (bPlayerHasToZoom)
                 {
                     pPlayer->setZoomedIn(WindowManager::getInstance()->mouseOverSubscreen(this->vecLocation));
+                    this->resetLeftClick();
                 }
             }
             break;
