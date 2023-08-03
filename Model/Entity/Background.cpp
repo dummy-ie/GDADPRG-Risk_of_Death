@@ -3,7 +3,7 @@
 using namespace models;
 
 Background::Background(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture) {
-    this->fZ = 0.0f;
+    this->fZ = SCREEN_WIDTH;
 }
 
 Background::Background(std::string strName, AnimatedTexture* pTexture, float fZ) : GameObject(strName, pTexture) {
