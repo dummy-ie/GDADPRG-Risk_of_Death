@@ -84,7 +84,10 @@ PowerUpSystem::PowerUpSystem(std::string strName) : Component(strName, Component
     this->fFrameInterval = 1.f;
     this->fTicks = 0.f;
 }
-PowerUpSystem::PowerUpSystem(const PowerUpSystem& CObject) : Component(CObject.strName, ComponentType::SCRIPT) {}
+PowerUpSystem::PowerUpSystem(const PowerUpSystem& CObject) : Component(CObject.strName, ComponentType::SCRIPT) {
+    this->fFrameInterval = 1.f;
+    this->fTicks = 0.f;
+}
 
 PowerUpSystem* PowerUpSystem::getInstance() {
     return P_SHARED_INSTANCE;
