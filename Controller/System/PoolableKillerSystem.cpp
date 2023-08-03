@@ -32,6 +32,8 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
     int nKill = -1;
     float fKillThreshold = 150.f;
 
+    EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");
+
     for (int i = this->vecKillable.size() - 1; i >= 0; i--) {
         float fDistance = sqrt(pow(vecLocation.x - this->vecKillable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecKillable[i]->getOwner()->getSprite()->getPosition().y, 2));
         // Change this to if hitbox (not yet implemented) contains vecLocation
@@ -45,6 +47,42 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                     this->vecKillable[i]->setKilled(true);
                     if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
                         nKill = 1;
+                    }
+
+                    int nChance = std::rand() % 10000;
+                    switch(pEnemy->getType()){
+                        case EnemyType::COMMON:
+                            if(nChance < 10000){
+                                
+                                if(pSpawnPoint){
+                                    pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
+                                }
+                                std::cout<<"attempting to spawn item"<<std::endl;
+                                ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
+                            }
+                            break;
+                        case EnemyType::UNCOMMON:
+                            if(nChance < 10000){
+                                
+                                if(pSpawnPoint){
+                                    pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
+                                }
+                                std::cout<<"attempting to spawn item"<<std::endl;
+                                ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
+                            }
+                            break;
+                        case EnemyType::ELITE:
+                            if(nChance < 10000){
+                                
+                                if(pSpawnPoint){
+                                    pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
+                                }
+                                std::cout<<"attempting to spawn item"<<std::endl;
+                                ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 }
             }

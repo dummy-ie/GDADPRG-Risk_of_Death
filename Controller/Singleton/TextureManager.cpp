@@ -10,6 +10,7 @@ void TextureManager::loadGameSpaceFolder() {
     this->loadGameSpaceBackgroundFolder();
     this->loadCrosshairFolder();
     this->loadEnemyFolder();
+    this->loadItemFolder();
 }
 
 void TextureManager::loadGameMenuBackgroundFolder() {
@@ -73,6 +74,19 @@ void TextureManager::loadEnemyFolder() {
 
         this->vecKey.push_back(EType);
     }
+}
+
+void TextureManager::loadItemFolder(){
+    sf::Texture* pTexture1 = NULL;
+    AssetType EType = AssetType::ITEM;
+
+    for (int i = 0; i < 5; i++) {
+        pTexture1 = new sf::Texture();
+        pTexture1->loadFromFile("View/Image/item_" + std::to_string(i) + ".png");
+        this->mapTexture[EType].push_back(pTexture1);
+    }
+
+    this->vecKey.push_back(EType);
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {

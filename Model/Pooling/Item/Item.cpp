@@ -24,7 +24,8 @@ void Item::initialize() {
     this->attachComponent(pCollectableComponent);
 
     ItemCollectorSystem::getInstance()->registerComponent(pCollectableComponent);
-    //this->randomizePosition();
+    
+    this->getSprite()->setScale(0.2,0.2);
 }
 
 void Item::collect(){
@@ -33,37 +34,17 @@ void Item::collect(){
 
 void Item::randomizeType(){
     this->EType = (ItemType)(std::rand() % 5);
+    this->setFrame((int)EType);
+
+    EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");
+    if(pSpawnPoint){
+        this->setPosition(pSpawnPoint->getPosition());
+    }
 }
 
-/*
-void Item::randomizePosition() {
-    float fX = std::rand() % SCREEN_WIDTH;
-    float fY = std::rand() % SCREEN_HEIGHT;
-    float fZ = std::rand() % 10 / 1.0f;
-
-    float fWidth = this->pSprite->getTexture()->getSize().x;
-    float fHeight = this->pSprite->getTexture()->getSize().y;
-
-    float fHalfWidth = fWidth / 2.0f;
-    float fHalfHeight = fHeight / 2.0f;
-
-    if(fX < fHalfWidth)
-        fX = fHalfWidth;
-    else if(fX > (SCREEN_WIDTH - fHalfWidth))
-        fX = (SCREEN_WIDTH - fHalfWidth);
-    
-    if(fY < fHalfHeight)
-        fY = fHalfHeight;
-    else if(fY > (SCREEN_HEIGHT - fHalfHeight))
-        fY = (SCREEN_HEIGHT - fHalfHeight);
-        
-    this->pSprite->setPosition(fX, fY);
-    this->pSprite->setScale(fZ, fZ);
-    this->centerSpriteOrigin();
+void Item::onActivate() {
+    this->randomizeType();
 }
-*/
-
-void Item::onActivate() {}
 
 void Item::onRelease() {
     ItemManager::getInstance()->addItem(this->EType);

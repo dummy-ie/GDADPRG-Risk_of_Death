@@ -30,7 +30,7 @@ void ItemCollectorSystem::collect(sf::Vector2f vecLocation) {
                      Calling [incrementFrame()] in the resulting [Killable] Component's
                      [perform()] will then display and increment the KILLED version. */
     int nCollect = -1;
-    float fCollectThreshold = 150.f;
+    float fCollectThreshold = 200.f;
 
     for (int i = this->vecCollectable.size() - 1; i >= 0; i--) {
         float fDistance = sqrt(pow(vecLocation.x - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().y, 2));
@@ -38,7 +38,8 @@ void ItemCollectorSystem::collect(sf::Vector2f vecLocation) {
             if (this->vecCollectable[i]->getOwner()->isEnabled()) {
                 //this->vecKillable[i]->getOwner()->setAnimationType(AnimationType::KILLED);
                 this->vecCollectable[i]->setCollected(true);
-                nCollect = 1;
+                //nCollect = 1;
+                std::cout << "should be collecting" << std::endl;
             }
         }
     }
@@ -68,7 +69,7 @@ void ItemCollectorSystem::perform() {
         else {
             /* Listen for LEFT clicks. */
             if(pCrosshairMouseInput->isLeftClick()) {
-                
+                std::cout << "TEST" << std::endl;
                 /* When a LEFT click is detected, call [this->kill()], passing the location of the click. */
                 this->collect(pCrosshairMouseInput->getLocation());
 

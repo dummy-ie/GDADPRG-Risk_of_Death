@@ -18,6 +18,7 @@ void GameSpace::onLoadObjects() {
     this->createBackground();
     this->createNullObjectComponents();
     this->createPlayer();
+    this->createItemPool();
     this->createCrosshair();
 }
 
@@ -49,6 +50,9 @@ void GameSpace::createNullObjectComponents() {
     EnemyDirector* pEnemyDirector = new EnemyDirector("Enemy Director");
     pComponentHolder->attachComponent(pEnemyDirector);
     this->registerObject(pComponentHolder);
+
+    EmptyGameObject* pItemSpawnLocation = new EmptyGameObject("Item Spawn Location");
+    this->registerObject(pItemSpawnLocation);
 }
 
 void GameSpace::createBackground() {
@@ -82,4 +86,14 @@ void GameSpace::createCrosshair() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::CROSSHAIR));
     Crosshair* pCrosshair = new Crosshair("Crosshair", pTexture);
     this->registerObject(pCrosshair);
+}
+
+void GameSpace::createItemPool() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ITEM));
+    
+    Item* pItem = new Item(PoolTag::ITEM, "Item", pTexture, ItemType::PWR_HEALTH);
+    GameObjectPool* pItemPool = new GameObjectPool(PoolTag::ITEM, 5, pItem);
+    pItemPool->initialize();
+
+    ObjectPoolManager::getInstance()->registerObjectPool(pItemPool);
 }

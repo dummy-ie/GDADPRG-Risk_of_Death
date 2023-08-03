@@ -55,6 +55,7 @@ namespace models {
         public:
             int getHealth();
             float getSize();
+            EnemyType getType();
         
     };
 }

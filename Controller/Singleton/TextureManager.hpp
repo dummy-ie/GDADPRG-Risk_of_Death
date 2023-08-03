@@ -19,6 +19,7 @@ namespace controllers {
 			void loadGameSpaceBackgroundFolder();
             void loadCrosshairFolder();
             void loadEnemyFolder();
+            void loadItemFolder();
 
         public:
             std::vector<sf::Texture*> getTexture(AssetType EType);

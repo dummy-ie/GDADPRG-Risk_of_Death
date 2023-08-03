@@ -155,3 +155,6 @@ float Enemy::getSize()
 {
     return this->fSize;
 }
+EnemyType Enemy::getType(){
+    return this->EType;
+}
