@@ -37,7 +37,7 @@ void Enemy::initialize()
     
     this->pHitboxRenderer = new Renderer(this->strName + " Hitbox");
     this->pHitboxRenderer->assignDrawable(this->pHitbox);
-    //this->attachComponent(this->pHitboxRenderer);
+    this->attachComponent(this->pHitboxRenderer);
 
     this->pSwitcher = new Switcher(this->strName + " Switcher");
     this->attachComponent(this->pSwitcher);
@@ -123,15 +123,12 @@ void Enemy::initializeHitbox() {
 
     float fHalfWidth = fWidth / 2.0f;
     float fHalfHeight = fHeight / 2.0f;
-
     
     if (this->EHitbox == HitboxType::TRIANGLE) {
 
     }
     if (this->EHitbox == HitboxType::CIRCLE) {
-        sf::Vector2f vecCenter = sf::Vector2f(this->pSprite->getPosition().x,  this->pSprite->getPosition().y);
-        float fRadius = this->getSprite()->getTexture()->getSize().y + vecCenter.y;
-        std::cout << fRadius << std::endl;
+        float fRadius = fHalfHeight * this->getSprite()->getScale().x;
         this->pHitbox = new sf::CircleShape(fRadius);
         this->CColor.a = 100;
         this->pHitbox->setFillColor(this->CColor);
@@ -158,9 +155,9 @@ void Enemy::onActivate()
 {
     this->setFrame(0);
 
-    this->initializeType();
-    this->randomizePosition();
-    this->initializeHitbox();
+    //this->initializeType();
+    //this->randomizePosition();
+    //this->initializeHitbox();
 
     this->pMover = new Mover(this->strName + " Mover");
     this->pMover->setMovable(this);
@@ -187,7 +184,13 @@ void Enemy::move(sf::Time tDeltaTime)
     float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
     this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
     this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
-    this->pHitbox->setScale(fZ, fZ);
+    if (this->EHitboxType == HitboxType::CIRCLE) {
+        float fHeight = this->pSprite->getTexture()->getSize().y;
+        float fHalfHeight = fHeight / 2.0f;
+        float fRadius = fHalfHeight * this->getSprite()->getScale().x;
+        ((sf::CircleShape*)this->pHitbox)->setRadius(fRadius);
+        this->pHitbox->setOrigin(fRadius, fRadius);
+    }
 
 
     //if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
@@ -200,7 +203,7 @@ bool Enemy::contains(sf::Vector2f vecLocation) {
     }
     if (this->EHitbox == HitboxType::CIRCLE) {
         sf::Vector2f vecCenter = this->pHitbox->getPosition();
-        float fRadius = ((sf::CircleShape*)this->pHitbox)->getRadius() * this->pHitbox->getScale().x;
+        float fRadius = ((sf::CircleShape*)this->pHitbox)->getRadius();
         float fDistance = sqrt(pow(vecLocation.x - vecCenter.x, 2) + pow(vecLocation.y - vecCenter.y, 2));
         if (fDistance <= fRadius) {
             return true;
