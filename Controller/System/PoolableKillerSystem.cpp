@@ -109,6 +109,7 @@ void PoolableKillerSystem::perform() {
             if(pCrosshairMouseInput->isLeftClick()) {
                 
                 /* When a LEFT click is detected, call [this->kill()], passing the location of the click. */
+                ItemCollectorSystem::getInstance()->collect(pCrosshairMouseInput->getLocation());
                 this->kill(pCrosshairMouseInput->getLocation());
 
                 /* It is important to force the click back to FALSE, to prevent multiple
