@@ -1,16 +1,10 @@
 #ifndef SYSTEMS_POWER_UP_SYSTEM_HPP
 #define SYSTEMS_POWER_UP_SYSTEM_HPP
 
-#include "../../Config/Settings.hpp"
-
-#include "../../Model/Pooling/PoolableObject.hpp"
-
 #include "../../Model/Component/Component.hpp"
 #include "../../Model/Component/Input/CrosshairMouseInput.hpp"
 
-#include "../../Model/GameObject.hpp"
-
-#include "../Singleton/ObjectPoolManager.hpp"
+#include "../../Model/Enum/EnumItemType.hpp"
 
 namespace systems {
     using namespace components;

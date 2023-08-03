@@ -1,17 +1,18 @@
 #ifndef COMPONENTS_MOVER_HPP
 #define COMPONENTS_MOVER_HPP
 
-#include "../../../Controller/System/PowerUpSystem.hpp"
-
 #include "../../Enum/EnumComponentType.hpp"
 
 #include "../Component.hpp"
+
+#include "../../../Controller/System/PowerUpSystem.hpp"
 
 #include "Interface/Movable.hpp"
 
 namespace components {
    // using namespace controllers;
     using namespace models;
+    using namespace systems;
     class Mover : public Component {
         private:
             Movable* pMovable;

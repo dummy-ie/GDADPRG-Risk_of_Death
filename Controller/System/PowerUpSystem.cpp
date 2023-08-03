@@ -17,30 +17,6 @@ using namespace systems;
 */
 
 void PowerUpSystem::perform() {
-    Crosshair* pCrosshair = (Crosshair*)GameObjectManager::getInstance()->findObjectByName("Crosshair");
-    if(pCrosshair == NULL) {
-        std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
-    }
-    else {
-        CrosshairMouseInput* pCrosshairMouseInput = (CrosshairMouseInput*)pCrosshair->findComponentByName("Crosshair Mouse Input");
-        
-        if(pCrosshairMouseInput == NULL) {
-            std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
-        }
-        else {
-            /* Listen for LEFT clicks. */
-            if(pCrosshairMouseInput->isLeftClick()) {
-                
-                /* When a LEFT click is detected, call [this->kill()], passing the location of the click. */
-                this->collect(pCrosshairMouseInput->getLocation());
-
-                /* It is important to force the click back to FALSE, to prevent multiple
-                   triggers when the LEFT click is held. */
-                pCrosshairMouseInput->resetLeftClick();
-            }
-        }
-    }
-
     this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
     if (this->fTicks > this->fFrameInterval){
         if(this->mapPowerUps[ItemType::PWR_DAMAGE] > 0){

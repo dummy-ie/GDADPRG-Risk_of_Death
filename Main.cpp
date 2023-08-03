@@ -48,7 +48,7 @@
 
 #include "View/Screen/TitleScreen.cpp"
 #include "View/Screen/GameSpaceUI/GameSpaceUI.cpp"
-#include "View/Screen/GameSpaceUI/Parts/GameTimer.cpp"
+//#include "View/Screen/GameSpaceUI/Parts/GameTimer.cpp"
 
 #include "Controller/Singleton/GameObjectManager.cpp"
 #include "Controller/Singleton/BlockerManager.cpp"

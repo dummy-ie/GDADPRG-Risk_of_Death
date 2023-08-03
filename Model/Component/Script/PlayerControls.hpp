@@ -20,6 +20,7 @@
 namespace components {
     using namespace controllers;
     using namespace models;
+    using namespace systems;
 
     class PlayerControls : public Component {
         private:
