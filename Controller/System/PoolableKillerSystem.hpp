@@ -14,6 +14,8 @@
 #include "../Singleton/ObjectPoolManager.hpp"
 
 #include "PowerUpSystem.hpp"
+#include "ItemCollectorSystem.hpp"
+
 
 namespace systems {
     using namespace components;

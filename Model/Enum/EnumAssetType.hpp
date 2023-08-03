@@ -12,7 +12,9 @@ enum class AssetType : int {
     PURPLE_SLIME,
     YELLOW_SLIME,
     RED_SLIME,
-    BLUE_SLIME
+    BLUE_SLIME,
+
+    ITEM
 };
 
 #endif

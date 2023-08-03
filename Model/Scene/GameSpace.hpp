@@ -13,6 +13,7 @@
 
 #include "../../Controller/System/Interface/EventListener.hpp"
 
+#include "../../Controller/Pooling/GameObjectPool.hpp"
 #include "../../Controller/Pooling/Component/Director/EnemyDirector.hpp"
 
 #include "../Enum/EnumAssetType.hpp"
@@ -27,6 +28,7 @@
 #include "../Entity/Player.hpp"
 
 #include "../Pooling/Enemy/Enemy.hpp"
+#include "../Pooling/Item/Item.hpp"
 
 #include "../../View/Screen/GameSpaceUI/GameSpaceUI.hpp"
 
@@ -50,6 +52,7 @@ namespace scenes {
             void createPlayer();
             void createUserInterface();
             void createCrosshair();
+            void createItemPool();
     };
 }
 

@@ -3,7 +3,8 @@
 using namespace models;
 
 Player::Player(std::string strName) : GameObject(strName) {
-    
+    this->nHealth = 5;
+    this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
 }
 
 Player::~Player() {}
