@@ -8,7 +8,7 @@ using namespace systems;
 
 void ItemCollectorSystem::collect(sf::Vector2f vecLocation) {
     int nCollect = -1;
-    float fCollectThreshold = 200.f;
+    float fCollectThreshold = 40.f;
 
     for (int i = this->vecCollectable.size() - 1; i >= 0; i--) {
         float fDistance = sqrt(pow(vecLocation.x - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().y, 2));
@@ -17,7 +17,6 @@ void ItemCollectorSystem::collect(sf::Vector2f vecLocation) {
                 //this->vecKillable[i]->getOwner()->setAnimationType(AnimationType::KILLED);
                 this->vecCollectable[i]->setCollected(true);
                 //nCollect = 1;
-                std::cout << "should be" << std::endl;
             }
         }
     }

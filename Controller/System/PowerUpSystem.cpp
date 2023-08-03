@@ -21,24 +21,31 @@ void PowerUpSystem::perform() {
     if (this->fTicks > this->fFrameInterval){
         if(this->mapPowerUps[ItemType::PWR_DAMAGE] > 0){
             this->mapPowerUps[ItemType::PWR_DAMAGE] -= 1.f;
+            std::cout<<"DAMAGE "<<this->mapPowerUps[ItemType::PWR_DAMAGE]<<std::endl;
         }
         else{
             this->mapPowerUps[ItemType::PWR_DAMAGE] = 0.f;
+            //std::cout<<"DAMAGE "<<this->mapPowerUps[ItemType::PWR_DAMAGE]<<std::endl;
         }
         if(this->mapPowerUps[ItemType::PWR_INVINCIBILITY] > 0){
             this->mapPowerUps[ItemType::PWR_INVINCIBILITY] -= 1.f;
+            std::cout<<"IN "<<this->mapPowerUps[ItemType::PWR_INVINCIBILITY]<<std::endl;
         }
         else{
             this->mapPowerUps[ItemType::PWR_INVINCIBILITY] = 0.f;
+            //std::cout<<"IN "<<this->mapPowerUps[ItemType::PWR_DAMAGE]<<std::endl;
         }
         if(this->mapPowerUps[ItemType::PWR_FREEZE] > 0){
             this->mapPowerUps[ItemType::PWR_FREEZE] -= 1.f;
+            std::cout<<"FRE "<<this->mapPowerUps[ItemType::PWR_FREEZE]<<std::endl;
         }
         else{
             this->mapPowerUps[ItemType::PWR_FREEZE] = 0.f;
+            //std::cout<<"FRE "<<this->mapPowerUps[ItemType::PWR_DAMAGE]<<std::endl;
         }
+        this->fTicks = 0.f;
     }
-
+    
 }
 
 void PowerUpSystem::activatePowerUp(ItemType EType){

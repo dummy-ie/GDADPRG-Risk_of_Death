@@ -57,7 +57,6 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                                 if(pSpawnPoint){
                                     pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
                                 }
-                                std::cout<<"attempting to spawn item"<<std::endl;
                                 ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
                             }
                             break;
@@ -67,7 +66,6 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                                 if(pSpawnPoint){
                                     pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
                                 }
-                                std::cout<<"attempting to spawn item"<<std::endl;
                                 ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
                             }
                             break;
@@ -77,7 +75,6 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                                 if(pSpawnPoint){
                                     pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
                                 }
-                                std::cout<<"attempting to spawn item"<<std::endl;
                                 ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
                             }
                             break;

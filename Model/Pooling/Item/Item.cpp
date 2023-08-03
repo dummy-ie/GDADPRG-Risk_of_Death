@@ -26,6 +26,8 @@ void Item::initialize() {
     ItemCollectorSystem::getInstance()->registerComponent(pCollectableComponent);
     
     this->getSprite()->setScale(0.2,0.2);
+
+    this->centerSpriteOrigin();
 }
 
 void Item::collect(){
