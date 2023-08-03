@@ -25,6 +25,9 @@ namespace controllers {
             void deleteObject(GameObject* pGameObject);
             void deleteObjectByName(std::string strName);
             void deleteAllObjects();
+
+            void sortObjectsByZ();
+            void sortObjectsByX();
             
             GameObject* findObjectByName(std::string strName);
 
