@@ -36,11 +36,12 @@ void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPre
             if(this->bLeftClick) {
                 std::cout << "CrosshairMouseInput::processMouseInput() >> [LEFT]." << std::endl;
                 
-                if (pPlayer->isZoomedIn() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading()) {
+                bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1; // if the player isn't zoomed in AND there is more than 1 view on the partitions (more than 1x1)
+                if (!bPlayerHasToZoom && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading()) {
                     pPlayer->decrementBullets();
                     SFXManager::getInstance()->getSound(SFXType::PLAYER_SHOOT)->play();
                 }
-                else if (!pPlayer->isZoomedIn())
+                else if (bPlayerHasToZoom)
                 {
                     pPlayer->setZoomedIn(WindowManager::getInstance()->mouseOverSubscreen(this->vecLocation));
                 }

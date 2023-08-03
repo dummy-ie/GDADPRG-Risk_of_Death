@@ -93,8 +93,11 @@ void PlayerControls::perform() {
             // Player* pPlayer = (Player*)this->getOwner();
             Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
 
-            if (pPlayer)
+            if (pPlayer && WindowManager::getInstance()->getPartitions()->size() > 1)
+            {
+
                 pPlayer->setZoomedIn(false);
+            }
         }
 
     }

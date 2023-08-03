@@ -41,11 +41,11 @@ bool WindowManager::mouseOverSubscreen(sf::Vector2f mousePosition)
     for (auto &partition : this->vecPartitions)
     {
         sf::FloatRect frPartitionDimensions(partition.getCenter() - (partition.getSize() / 2.f), partition.getSize());
-        std::cout << "partition: position " << frPartitionDimensions.left << ", " << frPartitionDimensions.top << " size " << frPartitionDimensions.width << ", " << frPartitionDimensions.height << std::endl;
-        std::cout << "mouse position: " << mousePosition.x << ", " << mousePosition.y << std::endl;
+        // std::cout << "partition: position " << frPartitionDimensions.left << ", " << frPartitionDimensions.top << " size " << frPartitionDimensions.width << ", " << frPartitionDimensions.height << std::endl;
+        // std::cout << "mouse position: " << mousePosition.x << ", " << mousePosition.y << std::endl;
         if (frPartitionDimensions.contains(mousePosition))
         {
-            std::cout << "contains true" << std::endl;
+            // std::cout << "contains true" << std::endl;
             this->rwWindow->setView(partition);
             return true;
         }
@@ -54,7 +54,7 @@ bool WindowManager::mouseOverSubscreen(sf::Vector2f mousePosition)
     return false;
 }
 
-void WindowManager::generatePartitions(int nRow, int nCol)
+void WindowManager::generatePartitions(int nCol, int nRow)
 {
     if (!this->rwWindow)
     {
@@ -69,7 +69,7 @@ void WindowManager::generatePartitions(int nRow, int nCol)
             float fPartitionWidth = SCREEN_WIDTH / nRow;
             float fPartitionHeight = SCREEN_HEIGHT / nCol;
             this->vecPartitions.push_back(sf::View(sf::Vector2f(fPartitionWidth * i + fPartitionWidth / 2, fPartitionHeight * j + fPartitionHeight / 2), // view center
-                                                   sf::Vector2f(fPartitionWidth, fPartitionHeight)));                   // view size
+                                                   sf::Vector2f(fPartitionWidth, fPartitionHeight)));                                                    // view size
         }
     }
 }
