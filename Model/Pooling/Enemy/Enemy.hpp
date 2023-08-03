@@ -31,8 +31,6 @@ namespace models {
             float fSpeed;
             float fSize;
 
-            //float fTop;
-
         public:
             Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType);
             ~Enemy();

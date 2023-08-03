@@ -52,8 +52,8 @@ float EnemyDirector::randomizePercent(float fMax) {
 } 
 
 void EnemyDirector::perform() {
-    this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
-    this->fUpdateTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
+    this->fTicks += this->tDeltaTime.asSeconds();
+    this->fUpdateTicks += this->tDeltaTime.asSeconds();
     if(this->fUpdateTicks > this->fUpdateInterval) {
         this->fUpdateTicks = 0.0f;
         this->spawnWave();

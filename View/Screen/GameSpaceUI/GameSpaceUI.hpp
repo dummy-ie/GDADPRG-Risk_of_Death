@@ -5,10 +5,9 @@
 #include "../../Text.hpp"
 #include "../../Button.hpp"
 
-#include "../../Interface/ButtonListener.hpp"
+#include "Parts/GameTimer.hpp"
 
-#include "../../../Model/Component/Input/PlayerInput.hpp"
-#include "../../../Model/Component/Script/PlayerControls.hpp"
+#include "../../Interface/ButtonListener.hpp"
 
 #include "../../../Model/Enum/EnumFontType.hpp"
 #include "../../../Model/Enum/EnumViewTag.hpp"
@@ -22,13 +21,14 @@
 namespace views {
     using namespace systems;
     class GameSpaceUI : public View {
+        private:
+            GameTimer* pGameTimer;
         public:
             GameSpaceUI(std::string strName);
             ~GameSpaceUI();
 
         public:
             void initialize();
-
         //public: 
         //    void onEventTrigger(std::unordered_map<std::string, void*> mapParameter);
         //    EventKey getKey();

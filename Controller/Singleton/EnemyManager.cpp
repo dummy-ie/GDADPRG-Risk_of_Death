@@ -2,6 +2,16 @@
 
 using namespace controllers;
 
+void EnemyManager::create(EnemyType EType, std::string strName) {
+    
+}
+
+void EnemyManager::addEnemy(Enemy* pEnemy) {
+    this->vecEnemies.push_back(pEnemy);
+}
+
+
+
 EnemyManager* EnemyManager::P_SHARED_INSTANCE = NULL;
 EnemyManager::EnemyManager() {}
 EnemyManager::EnemyManager(const EnemyManager&) {}
