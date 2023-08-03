@@ -8,7 +8,7 @@ PlayerControls::PlayerControls(std::string strName) : Component(strName, Compone
 }
 
 void PlayerControls::perform() {
-    this->fTicks += this->tDeltaTime.asSeconds();
+    this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
 
     if(this->fTicks > 0.5f){
         this->fTicks = 0.f;
@@ -39,6 +39,7 @@ void PlayerControls::perform() {
         if(pInput->is1() && this->vecTimer[0] == 0.f){
             if(ItemManager::getInstance()->useItem(ItemType::PWR_DAMAGE)){
                 std::cout << "[ITEM] : Damage item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_DAMAGE) << " left." << std::endl;
+                PowerUpSystem::activatePowerUp(ItemType::PWR_DAMAGE);
                 this->vecTimer[0] = this->fCooldown * 2.f;
             }
             else{
@@ -50,6 +51,7 @@ void PlayerControls::perform() {
         if(pInput->is2() && this->vecTimer[1] == 0.f){
             if(ItemManager::getInstance()->useItem(ItemType::PWR_PIERCE)){
                 std::cout << "[ITEM] : Pierce item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_PIERCE) << " left." << std::endl;
+                PowerUpSystem::activatePowerUp(ItemType::PWR_PIERCE);
                 this->vecTimer[1] = this->fCooldown * 2.f;
             }
             else{
@@ -61,6 +63,7 @@ void PlayerControls::perform() {
         if(pInput->is3() && this->vecTimer[2] == 0.f){
             if(ItemManager::getInstance()->useItem(ItemType::PWR_FREEZE)){
                 std::cout << "[ITEM] : Freeze item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_FREEZE) << " left." << std::endl;
+                PowerUpSystem::activatePowerUp(ItemType::PWR_FREEZE);
                 this->vecTimer[2] = this->fCooldown * 2.f;
             }
             else{

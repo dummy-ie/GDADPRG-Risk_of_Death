@@ -66,6 +66,7 @@
 #include "Controller/System/ItemCollectorSystem.cpp"
 #include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/PoolableKillerSystem.cpp"
+#include "Controller/System/PowerUpSystem.cpp"
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
 #include "Controller/System/EventBroadcaster.cpp"

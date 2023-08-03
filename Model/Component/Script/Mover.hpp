@@ -1,6 +1,8 @@
 #ifndef COMPONENTS_MOVER_HPP
 #define COMPONENTS_MOVER_HPP
 
+#include "../../../Controller/System/PowerUpSystem.hpp"
+
 #include "../../Enum/EnumComponentType.hpp"
 
 #include "../Component.hpp"

@@ -11,6 +11,8 @@
 #include "../../../Controller/Singleton/WindowManager.hpp"
 #include "../../../Controller/Singleton/ItemManager.hpp"
 
+#include "../../../Controller/System/PowerUpSystem.hpp"
+
 #include "../../Entity/Player.hpp"
 
 //#include "../../../Controller/System/EventBroadcaster.hpp"
