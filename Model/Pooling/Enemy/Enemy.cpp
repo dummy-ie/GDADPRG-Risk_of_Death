@@ -184,7 +184,7 @@ void Enemy::move(sf::Time tDeltaTime)
     float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
     this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
     this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
-    if (this->EHitboxType == HitboxType::CIRCLE) {
+    if (this->EHitbox == HitboxType::CIRCLE) {
         float fHeight = this->pSprite->getTexture()->getSize().y;
         float fHalfHeight = fHeight / 2.0f;
         float fRadius = fHalfHeight * this->getSprite()->getScale().x;
