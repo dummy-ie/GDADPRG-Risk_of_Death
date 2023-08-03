@@ -8,7 +8,6 @@ PlayerInput::PlayerInput(std::string strName) : GeneralInput(strName) {
     this->b1 = false;
     this->b2 = false;
     this->b3 = false;
-    this->bPartition = false;
     this->bZoomOut = false;
     this->bR = false;
 }
@@ -52,11 +51,7 @@ void PlayerInput::processKeyInput(bool bPressed) {
             this->b3 = bPressed;
             break;
 
-        case sf::Keyboard::Space: // temporary
-            this->bPartition = bPressed;
-            break;
-
-        case sf::Keyboard::Q: // temporary
+        case sf::Keyboard::Q: 
             this->bZoomOut = bPressed;
             break;
         case sf::Keyboard::R:
@@ -86,11 +81,6 @@ bool PlayerInput::is2() {
 
 bool PlayerInput::is3() {
     return this->b3;
-}
-
-bool PlayerInput::isPartition()
-{
-    return this->bPartition;
 }
 
 bool components::PlayerInput::isZoomOut()

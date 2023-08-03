@@ -13,7 +13,6 @@ namespace components {
             bool b1;
             bool b2;
             bool b3;
-            bool bPartition;
             bool bZoomOut;
             bool bR;
 
