@@ -33,6 +33,7 @@ namespace models {
             void reload();
 
         public:
+            void randomIncrementHealth();
             void decrementHealth();
             void decrementBullets();
 

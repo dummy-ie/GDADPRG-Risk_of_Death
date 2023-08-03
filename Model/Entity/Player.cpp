@@ -41,14 +41,22 @@ void Player::reload() {
     this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
 }
 
+void Player::randomIncrementHealth() {
+    this->nHealth += (std::rand()%3) + 1;
+}
+
 void Player::decrementHealth()
 {
-    this->nHealth--;
+    if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_INVINCIBILITY)){
+        this->nHealth--;
+    }
 }
 
 void Player::decrementBullets()
 {
-    this->nBullets--;
+    if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_INVINCIBILITY)){
+        this->nBullets--;
+    }
 }
 
 void Player::setZoomedIn(bool bIsZoomedIn)
