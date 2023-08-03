@@ -11,9 +11,11 @@ Player::~Player() {}
 void Player::initialize() {
     this->nHealth = 5;
     this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
-    PlayerInput* pInputComponent = new PlayerInput(this->strName + " Input");
+    //this->bFrontView = true;
+
+    this->pPlayerInput = new PlayerInput(this->strName + " Input");
     PlayerControls* pControlsComponent = new PlayerControls(this->strName + " Controls");
-    this->attachComponent(pInputComponent);
+    this->attachComponent(this->pPlayerInput);
     this->attachComponent(pControlsComponent);
 
     this->pReloader = new Reloader(this->strName + " Reloader");
@@ -61,6 +63,10 @@ bool models::Player::isZoomedIn()
     return this->bIsZoomedIn;
 }
 
+/*void Player::setFrontView(bool bFrontView) {
+    this->bFrontView = bFrontView;
+}*/
+
 bool Player::hasBullets()
 {
     if (this->nBullets > 0)
@@ -70,4 +76,8 @@ bool Player::hasBullets()
 
 Reloader* Player::getReloader() {
     return this->pReloader;
+}
+
+PlayerInput* Player::getInput() {
+    return this->pPlayerInput;
 }

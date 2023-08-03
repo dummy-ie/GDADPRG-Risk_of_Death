@@ -15,7 +15,10 @@ namespace models {
     class Player : public GameObject, public Reloadable {
         private:
             Reloader* pReloader = NULL;
+            PlayerInput* pPlayerInput = NULL;
+
             bool bIsZoomedIn = false;
+            //bool bFrontView;
             int nHealth;
             int nBullets;
 
@@ -36,8 +39,10 @@ namespace models {
         public:
             void setZoomedIn(bool bIsZoomedIn);
             bool isZoomedIn();
+            //void setFrontView(bFrontView);
             bool hasBullets();
             Reloader* getReloader();
+            PlayerInput* getInput();
 
     };
 }

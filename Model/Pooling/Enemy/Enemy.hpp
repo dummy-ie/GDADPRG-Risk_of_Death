@@ -8,19 +8,24 @@
 
 #include "../../Component/Script/Killable.hpp"
 #include "../../Component/Script/Mover.hpp"
+#include "../../Component/Script/Switcher.hpp"
 
 #include "../../Component/Script/Interface/Movable.hpp"
+#include "../../Component/Script/Interface/Switchable.hpp"
 
 #include "../PoolableObject.hpp"
 
 #include "../../../Controller/System/PoolableKillerSystem.hpp"
+#include "../../../Controller/System/ViewSwitcherSystem.hpp"
 #include "../../../Controller/System/PowerUpSystem.hpp"
 
 namespace models {
+    using namespace controllers;
     using namespace systems;
-    class Enemy : public PoolableObject, public Movable {
+    class Enemy : public PoolableObject, public Movable, public Switchable {
         private:
             Mover* pMover;
+            Switcher* pSwitcher;
             Renderer* pSpriteRenderer;
             Renderer* pRectangleRenderer;
 
@@ -36,13 +41,6 @@ namespace models {
             Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType);
             ~Enemy();
 
-        private:
-            void randomizePosition();
-            void initializeType();
-
-        public:
-            void decrementHealth();
-
         public:
             void initialize();
             void onActivate();
@@ -51,6 +49,15 @@ namespace models {
 
         public:
             void move(sf::Time tDeltaTime);
+            void switchLeftView();
+            void switchFrontView();
+
+        private:
+            void randomizePosition();
+            void initializeType();
+
+        public:
+            void decrementHealth();
 
         public:
             int getHealth();

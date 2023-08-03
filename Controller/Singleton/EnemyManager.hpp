@@ -9,7 +9,7 @@ namespace controllers {
 	using namespace models;
     class EnemyManager {
 		private:
-			//std::unordered_map<EnemyType EType, std::vector<Enemy*>> mapEnemyType;
+			std::unordered_map<EnemyType, std::vector<Enemy*>> mapEnemyType;
 			std::vector<Enemy*> vecEnemies;
 		
 		private:
@@ -17,7 +17,9 @@ namespace controllers {
 
 		public:
 			void addEnemy(Enemy* pEnemy);
-			void switchView();
+
+		public:
+			std::vector<Enemy*> getEnemies();
 		
         private:
 		    static EnemyManager* P_SHARED_INSTANCE;

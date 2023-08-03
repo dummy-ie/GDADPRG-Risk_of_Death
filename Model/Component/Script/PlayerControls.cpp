@@ -8,7 +8,7 @@ PlayerControls::PlayerControls(std::string strName) : Component(strName, Compone
 }
 
 void PlayerControls::perform() {
-    this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
+    this->fTicks += this->tDeltaTime.asSeconds();
 
     if(this->fTicks > 0.5f){
         this->fTicks = 0.f;
@@ -29,11 +29,16 @@ void PlayerControls::perform() {
     }
     else {
         if(pInput->isLeft()) {
+            Player* pPlayer = (Player*)this->getOwner();
             GameObjectManager::getInstance()->findObjectByName("Background")->setFrame(1);
+            //pPlayer->setFrontView(false);
+            
         }
 
         if(pInput->isRight()) {
+            Player* pPlayer = (Player*)this->getOwner();
             GameObjectManager::getInstance()->findObjectByName("Background")->setFrame(0);
+            //pPlayer->setFrontView(true);
         }
 
         if(pInput->is1() && this->vecTimer[0] == 0.f){

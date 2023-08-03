@@ -49,6 +49,10 @@ void GameSpace::createNullObjectComponents() {
     EnemyDirector* pEnemyDirector = new EnemyDirector("Enemy Director");
     pComponentHolder->attachComponent(pEnemyDirector);
     this->registerObject(pComponentHolder);
+
+    pComponentHolder = new EmptyGameObject("View Switcher System Holder");
+    ViewSwitcherSystem::initialize("View Switcher System", pComponentHolder);
+    this->registerObject(pComponentHolder);
 }
 
 void GameSpace::createBackground() {

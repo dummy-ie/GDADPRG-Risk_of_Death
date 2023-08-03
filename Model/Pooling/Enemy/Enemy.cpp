@@ -10,7 +10,7 @@ Enemy::~Enemy() {}
 
 void Enemy::initialize() {
     this->setFrame(0);
-    
+
     this->pRectangle = new sf::RectangleShape(sf::Vector2f(50, this->pSprite->getTexture()->getSize().y));
 
     this->pSpriteRenderer = new Renderer(this->strName + " Sprite");
@@ -30,10 +30,11 @@ void Enemy::initialize() {
     this->pRectangleRenderer->assignDrawable(this->pRectangle);
     this->attachComponent(this->pRectangleRenderer);
     this->pRectangle->setFillColor(this->CColor);
-
-
     
-    //this->pRectangleRenderer->disable();
+    this->pSwitcher = new Switcher(this->strName + " Switcher");
+    this->attachComponent(this->pSwitcher);
+    this->pSwitcher->setSwitchable(this);
+
 }
 
 void Enemy::randomizePosition() {
@@ -92,6 +93,7 @@ void Enemy::initializeType() {
     }
 }
 
+
 void Enemy::decrementHealth() {
     if(PowerUpSystem::getInstance()->isActive(ItemType::PWR_DAMAGE)){
         this->nHealth--;
@@ -108,7 +110,11 @@ void Enemy::onActivate() {
     this->pMover = new Mover(this->strName + " Mover");
     this->pMover->setMovable(this);
 
+    //Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
+    //if (pPlayer->isFrontView);
+
     this->attachComponent(this->pMover); 
+    ViewSwitcherSystem::getInstance()->registerComponent(this->pSwitcher);
 }
 
 void Enemy::onRelease() {}
@@ -124,6 +130,16 @@ void Enemy::move(sf::Time tDeltaTime) {
     float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
     this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
     this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
+}
+
+void Enemy::switchLeftView() {
+    this->pSpriteRenderer->disable();
+    this->pRectangleRenderer->enable();
+}
+
+void Enemy::switchFrontView() {
+    this->pSpriteRenderer->enable();
+    this->pRectangleRenderer->disable();
 }
 
 int Enemy::getHealth() {

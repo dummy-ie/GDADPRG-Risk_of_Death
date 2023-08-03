@@ -28,6 +28,7 @@
 #include "Model/Component/Script/PlayerControls.cpp"
 #include "Model/Component/Script/Killable.cpp"
 #include "Model/Component/Script/Mover.cpp"
+#include "Model/Component/Script/Switcher.cpp"
 #include "Model/Component/Script/Reloader.cpp"
 
 #include "Model/Entity/Background.cpp"
@@ -66,6 +67,7 @@
 #include "Controller/System/ItemCollectorSystem.cpp"
 #include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/PoolableKillerSystem.cpp"
+#include "Controller/System/ViewSwitcherSystem.cpp"
 #include "Controller/System/PowerUpSystem.cpp"
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
