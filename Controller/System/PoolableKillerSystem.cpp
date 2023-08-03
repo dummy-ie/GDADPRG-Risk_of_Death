@@ -35,12 +35,12 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
     EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");
 
     for (int i = this->vecKillable.size() - 1; i >= 0; i--) {
-        float fDistance = sqrt(pow(vecLocation.x - this->vecKillable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecKillable[i]->getOwner()->getSprite()->getPosition().y, 2));
+        //float fDistance = sqrt(pow(vecLocation.x - this->vecKillable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecKillable[i]->getOwner()->getSprite()->getPosition().y, 2));
         // Change this to if hitbox (not yet implemented) contains vecLocation
         Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
         bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1;
-        if (fDistance < fKillThreshold && nKill != 1) {
-            Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
+        Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
+        if (pEnemy->contains(vecLocation) && nKill != 1) {
             if (pEnemy->isEnabled() && pPlayer->isZoomedIn() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading() && !bPlayerHasToZoom) {
                 pEnemy->decrementHealth();
                 if (pEnemy->getHealth() <= 0) {

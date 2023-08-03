@@ -2,9 +2,10 @@
 
 using namespace models;
 
-Enemy::Enemy(PoolTag ETag, std::string strName, AnimatedTexture *pTexture, EnemyType EType) : PoolableObject(ETag, strName, pTexture)
+Enemy::Enemy(PoolTag ETag, std::string strName, AnimatedTexture *pTexture, EnemyType EType, HitboxType EHitbox) : PoolableObject(ETag, strName, pTexture)
 {
     this->EType = EType;
+    this->EHitbox = EHitbox;
 }
 
 Enemy::~Enemy() {}
@@ -27,16 +28,20 @@ void Enemy::initialize()
 
     this->initializeType();
     this->randomizePosition();
+    this->initializeHitbox();
 
     this->pRectangleRenderer = new Renderer(this->strName + " Rectangle");
     this->pRectangleRenderer->assignDrawable(this->pRectangle);
     this->attachComponent(this->pRectangleRenderer);
     this->pRectangle->setFillColor(this->CColor);
     
+    this->pHitboxRenderer = new Renderer(this->strName + " Hitbox");
+    this->pHitboxRenderer->assignDrawable(this->pHitbox);
+    //this->attachComponent(this->pHitboxRenderer);
+
     this->pSwitcher = new Switcher(this->strName + " Switcher");
     this->attachComponent(this->pSwitcher);
     this->pSwitcher->setSwitchable(this);
-
 }
 
 void Enemy::randomizePosition()
@@ -66,10 +71,13 @@ void Enemy::randomizePosition()
     // this->fBottom = this->pSprite->getGlobalBounds().top - this->pSprite->getGlobalBounds().height;
     this->pSprite->setScale(this->fSize + fZ, this->fSize + fZ);
 
-    if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
-        this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
-    else
-        this->getSprite()->scale(sf::Vector2f(0.5f, 0.5f));
+    //if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
+    //    this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
+    //else
+    //    this->getSprite()->scale(sf::Vector2f(0.5f, 0.5f));
+
+    this->centerSpriteOrigin();
+    
 
     this->pRectangle->setPosition(sf::Vector2f(this->fZ, fY));
     int nHeight = this->pSprite->getTexture()->getSize().y;
@@ -77,7 +85,7 @@ void Enemy::randomizePosition()
     fHalfHeight = nHeight / 2.0f;
     this->pRectangle->setOrigin(fHalfWidth, fHalfHeight);
 
-    this->centerSpriteOrigin();
+
 }
 
 void Enemy::initializeType()
@@ -105,6 +113,38 @@ void Enemy::initializeType()
     }
 }
 
+void Enemy::initializeHitbox() {
+    float fX = this->getSprite()->getPosition().x;
+    float fY = this->getSprite()->getPosition().y; 
+    float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
+
+    float fWidth = this->pSprite->getTexture()->getSize().x;
+    float fHeight = this->pSprite->getTexture()->getSize().y;
+
+    float fHalfWidth = fWidth / 2.0f;
+    float fHalfHeight = fHeight / 2.0f;
+
+    
+    if (this->EHitbox == HitboxType::TRIANGLE) {
+
+    }
+    if (this->EHitbox == HitboxType::CIRCLE) {
+        sf::Vector2f vecCenter = sf::Vector2f(this->pSprite->getPosition().x,  this->pSprite->getPosition().y);
+        float fRadius = this->getSprite()->getTexture()->getSize().y + vecCenter.y;
+        std::cout << fRadius << std::endl;
+        this->pHitbox = new sf::CircleShape(fRadius);
+        this->CColor.a = 100;
+        this->pHitbox->setFillColor(this->CColor);
+        this->pHitbox->setPosition(fX, fY);
+        this->pHitbox->setOrigin(fRadius, fRadius);
+        //this->pHitbox->setScale(fZ, fZ);
+        //this->pHitboxRenderer->assignDrawable(this->pHitbox);
+    }
+    if (this->EHitbox == HitboxType::RECTANGLE) {
+
+    }
+}
+
 void Enemy::decrementHealth()
 {
     if (PowerUpSystem::getInstance()->isActive(ItemType::PWR_DAMAGE))
@@ -120,6 +160,7 @@ void Enemy::onActivate()
 
     this->initializeType();
     this->randomizePosition();
+    this->initializeHitbox();
 
     this->pMover = new Mover(this->strName + " Mover");
     this->pMover->setMovable(this);
@@ -135,7 +176,7 @@ void Enemy::onRelease() {}
 
 PoolableObject *Enemy::clone()
 {
-    PoolableObject *pClone = new Enemy(this->ETag, this->strName, new AnimatedTexture(*this->pTexture), this->EType);
+    PoolableObject *pClone = new Enemy(this->ETag, this->strName, new AnimatedTexture(*this->pTexture), this->EType, this->EHitbox);
     return pClone;
 }
 
@@ -146,9 +187,29 @@ void Enemy::move(sf::Time tDeltaTime)
     float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
     this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
     this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
+    this->pHitbox->setScale(fZ, fZ);
 
-    if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
-        this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
+
+    //if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
+    //    this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
+}
+
+bool Enemy::contains(sf::Vector2f vecLocation) {
+    if (this->EHitbox == HitboxType::TRIANGLE) {
+
+    }
+    if (this->EHitbox == HitboxType::CIRCLE) {
+        sf::Vector2f vecCenter = this->pHitbox->getPosition();
+        float fRadius = ((sf::CircleShape*)this->pHitbox)->getRadius() * this->pHitbox->getScale().x;
+        float fDistance = sqrt(pow(vecLocation.x - vecCenter.x, 2) + pow(vecLocation.y - vecCenter.y, 2));
+        if (fDistance <= fRadius) {
+            return true;
+        }
+    }
+    if (this->EHitbox == HitboxType::RECTANGLE) {
+
+    }
+    return false;
 }
 
 void Enemy::switchLeftView() {

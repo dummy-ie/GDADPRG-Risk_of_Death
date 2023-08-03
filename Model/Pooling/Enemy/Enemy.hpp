@@ -4,6 +4,7 @@
 #include "../../../Config/Settings.hpp"
 
 #include "../../Enum/EnumEnemyType.hpp"
+#include "../../Enum/EnumHitboxType.hpp"
 #include "../../Enum/EnumPoolTag.hpp"
 
 #include "../../Component/Script/Killable.hpp"
@@ -28,17 +29,21 @@ namespace models {
             Switcher* pSwitcher;
             Renderer* pSpriteRenderer;
             Renderer* pRectangleRenderer;
+            Renderer* pHitboxRenderer;
 
             EnemyType EType;
+            HitboxType EHitbox;
             sf::Color CColor;
             sf::RectangleShape* pRectangle;
+            sf::Shape* pHitbox;
+            sf::FloatRect CHitbox;
 
             int nHealth;
             float fSpeed;
             float fSize;
 
         public:
-            Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType);
+            Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, EnemyType EType, HitboxType EHitbox);
             ~Enemy();
 
         public:
@@ -49,12 +54,14 @@ namespace models {
 
         public:
             void move(sf::Time tDeltaTime);
+            bool contains(sf::Vector2f vecLocation);
             void switchLeftView();
             void switchFrontView();
 
         private:
             void randomizePosition();
             void initializeType();
+            void initializeHitbox();
 
         public:
             void decrementHealth();

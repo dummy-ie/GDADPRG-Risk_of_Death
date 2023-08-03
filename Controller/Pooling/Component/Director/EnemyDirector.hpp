@@ -6,6 +6,7 @@
 #include "../../../../Model/Enum/EnumAssetType.hpp"
 #include "../../../../Model/Enum/EnumComponentType.hpp"
 #include "../../../../Model/Enum/EnumPoolTag.hpp"
+#include "../../../../Model/Enum/EnumHitboxType.hpp"
 
 #include "../../../../Model/Component/Component.hpp"
 #include "../../../../Model/Pooling/Enemy/Enemy.hpp"
@@ -32,7 +33,7 @@ namespace directors {
             ~EnemyDirector();
 
         private:
-            void createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType, AssetType ETexture);
+            void createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType, AssetType ETexture, HitboxType EHitbox);
             void spawnWave();
             float randomizePercent(float fMax);
 
