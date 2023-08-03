@@ -14,6 +14,7 @@
 #include "../PoolableObject.hpp"
 
 #include "../../../Controller/System/PoolableKillerSystem.hpp"
+#include "../../../Controller/System/PowerUpSystem.hpp"
 
 namespace models {
     using namespace systems;

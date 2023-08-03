@@ -18,4 +18,8 @@ const float COMMON_SPRITE_SIZE = 0.3f;
 const float UNCOMMON_SPRITE_SIZE = 0.6f;
 const float ELITE_SPRITE_SIZE = 1.0f;
 
+const float PWR_DAMAGE_DURATION = 5.0f;
+const float PWR_INVINCIBILITY_DURATION = 5.0f;
+const float PWR_FREEZE_DURATION = 5.0f;
+
 #endif

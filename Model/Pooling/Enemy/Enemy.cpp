@@ -93,6 +93,9 @@ void Enemy::initializeType() {
 }
 
 void Enemy::decrementHealth() {
+    if(PowerUpSystem::getInstance()->isActive(ItemType::PWR_DAMAGE)){
+        this->nHealth--;
+    }
     this->nHealth--;
 }
 

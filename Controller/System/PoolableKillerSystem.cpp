@@ -38,14 +38,19 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
         Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
         if (fDistance < fKillThreshold && nKill != 1) {
             Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
-            if (pEnemy->isEnabled() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading()) {
+            if (pEnemy->isEnabled() && pPlayer->isZoomedIn() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading()) {
                 pEnemy->decrementHealth();
                 if (pEnemy->getHealth() <= 0) {
                     this->vecKillable[i]->setKilled(true);
-                    nKill = 1;
+                    if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
+                        nKill = 1;
+                    }
                 }
             }
         }
+    }
+    if(PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
+        PowerUpSystem::getInstance()->clearPowerUp(ItemType::PWR_PIERCE);
     }
 }
 

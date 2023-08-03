@@ -13,6 +13,8 @@
 
 #include "../Singleton/ObjectPoolManager.hpp"
 
+#include "PowerUpSystem.hpp"
+
 namespace systems {
     using namespace components;
     using namespace controllers;
