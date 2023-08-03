@@ -14,7 +14,8 @@ namespace models {
     using namespace interfaces;
     class Player : public GameObject, public Reloadable {
         private:
-            Reloader* pReloader;
+            Reloader* pReloader = NULL;
+            bool bIsZoomedIn = false;
             int nHealth;
             int nBullets;
 
@@ -33,6 +34,8 @@ namespace models {
             void decrementBullets();
 
         public:
+            void setZoomedIn(bool bIsZoomedIn);
+            bool isZoomedIn();
             bool hasBullets();
             Reloader* getReloader();
 

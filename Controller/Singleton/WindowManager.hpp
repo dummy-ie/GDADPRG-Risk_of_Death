@@ -16,7 +16,7 @@ namespace controllers {
 
 			void switchSubscreen(int nSubscreenIndex);
 
-			void mouseOverSubscreen(sf::Vector2f mousePosition);
+			bool mouseOverSubscreen(sf::Vector2f mousePosition);
 
 			void generatePartitions(int nRow, int nCol);
 			void generatePartitions(sf::Vector2i partitions);

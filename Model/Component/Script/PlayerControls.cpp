@@ -71,19 +71,30 @@ void PlayerControls::perform() {
                 this->vecTimer[2] = this->fCooldown;
             }
         }
+
         if (pInput->isR()) {
             Player* pPlayer = (Player*)this->getOwner();
-            pPlayer->start();
+
+            if (pPlayer)
+            {
+                std::cout << "calling player start" << std::endl;
+                pPlayer->start();
+            }
         }
+
         if(pInput->isPartition())
         {
-            sf::View vwView(sf::Vector2f(SCREEN_WIDTH / 8, SCREEN_HEIGHT / 8), sf::Vector2f(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4));
-            WindowManager::getInstance()->getWindow()->setView(vwView);
+            // sf::View vwView(sf::Vector2f(SCREEN_WIDTH / 8, SCREEN_HEIGHT / 8), sf::Vector2f(SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4));
+            // WindowManager::getInstance()->getWindow()->setView(vwView);
         }
 
         if(pInput->isZoomOut())
         {
-            WindowManager::getInstance()->getWindow()->setView(WindowManager::getInstance()->getWindow()->getDefaultView());
+            // Player* pPlayer = (Player*)this->getOwner();
+            Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
+
+            if (pPlayer)
+                pPlayer->setZoomedIn(false);
         }
 
     }

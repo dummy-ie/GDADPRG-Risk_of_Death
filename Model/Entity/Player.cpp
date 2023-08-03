@@ -10,8 +10,6 @@ Player::Player(std::string strName) : GameObject(strName) {
 Player::~Player() {}
 
 void Player::initialize() {
-    
-
     PlayerInput* pInputComponent = new PlayerInput(this->strName + " Input");
     PlayerControls* pControlsComponent = new PlayerControls(this->strName + " Controls");
     this->attachComponent(pInputComponent);
@@ -19,12 +17,12 @@ void Player::initialize() {
 
     this->pReloader = new Reloader(this->strName + " Reloader");
     this->pReloader->setReloadable(this);
-
     this->attachComponent(this->pReloader); 
 }
 
 void Player::start() {
     if(this->pReloader != NULL) {
+        std::cout << "calling pReloader start()" << std::endl;
         this->pReloader->start();
     }
 }
@@ -39,11 +37,31 @@ void Player::reload() {
     this->nBullets = 5;
 }
 
-void Player::decrementBullets() {
+void Player::decrementHealth()
+{
+    this->nHealth--;
+}
+
+void Player::decrementBullets()
+{
     this->nBullets--;
 }
 
-bool Player::hasBullets() {
+void Player::setZoomedIn(bool bIsZoomedIn)
+{
+    this->bIsZoomedIn = bIsZoomedIn;
+
+    if (!this->bIsZoomedIn)
+        WindowManager::getInstance()->getWindow()->setView(WindowManager::getInstance()->getWindow()->getDefaultView());        
+}
+
+bool models::Player::isZoomedIn()
+{
+    return this->bIsZoomedIn;
+}
+
+bool Player::hasBullets()
+{
     if (this->nBullets > 0)
         return true;
     return false;

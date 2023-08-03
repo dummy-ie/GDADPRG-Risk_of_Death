@@ -36,16 +36,22 @@ void WindowManager::switchSubscreen(int nSubscreenIndex)
     this->rwWindow->setView(this->vecPartitions.at(nSubscreenIndex));
 }
 
-void WindowManager::mouseOverSubscreen(sf::Vector2f mousePosition)
+bool WindowManager::mouseOverSubscreen(sf::Vector2f mousePosition)
 {
-    for (auto &&partition : this->vecPartitions)
+    for (auto &partition : this->vecPartitions)
     {
-        if (partition.getViewport().contains(mousePosition))
+        sf::FloatRect frPartitionDimensions(partition.getCenter() - (partition.getSize() / 2.f), partition.getSize());
+        std::cout << "partition: position " << frPartitionDimensions.left << ", " << frPartitionDimensions.top << " size " << frPartitionDimensions.width << ", " << frPartitionDimensions.height << std::endl;
+        std::cout << "mouse position: " << mousePosition.x << ", " << mousePosition.y << std::endl;
+        if (frPartitionDimensions.contains(mousePosition))
         {
+            std::cout << "contains true" << std::endl;
             this->rwWindow->setView(partition);
-            return;
+            return true;
         }
     }
+
+    return false;
 }
 
 void WindowManager::generatePartitions(int nRow, int nCol)
@@ -60,8 +66,10 @@ void WindowManager::generatePartitions(int nRow, int nCol)
     {
         for (size_t j = 0; j < nCol; j++)
         {
-            this->vecPartitions.push_back(sf::View(sf::Vector2f((SCREEN_WIDTH / ((nRow * nCol) / 2)) * i, (SCREEN_HEIGHT / ((nRow * nCol) / 2)) * j), // view center
-                                                   sf::Vector2f((SCREEN_WIDTH / nRow * nCol) * i, (SCREEN_HEIGHT / nRow * nCol) * j))); // view size 
+            float fPartitionWidth = SCREEN_WIDTH / nRow;
+            float fPartitionHeight = SCREEN_HEIGHT / nCol;
+            this->vecPartitions.push_back(sf::View(sf::Vector2f(fPartitionWidth * i + fPartitionWidth / 2, fPartitionHeight * j + fPartitionHeight / 2), // view center
+                                                   sf::Vector2f(fPartitionWidth, fPartitionHeight)));                   // view size
         }
     }
 }
