@@ -16,7 +16,7 @@ void Reloader::perform() {
 
     if (this->bReloading) {
         std::cout << "reloader performing " << bReloading << std::endl;
-        this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
+        this->fTicks += this->tDeltaTime.asSeconds();
 
         if (this->fTicks >= this->fFrameInterval) {
             this->fTicks = 0.0f;

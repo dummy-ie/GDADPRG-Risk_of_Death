@@ -9,7 +9,7 @@ Mover::Mover(std::string strName) : Component(strName, ComponentType::SCRIPT) {
 void Mover::perform() {
     float fFrameInterval = 0.01f;
 
-    this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
+    this->fTicks += this->tDeltaTime.asSeconds();
     if (this->fTicks >= fFrameInterval) {
         this->fTicks = 0.0f;
         if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_FREEZE)){

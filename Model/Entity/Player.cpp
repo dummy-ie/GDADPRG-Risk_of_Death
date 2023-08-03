@@ -3,13 +3,14 @@
 using namespace models;
 
 Player::Player(std::string strName) : GameObject(strName) {
-    this->nHealth = 5;
-    this->nBullets = 5;
+    
 }
 
 Player::~Player() {}
 
 void Player::initialize() {
+    this->nHealth = 5;
+    this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
     PlayerInput* pInputComponent = new PlayerInput(this->strName + " Input");
     PlayerControls* pControlsComponent = new PlayerControls(this->strName + " Controls");
     this->attachComponent(pInputComponent);
@@ -34,7 +35,7 @@ void Player::stop() {
 }
 
 void Player::reload() {
-    this->nBullets = 5;
+    this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
 }
 
 void Player::decrementHealth()
