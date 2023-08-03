@@ -54,6 +54,7 @@ namespace models {
             virtual sf::Vector2f getPosition();
             float getZ();
             virtual void setPosition(sf::Vector2f vecPosition);
+            virtual void setPosition(float fX, float fY, float fZ);
 
         public:
             bool isEnabled();

@@ -5,7 +5,7 @@ enum class AssetType : int {
     NONE = -1,
 
     BACKGROUND,
-    
+
     CROSSHAIR,
 
     GREEN_SLIME,
@@ -14,7 +14,9 @@ enum class AssetType : int {
     RED_SLIME,
     BLUE_SLIME,
 
-    ITEM
+    ITEM,
+    HEART,
+    BULLET
 };
 
 #endif

@@ -15,11 +15,12 @@ namespace controllers {
 
 		private:
 			void loadGameMenuBackgroundFolder();
-
 			void loadGameSpaceBackgroundFolder();
+
             void loadCrosshairFolder();
             void loadEnemyFolder();
             void loadItemFolder();
+            void loadUserInterfaceFolder();
 
         public:
             std::vector<sf::Texture*> getTexture(AssetType EType);

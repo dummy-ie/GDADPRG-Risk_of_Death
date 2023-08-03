@@ -216,3 +216,8 @@ float GameObject::getZ()
 void GameObject::setPosition(sf::Vector2f vecPosition) {
     this->pSprite->setPosition(vecPosition);
 }
+
+void GameObject::setPosition(float fX, float fY, float fZ) {
+    this->pSprite->setPosition(sf::Vector2f(fX, fY));
+    this->fZ = fZ;
+}

@@ -23,12 +23,19 @@ namespace views {
     class GameSpaceUI : public View {
         private:
             GameTimer* pGameTimer;
+
+            Image* pHeart;
+            Image* pBullet;
+
+            Text* pHealth;
+            Text* pBullets;
         public:
             GameSpaceUI(std::string strName);
             ~GameSpaceUI();
 
         public:
             void initialize();
+            void update();
         //public: 
         //    void onEventTrigger(std::unordered_map<std::string, void*> mapParameter);
         //    EventKey getKey();

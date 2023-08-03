@@ -41,6 +41,8 @@ namespace models {
             void setZoomedIn(bool bIsZoomedIn);
             bool isZoomedIn();
             //void setFrontView(bFrontView);
+            int getHealth();
+            int getBullets();
             bool hasBullets();
             Reloader* getReloader();
             PlayerInput* getInput();

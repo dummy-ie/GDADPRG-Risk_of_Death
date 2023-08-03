@@ -11,6 +11,7 @@ void TextureManager::loadGameSpaceFolder() {
     this->loadCrosshairFolder();
     this->loadEnemyFolder();
     this->loadItemFolder();
+    this->loadUserInterfaceFolder();
 }
 
 void TextureManager::loadGameMenuBackgroundFolder() {
@@ -35,6 +36,22 @@ void TextureManager::loadGameSpaceBackgroundFolder() {
     this->mapTexture[AssetType::BACKGROUND].push_back(pTexture);
 
     this->vecKey.push_back(AssetType::BACKGROUND);
+}
+
+void TextureManager::loadUserInterfaceFolder() {
+    sf::Texture* pTexture = NULL;
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Heart.png");
+    this->mapTexture[AssetType::HEART].push_back(pTexture);
+
+    this->vecKey.push_back(AssetType::HEART);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/bullet.png");
+    this->mapTexture[AssetType::BULLET].push_back(pTexture);
+
+    this->vecKey.push_back(AssetType::BULLET);
 }
 
 void TextureManager::clearAll() {

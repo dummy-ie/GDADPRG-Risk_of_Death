@@ -76,6 +76,14 @@ bool models::Player::isZoomedIn()
     this->bFrontView = bFrontView;
 }*/
 
+int Player::getHealth() {
+    return this->nHealth;
+}
+
+int Player::getBullets() {
+    return this->nBullets;
+}
+
 bool Player::hasBullets()
 {
     if (this->nBullets > 0)

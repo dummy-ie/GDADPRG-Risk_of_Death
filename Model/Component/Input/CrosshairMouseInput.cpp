@@ -30,6 +30,7 @@ void CrosshairMouseInput::perform() {
 
 void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPressed) {
     Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
+    GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
     switch(inMouse) {
         case sf::Mouse::Left:
             this->bLeftClick = bPressed;
@@ -42,6 +43,7 @@ void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPre
                 bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1; // if the player isn't zoomed in AND there is more than 1 view on the partitions (more than 1x1)
                 if (!bPlayerHasToZoom && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading()) {
                     pPlayer->decrementBullets();
+                    pGameSpaceUI->update();
                     SFXManager::getInstance()->getSound(SFXType::PLAYER_SHOOT)->play();
                 }
                 else if (bPlayerHasToZoom)

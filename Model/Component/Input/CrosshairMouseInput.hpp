@@ -11,6 +11,8 @@
 
 #include "../../Entity/Player.hpp"
 
+#include "../../../View/Screen/GameSpaceUI/GameSpaceUI.hpp"
+
 #include "GeneralInput.hpp"
 
 namespace components {

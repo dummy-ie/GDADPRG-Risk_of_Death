@@ -14,10 +14,10 @@ void GameSpace::onLoadResources() {
 void GameSpace::onLoadObjects() {
     //GameObjectManager::getInstance()->findObjectByName("Game Background Side")->setEnabled(false);
 
-    this->createUserInterface();
     this->createBackground();
     this->createNullObjectComponents();
     this->createPlayer();
+    this->createUserInterface();
     this->createItemPool();
     this->createCrosshair();
 }
