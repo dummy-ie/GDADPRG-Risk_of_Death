@@ -4,7 +4,7 @@ using namespace models;
 
 Player::Player(std::string strName) : GameObject(strName) {
     this->nHealth = 5;
-    this->nBullets = 5;
+    this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
 }
 
 Player::~Player() {}
@@ -34,7 +34,7 @@ void Player::stop() {
 }
 
 void Player::reload() {
-    this->nBullets = 5;
+    this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
 }
 
 void Player::decrementHealth()

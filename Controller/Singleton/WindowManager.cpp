@@ -68,7 +68,20 @@ void WindowManager::generatePartitions(int nCol, int nRow)
         {
             float fPartitionWidth = SCREEN_WIDTH / nRow;
             float fPartitionHeight = SCREEN_HEIGHT / nCol;
-            this->vecPartitions.push_back(sf::View(sf::Vector2f(fPartitionWidth * i + fPartitionWidth / 2, fPartitionHeight * j + fPartitionHeight / 2), // view center
+
+            // float fHeightRatio = (float)SCREEN_HEIGHT / (float)SCREEN_WIDTH;
+            // float fWidthRatio = (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT;
+
+            // if (fPartitionWidth * fHeightRatio <= fPartitionHeight)
+            // {
+            //     fPartitionHeight = fPartitionWidth * fHeightRatio;
+            // }
+            // else if (fPartitionHeight * fWidthRatio <= fPartitionWidth)
+            // {
+            //     fPartitionWidth = fPartitionHeight * fWidthRatio;
+            // }
+
+            this->vecPartitions.push_back(sf::View(sf::Vector2f(fPartitionWidth * i + fPartitionWidth / 2.f, fPartitionHeight * j + fPartitionHeight / 2.f), // view center
                                                    sf::Vector2f(fPartitionWidth, fPartitionHeight)));                                                    // view size
         }
     }
