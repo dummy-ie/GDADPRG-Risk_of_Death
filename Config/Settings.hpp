@@ -40,5 +40,6 @@ const int BLOCKER_VARIATION = 3;
 
 const bool RENDER_HITBOX = true;
 const bool ERROR_LOGGING = false;
+const bool SIDE_VIEW_SPRITE_TINT = false;
 
 #endif

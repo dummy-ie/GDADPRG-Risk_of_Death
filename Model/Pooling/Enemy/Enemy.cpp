@@ -15,6 +15,7 @@ void Enemy::initialize()
     this->setFrame(0);
 
     this->pRectangle = new sf::RectangleShape(sf::Vector2f(50, this->pSprite->getTexture()->getSize().y));
+    pRectangle->setTexture(this->pSprite->getTexture());
 
     this->pSpriteRenderer = new Renderer(this->strName + " Sprite");
     this->pSpriteRenderer->assignDrawable(this->pSprite);
@@ -34,7 +35,9 @@ void Enemy::initialize()
     this->pRectangleRenderer = new Renderer(this->strName + " Rectangle");
     this->pRectangleRenderer->assignDrawable(this->pRectangle);
     this->attachComponent(this->pRectangleRenderer);
-    this->pRectangle->setFillColor(this->CColor);
+    if (SIDE_VIEW_SPRITE_TINT)
+        this->pRectangle->setFillColor(this->CColor);
+
 
     this->pSwitcher = new Switcher(this->strName + " Switcher");
     this->attachComponent(this->pSwitcher);
