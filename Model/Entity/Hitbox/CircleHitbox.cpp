@@ -38,10 +38,13 @@ bool CircleHitbox::contains(sf::Vector2f vecLocation) {
 }
 
 void CircleHitbox::move(sf::Time tDeltaTime) {
+    float fX = this->getParent()->getSprite()->getPosition().x;
+    float fY = this->getParent()->getSprite()->getPosition().y;
     float fWidth = this->getParent()->getSprite()->getTexture()->getSize().x;
     float fHalfWidth = fWidth / 2.0f;
     float fRadius = fHalfWidth * this->getParent()->getSprite()->getScale().x;
 
+    this->pShape->setPosition(sf::Vector2f(fX, fY));
     this->pShape->setOrigin(fRadius, fRadius);
     ((sf::CircleShape*)this->pShape)->setRadius(fRadius);
 }
