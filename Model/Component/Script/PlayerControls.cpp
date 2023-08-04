@@ -57,7 +57,7 @@ void PlayerControls::perform() {
         }
 
         if(pInput->is2() && this->vecTimer[1] == 0.f){
-            ItemType EType = ItemManager::getInstance()->getItem(0);
+            ItemType EType = ItemManager::getInstance()->getItem(1);
             if(EType != ItemType::NONE){
                 ItemManager::getInstance()->useItem(1);
                 PowerUpSystem::getInstance()->activatePowerUp(EType);
@@ -71,7 +71,7 @@ void PlayerControls::perform() {
         }
 
         if(pInput->is3() && this->vecTimer[2] == 0.f){
-            ItemType EType = ItemManager::getInstance()->getItem(0);
+            ItemType EType = ItemManager::getInstance()->getItem(2);
             if(EType != ItemType::NONE){
                 ItemManager::getInstance()->useItem(2);
                 PowerUpSystem::getInstance()->activatePowerUp(EType);
