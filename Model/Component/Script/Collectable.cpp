@@ -44,3 +44,8 @@ bool Collectable::isCollected() {
 void Collectable::setCollected(bool bCollected) {
     this->bCollected = bCollected;
 }
+
+//patchworks by joachim very nice code (not)
+sf::Time Collectable::getDeltaTime(){
+    return this->tDeltaTime;
+}

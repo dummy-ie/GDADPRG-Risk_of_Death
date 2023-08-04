@@ -18,6 +18,7 @@ void GameSpace::onLoadObjects() {
     this->createNullObjectComponents();
     this->createPlayer();
     this->createUserInterface();
+    this->createBlockerPool();
     this->createItemPool();
     this->createCrosshair();
 }
@@ -45,6 +46,8 @@ void GameSpace::createNullObjectComponents() {
     pComponentHolder = new EmptyGameObject("Power Up System Holder");
     PowerUpSystem::initialize("Power Up System", pComponentHolder);
     this->registerObject(pComponentHolder);
+
+    PowerUpSystem::getInstance()->clearPowerUp(ItemType::PWR_PIERCE);
 
     pComponentHolder = new EmptyGameObject("Enemy Director Holder");
     EnemyDirector* pEnemyDirector = new EnemyDirector("Enemy Director");
@@ -100,4 +103,34 @@ void GameSpace::createItemPool() {
     pItemPool->initialize();
 
     ObjectPoolManager::getInstance()->registerObjectPool(pItemPool);
+}
+
+void GameSpace::createBlockerPool() {
+    int nBlockers = 2;
+
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BLOCKER));
+
+    Blocker* pBlocker = new Blocker(PoolTag::BLOCKER, "Blocker", pTexture, BlockerType::IMMOBILE, HitboxType::TRIANGLE);
+    GameObjectPool* pBlockerPool = new GameObjectPool(PoolTag::BLOCKER, nBlockers, pBlocker);
+    pBlockerPool->initialize();
+
+    ObjectPoolManager::getInstance()->registerObjectPool(pBlockerPool);
+
+
+    pBlocker = new Blocker(PoolTag::BLOCKER_LR, "Blocker", pTexture, BlockerType::LEFTRIGHT, HitboxType::TRIANGLE);
+    pBlockerPool = new GameObjectPool(PoolTag::BLOCKER_LR, nBlockers, pBlocker);
+    pBlockerPool->initialize();
+
+    ObjectPoolManager::getInstance()->registerObjectPool(pBlockerPool);
+
+
+    pBlocker = new Blocker(PoolTag::BLOCKER_UD, "Blocker", pTexture, BlockerType::UPDOWN, HitboxType::TRIANGLE);
+    pBlockerPool = new GameObjectPool(PoolTag::BLOCKER_UD, nBlockers, pBlocker);
+    pBlockerPool->initialize();
+
+    ObjectPoolManager::getInstance()->registerObjectPool(pBlockerPool);
+
+    ObjectPoolManager::getInstance()->getPool(PoolTag::BLOCKER)->requestPoolableBatch(nBlockers);
+    ObjectPoolManager::getInstance()->getPool(PoolTag::BLOCKER_LR)->requestPoolableBatch(nBlockers);
+    ObjectPoolManager::getInstance()->getPool(PoolTag::BLOCKER_UD)->requestPoolableBatch(nBlockers);
 }

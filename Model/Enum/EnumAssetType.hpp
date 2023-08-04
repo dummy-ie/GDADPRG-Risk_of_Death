@@ -14,6 +14,8 @@ enum class AssetType : int {
     RED_SLIME,
     BLUE_SLIME,
 
+    BLOCKER,
+
     ITEM,
     HEART,
     BULLET

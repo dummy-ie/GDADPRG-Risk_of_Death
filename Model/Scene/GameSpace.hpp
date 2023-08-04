@@ -53,6 +53,7 @@ namespace scenes {
             void createUserInterface();
             void createCrosshair();
             void createItemPool();
+            void createBlockerPool();
     };
 }
 

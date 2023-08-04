@@ -54,6 +54,7 @@ void Item::randomizeType(){
     EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");
     if(pSpawnPoint){
         this->setPosition(pSpawnPoint->getPosition());
+        this->pHitbox->move(this->pCollectable->getDeltaTime());
     }
 }
 

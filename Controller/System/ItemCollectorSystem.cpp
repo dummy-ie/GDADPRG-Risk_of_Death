@@ -11,10 +11,9 @@ void ItemCollectorSystem::collect(sf::Vector2f vecLocation) {
     float fCollectThreshold = 40.f;
 
     for (int i = this->vecCollectable.size() - 1; i >= 0; i--) {
-        float fDistance = sqrt(pow(vecLocation.x - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().y, 2));
-        if (fDistance < fCollectThreshold && nCollect != 1) {
+        Item* pItem = (Item*) this->vecCollectable[i]->getOwner();
+        if (pItem->contains(vecLocation)) {
             if (this->vecCollectable[i]->getOwner()->isEnabled()) {
-                Item* pItem = (Item*) this->vecCollectable[i]->getOwner();
 
                 //if this becomes false, then wtf
                 if(pItem){

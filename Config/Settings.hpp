@@ -24,4 +24,6 @@ const float PWR_FREEZE_DURATION = 5.0f;
 
 const bool RENDER_HITBOX = true;
 
+const float BLOCKER_SPEED = 25.0f;
+
 #endif

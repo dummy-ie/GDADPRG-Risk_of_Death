@@ -141,7 +141,12 @@ void Enemy::onActivate()
     ViewSwitcherSystem::getInstance()->registerComponent(this->pSwitcher);
 }
 
-void Enemy::onRelease() {}
+void Enemy::onRelease() {
+    this->detachComponent(this->pMover);
+    delete this->pMover;
+
+    ViewSwitcherSystem::getInstance()->unregisterComponent(this->pSwitcher);
+}
 
 PoolableObject *Enemy::clone()
 {

@@ -5,8 +5,6 @@
 
 #include "../Component.hpp"
 
-#include "../../../Controller/System/PowerUpSystem.hpp"
-
 #include "Interface/Switchable.hpp"
 
 namespace components {
