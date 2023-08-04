@@ -28,7 +28,7 @@ const float PWR_FREEZE_DURATION = 5.0f;
 
 const bool RENDER_HITBOX = true;
 
-const float BLOCKER_SPRITE_SIZE = 0.35f;
+const float BLOCKER_SPRITE_SIZE = 0.4f;
 const float BLOCKER_SPEED = 35.0f;
 const float BLOCKER_LENGTH = 5.0f;
 const int BLOCKER_VARIATION = 3;
