@@ -98,8 +98,17 @@ void PoolableKillerSystem::perform() {
         }
         else {
             if(pCrosshairMouseInput->isLeftClick()) {
+                std::cout << "pCrosshairMouseInput left click in poolablekillersystem" << std::endl;
                 Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
                 GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
+
+                if (!pPlayer)
+                    std::cout << "pPlayer doesn't exist" << std::endl;
+
+                if (!pGameSpaceUI)
+                    std::cout << "pGameSpaceUI doesn't exist" << std::endl;
+
+                std::cout << "proceeding in poolablekillersystem" << std::endl;
 
                 ItemCollectorSystem::getInstance()->collect(pCrosshairMouseInput->getLocation());
                 bool isBlocked = false;
@@ -131,8 +140,10 @@ void PoolableKillerSystem::perform() {
                 }
 
                 pCrosshairMouseInput->resetLeftClick();
+                std::cout << "if statement over" << std::endl;
             }
             this->hit();
+            std::cout << "hit statement over" << std::endl;
         }
     }
 }
