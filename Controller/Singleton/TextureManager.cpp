@@ -10,6 +10,7 @@ void TextureManager::loadGameSpaceFolder() {
     this->loadGameSpaceBackgroundFolder();
     this->loadCrosshairFolder();
     this->loadEnemyFolder();
+    this->loadBlockerFolder();
     this->loadItemFolder();
     this->loadUserInterfaceFolder();
 }
@@ -91,6 +92,14 @@ void TextureManager::loadEnemyFolder() {
 
         this->vecKey.push_back(EType);
     }
+}
+
+void TextureManager::loadBlockerFolder(){
+    sf::Texture* pTexture1 = new sf::Texture();
+
+    pTexture1->loadFromFile("View/Image/blocker.png");
+    this->mapTexture[AssetType::BLOCKER].push_back(pTexture1);
+    this->vecKey.push_back(AssetType::BLOCKER);
 }
 
 void TextureManager::loadItemFolder(){

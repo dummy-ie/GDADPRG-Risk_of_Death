@@ -19,6 +19,7 @@ namespace controllers {
 
             void loadCrosshairFolder();
             void loadEnemyFolder();
+            void loadBlockerFolder();
             void loadItemFolder();
             void loadUserInterfaceFolder();
 

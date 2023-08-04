@@ -15,7 +15,7 @@ namespace models {
             void move(sf::Time tDeltaTime);
 
         private:
-            float calculateDeterminant(sf::Vector2f vecPoint1, sf::Vector2f vecPoint2, sf::Vector2f vecPoint3);
+            float calculateArea(sf::Vector2f vecPoint1, sf::Vector2f vecPoint2, sf::Vector2f vecPoint3);
     };
 }
 

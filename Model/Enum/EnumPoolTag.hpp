@@ -9,7 +9,11 @@ enum class PoolTag : int {
     RED_SLIME,
     BLUE_SLIME,
 
-    ITEM
+    ITEM,
+
+    BLOCKER,
+    BLOCKER_LR,
+    BLOCKER_UD
 };
 
 #endif

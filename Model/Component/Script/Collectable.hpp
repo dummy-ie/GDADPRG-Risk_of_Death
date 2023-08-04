@@ -39,6 +39,8 @@ namespace components {
         public:
             bool isCollected();
             void setCollected(bool bCollected);
+
+            sf::Time getDeltaTime();
     };
 }
 
