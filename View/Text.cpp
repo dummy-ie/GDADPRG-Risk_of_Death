@@ -16,6 +16,7 @@ void Text::initialize() {
     pRendererComponent->assignDrawable(this->pText);
 
     this->attachComponent(pRendererComponent);
+    this->fZ = -10.f;
 }
 
 sf::Text* Text::getText() {

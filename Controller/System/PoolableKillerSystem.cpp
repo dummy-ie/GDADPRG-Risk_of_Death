@@ -81,9 +81,9 @@ void PoolableKillerSystem::hit() {
                 this->vecKillable[i]->setKilled(true);
             }
         }
-        if (pPlayer->getHealth() <= 0)
-            this->playerDeath();
     }
+    if (pPlayer->getHealth() <= 0)
+        this->playerDeath();
 }
 
 void PoolableKillerSystem::perform() {
@@ -128,7 +128,7 @@ void PoolableKillerSystem::perform() {
 }
 
 void PoolableKillerSystem::playerDeath() {
-
+    ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
 }
 
 void PoolableKillerSystem::registerComponent(Killable* pKillable) {

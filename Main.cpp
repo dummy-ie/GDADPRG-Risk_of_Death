@@ -58,6 +58,7 @@
 
 #include "View/Screen/TitleScreen.cpp"
 #include "View/Screen/LeaderboardScreen.cpp"
+#include "View/Screen/GameOverScreen.cpp"
 #include "View/Screen/GameSpaceUI/GameSpaceUI.cpp"
 #include "View/Screen/GameSpaceUI/Parts/GameTimer.cpp"
 
