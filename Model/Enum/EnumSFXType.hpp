@@ -4,7 +4,17 @@
 enum class SFXType : int {
     PLAYER_SHOOT = 0,
     RELOAD,
-    HURT
+    HURT,
+
+    HITMARKER,
+
+    HEALTH,
+    DAMAGE,
+    PIERCING,
+    INVINCIBILITY,
+    FREEZE,
+
+    SHINY
 };
 
 #endif

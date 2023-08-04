@@ -47,6 +47,7 @@ void Item::collect(){
             ItemManager::getInstance()->addItem(this->EType);
             break;
     }
+    SFXManager::getInstance()->getSound(SFXType::HEALTH)->play();
     GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
     pGameSpaceUI->update();
     //ObjectPoolManager::getInstance()->getPool(this->ETag)->releasePoolable(this);
@@ -68,6 +69,7 @@ void Item::randomizeType(){
 }
 
 void Item::onActivate() {
+    SFXManager::getInstance()->getSound(SFXType::SHINY)->play();
     this->randomizeType();
     this->pCollectable->startTimer();
 }

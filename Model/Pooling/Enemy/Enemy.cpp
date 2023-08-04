@@ -134,6 +134,7 @@ void Enemy::decrementHealth()
         this->nHealth--;
     }
     this->nHealth--;
+    SFXManager::getInstance()->getSound(SFXType::HITMARKER)->play();
 }
 
 void Enemy::onActivate()

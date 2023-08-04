@@ -6,7 +6,16 @@ void SFXManager::loadAll() {
     this->create(SFXType::PLAYER_SHOOT, "View/SFX/pew.ogg");
     this->create(SFXType::RELOAD, "View/SFX/reload.ogg");
     this->mapSound[SFXType::RELOAD]->setVolume(70);
-    this->create(SFXType::HURT, "View/SFX/oof.mp3");
+    this->create(SFXType::HURT, "View/SFX/oof.ogg");
+    this->create(SFXType::HITMARKER, "View/SFX/hitmarker.ogg");
+    this->mapSound[SFXType::HITMARKER]->setVolume(40);
+    this->create(SFXType::HEALTH, "View/SFX/health.ogg");
+    this->create(SFXType::DAMAGE, "View/SFX/damage.ogg");
+    this->create(SFXType::PIERCING, "View/SFX/piercing.ogg");
+    this->create(SFXType::INVINCIBILITY, "View/SFX/health.ogg");
+    this->create(SFXType::FREEZE, "View/SFX/freeze.ogg");
+    this->create(SFXType::SHINY, "View/SFX/shiny.ogg");
+    this->mapSound[SFXType::SHINY]->setVolume(30);
 }
 
 void SFXManager::unloadAll() {

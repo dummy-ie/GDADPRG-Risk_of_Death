@@ -68,18 +68,23 @@ void PowerUpSystem::activatePowerUp(ItemType EType){
     switch(EType){
         case ItemType::PWR_HEALTH:
             this->mapPowerUps[EType] += 1.f;
+            SFXManager::getInstance()->getSound(SFXType::HEALTH)->play();
             break;
         case ItemType::PWR_DAMAGE:
             this->mapPowerUps[EType] = PWR_DAMAGE_DURATION;
+            SFXManager::getInstance()->getSound(SFXType::DAMAGE)->play();
             break;
         case ItemType::PWR_PIERCE:
             this->mapPowerUps[EType] = 1.f;
+            SFXManager::getInstance()->getSound(SFXType::PIERCING)->play();
             break;
         case ItemType::PWR_INVINCIBILITY:
             this->mapPowerUps[EType] = PWR_INVINCIBILITY_DURATION;
+            SFXManager::getInstance()->getSound(SFXType::INVINCIBILITY)->play();
             break;
         case ItemType::PWR_FREEZE:
             this->mapPowerUps[EType] = PWR_FREEZE_DURATION;
+            SFXManager::getInstance()->getSound(SFXType::FREEZE)->play();
             break;
         default:
             break;
