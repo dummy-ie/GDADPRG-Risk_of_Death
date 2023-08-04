@@ -13,13 +13,15 @@ namespace controllers {
 			std::vector<Enemy*> vecEnemies;
 		
 		private:
-			void create(EnemyType EType, std::string strName);
+			void create(PoolTag ETag, std::string strName, AssetType ETexture, EnemyType EType, HitboxType EHitbox);
 
 		public:
+			void loadAll();
 			void addEnemy(Enemy* pEnemy);
 
 		public:
 			std::vector<Enemy*> getEnemies();
+			std::vector<Enemy*> getAllType(EnemyType EType);
 		
         private:
 		    static EnemyManager* P_SHARED_INSTANCE;

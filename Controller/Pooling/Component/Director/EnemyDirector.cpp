@@ -7,20 +7,18 @@ EnemyDirector::EnemyDirector(std::string strName) : Component(strName, Component
     this->fUpdateTicks = 0.0f;
     this->fTicks = 0.0f;
 
-    this->createEnemyPool(PoolTag::GREEN_SLIME, 20, EnemyType::COMMON, AssetType::GREEN_SLIME, HitboxType::CIRCLE);
-    this->createEnemyPool(PoolTag::PURPLE_SLIME, 10, EnemyType::UNCOMMON, AssetType::PURPLE_SLIME, HitboxType::CIRCLE);
-    //this->createEnemyPool(PoolTag::YELLOW_SLIME, 3, EnemyType::COMMON, AssetType::YELLOW_SLIME);
-    this->createEnemyPool(PoolTag::RED_SLIME, 5, EnemyType::ELITE, AssetType::RED_SLIME, HitboxType::CIRCLE);
-    //this->createEnemyPool(PoolTag::BLUE_SLIME, 3, EnemyType::COMMON, AssetType::BLUE_SLIME);
+    for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::COMMON))
+        this->createEnemyPool(6, pEnemy);
+    for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::UNCOMMON))
+        this->createEnemyPool(3, pEnemy);
+    for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::ELITE))
+        this->createEnemyPool(2, pEnemy);
 }
 
 EnemyDirector::~EnemyDirector() {}
 
-void EnemyDirector::createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType, AssetType ETexture, HitboxType EHitbox) {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(ETexture));
-
-    Enemy* pEnemy = new Enemy(ETag, "Slime", pTexture, EType, EHitbox);
-    GameObjectPool* pGameObjectPool = new GameObjectPool(ETag, nPoolSize, pEnemy);
+void EnemyDirector::createEnemyPool(int nPoolSize, Enemy* pEnemy) {
+    GameObjectPool* pGameObjectPool = new GameObjectPool(pEnemy->getTag(), nPoolSize, pEnemy);
     pGameObjectPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pGameObjectPool);
 }

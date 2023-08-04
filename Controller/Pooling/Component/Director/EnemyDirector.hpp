@@ -33,7 +33,7 @@ namespace directors {
             ~EnemyDirector();
 
         private:
-            void createEnemyPool(PoolTag ETag, int nPoolSize, EnemyType EType, AssetType ETexture, HitboxType EHitbox);
+            void createEnemyPool(int nPoolSize, Enemy* pEnemy);
             void spawnWave();
             float randomizePercent(float fMax);
 
