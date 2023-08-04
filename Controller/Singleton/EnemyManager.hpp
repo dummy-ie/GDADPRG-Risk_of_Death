@@ -22,6 +22,8 @@ namespace controllers {
 		public:
 			std::vector<Enemy*> getEnemies();
 			std::vector<Enemy*> getAllType(EnemyType EType);
+
+			void clearAll();
 		
         private:
 		    static EnemyManager* P_SHARED_INSTANCE;

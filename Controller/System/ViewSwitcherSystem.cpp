@@ -72,6 +72,10 @@ void ViewSwitcherSystem::unregisterComponent(Switcher* pSwitcher) {
     }
 }
 
+void ViewSwitcherSystem::clearAll(){
+    this->vecSwitcher.clear();
+}
+
 ViewSwitcherSystem* ViewSwitcherSystem::P_SHARED_INSTANCE = NULL;
 ViewSwitcherSystem::ViewSwitcherSystem(std::string strName) : Component(strName, ComponentType::SCRIPT) {}
 ViewSwitcherSystem::ViewSwitcherSystem(const ViewSwitcherSystem& CObject) : Component(CObject.strName, ComponentType::SCRIPT) {}

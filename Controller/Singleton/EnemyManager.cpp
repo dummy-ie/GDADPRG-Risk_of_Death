@@ -34,6 +34,11 @@ std::vector<Enemy*> EnemyManager::getAllType(EnemyType EType) {
     return this->mapEnemyType[EType];
 }
 
+void EnemyManager::clearAll(){
+    this->mapEnemyType.clear();
+    this->vecEnemies.clear();
+}
+
 EnemyManager* EnemyManager::P_SHARED_INSTANCE = NULL;
 EnemyManager::EnemyManager() {}
 EnemyManager::EnemyManager(const EnemyManager&) {}

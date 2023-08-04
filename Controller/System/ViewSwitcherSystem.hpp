@@ -33,6 +33,8 @@ namespace systems {
             void registerComponent(Switcher* pSwitcher);
             void unregisterComponent(Switcher* pSwitcher);
 
+            void clearAll();
+
         /* * * * * * * * * * * * * * * * * * * * * 
         *       SINGLETON-RELATED CONTENT       * 
         * * * * * * * * * * * * * * * * * * * * */

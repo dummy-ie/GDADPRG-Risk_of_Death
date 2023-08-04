@@ -33,7 +33,9 @@ void GameSpace::onUnloadObjects() {
     ItemCollectorSystem::getInstance()->clearAll();
     BlockerManager::getInstance()->clearAll();
     PowerUpSystem::getInstance()->clearAll();
-    ItemManager::getInstance()->deleteAllItems();
+    ItemManager::getInstance()->clearAll();
+    ViewSwitcherSystem::getInstance()->clearAll();
+    EnemyManager::getInstance()->clearAll();
     Scene::onUnloadObjects();
 }
 
