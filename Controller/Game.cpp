@@ -8,6 +8,7 @@ Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Risk of Dea
     WindowManager::getInstance()->setWindow(&this->rwWindow);
     //WindowManager::getInstance()->generatePartitions(sf::Vector2i(2, 3));
     FontManager::getInstance()->loadAll();
+    SFXManager::getInstance()->loadAll();
 
     
     SceneManager::getInstance()->registerScene(new GameMenu());

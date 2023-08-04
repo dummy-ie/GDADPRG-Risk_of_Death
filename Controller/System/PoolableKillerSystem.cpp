@@ -134,7 +134,8 @@ void PoolableKillerSystem::perform() {
                 
                 //This was moved from CrosshairMouseInput.cpp because otherwise the last bullet wont hit
                 //This is like really bad. like really really bad. but hey it works...
-                if(pPlayer->hasBullets()){
+                bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1 && !(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled());
+                if(!bPlayerHasToZoom && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading() && GameObjectManager::getInstance()->findObjectByName("Background")->getCurrentFrame() == 0){
                     pPlayer->decrementBullets();
                     pGameSpaceUI->update();
                 }

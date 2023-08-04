@@ -9,7 +9,6 @@ GameSpace::~GameSpace() {}
 void GameSpace::onLoadResources() {
     TextureManager::getInstance()->loadGameSpaceFolder();
     EnemyManager::getInstance()->loadAll();
-    SFXManager::getInstance()->loadAll();
 }
 
 void GameSpace::onLoadObjects() {
