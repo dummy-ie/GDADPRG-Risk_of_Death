@@ -35,8 +35,8 @@ bool RectangleHitbox::contains(sf::Vector2f vecLocation) {
 }
 
 void RectangleHitbox::move(sf::Time tDeltaTime) {
-    float fX = this->getParent()->getSprite()->getPosition().x;
-    float fY = this->getParent()->getSprite()->getPosition().y;
+    float fX = this->getParent()->getSprite()->getPosition().x + this->COffset.width;
+    float fY = this->getParent()->getSprite()->getPosition().y + this->COffset.height;
     float fWidth = this->getParent()->getSprite()->getTexture()->getSize().x;
     float fHeight = this->getParent()->getSprite()->getTexture()->getSize().y;
 

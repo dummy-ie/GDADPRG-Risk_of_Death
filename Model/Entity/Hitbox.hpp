@@ -15,6 +15,7 @@ namespace models {
 
             sf::Color CColor;
             sf::Shape* pShape;
+            sf::FloatRect COffset;
 
         public:
             Hitbox(std::string strName);
@@ -29,6 +30,7 @@ namespace models {
 
         public:
             sf::Shape* getShape();
+            void setOffset(float fX, float fY);
     };
 }
 
