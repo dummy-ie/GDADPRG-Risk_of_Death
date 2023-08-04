@@ -11,10 +11,10 @@ Item::~Item() {}
 void Item::initialize() {
     this->setFrame(0);
 
-    Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
-    pRendererComponent->assignDrawable(this->pSprite);
+    this->pSpriteRenderer = new Renderer(this->strName + " Sprite");
+    this->pSpriteRenderer->assignDrawable(this->pSprite);
 
-    this->attachComponent(pRendererComponent);
+    this->attachComponent(this->pSpriteRenderer);
 
     if(this->EType == ItemType::NONE){
         this->randomizeType();
@@ -24,6 +24,10 @@ void Item::initialize() {
     this->attachComponent(this->pCollectable);
 
     ItemCollectorSystem::getInstance()->registerComponent(this->pCollectable);
+
+    this->pSwitcher = new Switcher(this->strName + " Switcher");
+    this->attachComponent(this->pSwitcher);
+    this->pSwitcher->setSwitchable(this);
     
     this->getSprite()->setScale(0.2,0.2);
 
@@ -35,6 +39,9 @@ void Item::initialize() {
     Renderer* pHitboxRenderer = new Renderer(this->strName + " Hitbox Renderer");
     pHitboxRenderer->assignDrawable(this->pHitbox->getShape());
     this->attachComponent(pHitboxRenderer);
+
+    if (!RENDER_HITBOX)
+        pHitboxRenderer->disable();
 
 }
 
@@ -57,6 +64,13 @@ bool Item::contains(sf::Vector2f vecLocation) {
     return this->pHitbox->contains(vecLocation);
 }
 
+void Item::switchLeftView(){
+    this->pSpriteRenderer->disable();
+}
+void Item::switchFrontView(){
+    this->pSpriteRenderer->enable();
+}
+
 void Item::randomizeType(){
     this->EType = (ItemType)(std::rand() % 5);
     this->setFrame((int)EType);
@@ -72,10 +86,11 @@ void Item::onActivate() {
     SFXManager::getInstance()->getSound(SFXType::SHINY)->play();
     this->randomizeType();
     this->pCollectable->startTimer();
+    ViewSwitcherSystem::getInstance()->registerComponent(this->pSwitcher);
 }
 
 void Item::onRelease() {
-    
+    ViewSwitcherSystem::getInstance()->unregisterComponent(this->pSwitcher);
 }
 
 PoolableObject* Item::clone() {
