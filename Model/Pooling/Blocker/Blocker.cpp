@@ -25,7 +25,7 @@ void Blocker::initialize()
     this->pDirectionSwap = new DirectionSwap(this->strName + " Direction Swap");
     this->attachComponent(this->pDirectionSwap);
 
-    this->getSprite()->setScale(0.4,0.4);
+    this->getSprite()->setScale(BLOCKER_SPRITE_SIZE,BLOCKER_SPRITE_SIZE);
 
     if (EHitbox == HitboxType::CIRCLE)
         this->pHitbox = new CircleHitbox(this->strName + " Hitbox");
@@ -33,6 +33,7 @@ void Blocker::initialize()
         this->pHitbox = new RectangleHitbox(this->strName + " Hitbox");
     if (EHitbox == HitboxType::TRIANGLE)
         this->pHitbox = new TriangleHitbox(this->strName + " Hitbox");
+        this->pHitbox->setOffset(5.f,20.f);
 
     this->attachChild(this->pHitbox);
     

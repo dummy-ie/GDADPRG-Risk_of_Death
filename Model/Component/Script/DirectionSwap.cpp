@@ -4,8 +4,8 @@ using namespace components;
 
 DirectionSwap::DirectionSwap(std::string strName) : Component(strName, ComponentType::SCRIPT) {
     this->fTicks = 0.0f;
-    this->fSwitchInterval = 5.f;
-    this->bDirection = false;
+    this->fSwitchInterval = BLOCKER_LENGTH + (float)(std::rand()%(BLOCKER_VARIATION * 100)/100.f);
+    this->bDirection = std::rand()%2;
 }
 
 void DirectionSwap::perform() {

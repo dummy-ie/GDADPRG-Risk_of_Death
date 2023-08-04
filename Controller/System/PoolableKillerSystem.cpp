@@ -29,7 +29,7 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                     int nChance = std::rand() % 10000;
                     switch(pEnemy->getType()){
                         case EnemyType::COMMON:
-                            if(nChance < 10000){
+                            if(nChance < COMMON_DROP_RATE * 10000){
                                 
                                 if(pSpawnPoint){
                                     pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
@@ -38,7 +38,7 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                             }
                             break;
                         case EnemyType::UNCOMMON:
-                            if(nChance < 10000){
+                            if(nChance < UNCOMMON_DROP_RATE * 10000){
                                 
                                 if(pSpawnPoint){
                                     pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
@@ -47,7 +47,7 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                             }
                             break;
                         case EnemyType::ELITE:
-                            if(nChance < 10000){
+                            if(nChance < ELITE_DROP_RATE * 10000){
                                 
                                 if(pSpawnPoint){
                                     pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());

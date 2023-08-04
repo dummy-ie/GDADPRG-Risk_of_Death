@@ -142,9 +142,6 @@ void Enemy::onActivate()
 }
 
 void Enemy::onRelease() {
-    this->detachComponent(this->pMover);
-    delete this->pMover;
-
     ViewSwitcherSystem::getInstance()->unregisterComponent(this->pSwitcher);
 }
 
