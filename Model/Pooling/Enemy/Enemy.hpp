@@ -7,6 +7,11 @@
 #include "../../Enum/EnumHitboxType.hpp"
 #include "../../Enum/EnumPoolTag.hpp"
 
+#include "../../Entity/Hitbox.hpp"
+#include "../../Entity/Hitbox/CircleHitbox.hpp"
+#include "../../Entity/Hitbox/RectangleHitbox.hpp"
+#include "../../Entity/Hitbox/TriangleHitbox.hpp"
+
 #include "../../Component/Script/Killable.hpp"
 #include "../../Component/Script/Mover.hpp"
 #include "../../Component/Script/Switcher.hpp"
@@ -27,7 +32,7 @@ namespace models {
         private:
             Mover* pMover;
             Switcher* pSwitcher;
-            
+
             Renderer* pSpriteRenderer;
             Renderer* pRectangleRenderer;
             Renderer* pHitboxRenderer;
@@ -36,8 +41,8 @@ namespace models {
             HitboxType EHitbox;
             sf::Color CColor;
             sf::RectangleShape* pRectangle;
-            sf::Shape* pHitbox;
-            sf::FloatRect CHitbox;
+            //sf::Shape* pHitbox;
+            Hitbox* pHitbox;
 
             int nHealth;
             float fSpeed;
@@ -62,7 +67,7 @@ namespace models {
         private:
             void randomizePosition();
             void initializeType();
-            void initializeHitbox();
+            //void initializeHitbox();
 
         public:
             void decrementHealth();
@@ -71,6 +76,7 @@ namespace models {
             int getHealth();
             float getSize();
             EnemyType getType();
+
         
     };
 }

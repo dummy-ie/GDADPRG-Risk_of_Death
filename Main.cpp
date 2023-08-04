@@ -34,6 +34,11 @@
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Crosshair.cpp"
 #include "Model/Entity/Player.cpp"
+#include "Model/Entity/Hitbox.cpp"
+
+#include "Model/Entity/Hitbox/CircleHitbox.cpp"
+#include "Model/Entity/Hitbox/RectangleHitbox.cpp"
+#include "Model/Entity/Hitbox/TriangleHitbox.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 #include "Model/Pooling/Enemy/Enemy.cpp"
