@@ -16,7 +16,7 @@ void Reloader::perform() {
 
     if (this->bReloading) {
         this->fTicks += this->tDeltaTime.asSeconds();
-
+        
         if (this->fTicks >= this->fFrameInterval) {
             this->fTicks = 0.0f;
             this->reload();

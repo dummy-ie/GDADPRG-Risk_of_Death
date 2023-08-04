@@ -34,6 +34,8 @@ namespace components {
             bool isPartition();
             bool isZoomOut();
             bool isR();
+
+            void resetR();
     };
 }
 
