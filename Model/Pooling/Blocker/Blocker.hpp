@@ -24,12 +24,14 @@
 namespace models {
     using namespace controllers;
     using namespace systems;
-    class Blocker : public PoolableObject, public Movable {
+    class Blocker : public PoolableObject, public Movable, public Switchable {
         private:
             Mover* pMover;
+            Switcher* pSwitcher;
             DirectionSwap* pDirectionSwap;
 
             Renderer* pSpriteRenderer;
+            Renderer* pRectangleRenderer;
             Renderer* pHitboxRenderer;
 
             BlockerType EType;
@@ -54,6 +56,8 @@ namespace models {
         public:
             void move(float fTicks, sf::Time tDeltaTime);
             bool contains(sf::Vector2f vecLocation);
+            void switchLeftView();
+            void switchFrontView();
 
         private:
             void randomizePosition();

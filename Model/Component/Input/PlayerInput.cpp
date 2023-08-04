@@ -91,3 +91,7 @@ bool components::PlayerInput::isZoomOut()
 bool PlayerInput::isR() {
     return this->bR;
 }
+
+void PlayerInput::resetR() {
+    this->bR = false;
+}

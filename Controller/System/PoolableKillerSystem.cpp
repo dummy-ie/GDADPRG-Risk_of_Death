@@ -81,6 +81,8 @@ void PoolableKillerSystem::hit() {
                 this->vecKillable[i]->setKilled(true);
             }
         }
+        if (pPlayer->getHealth() <= 0)
+            this->playerDeath();
     }
 }
 
@@ -123,6 +125,10 @@ void PoolableKillerSystem::perform() {
             this->hit();
         }
     }
+}
+
+void PoolableKillerSystem::playerDeath() {
+
 }
 
 void PoolableKillerSystem::registerComponent(Killable* pKillable) {

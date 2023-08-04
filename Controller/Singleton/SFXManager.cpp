@@ -4,6 +4,7 @@ using namespace controllers;
 
 void SFXManager::loadAll() {
     this->create(SFXType::PLAYER_SHOOT, "View/SFX/pew.ogg");
+    this->create(SFXType::RELOAD, "View/SFX/reload.ogg");
 }
 
 void SFXManager::unloadAll() {

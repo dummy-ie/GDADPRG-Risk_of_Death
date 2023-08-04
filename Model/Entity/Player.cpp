@@ -27,6 +27,7 @@ void Player::initialize() {
 void Player::start() {
     if(this->pReloader != NULL) {
         std::cout << "calling pReloader start()" << std::endl;
+        
         this->pReloader->start();
     }
 }

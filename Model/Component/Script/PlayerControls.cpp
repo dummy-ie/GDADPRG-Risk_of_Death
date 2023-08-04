@@ -83,7 +83,9 @@ void PlayerControls::perform() {
             if (pPlayer)
             {
                 std::cout << "calling player start" << std::endl;
+                
                 pPlayer->start();
+                pInput->resetR();
             }
         }
 
