@@ -21,8 +21,8 @@ namespace views {
     using namespace systems;
     class LeaderboardScreen : public View, public ButtonListener {
         private:
-            // std::vector<Text*> vecTime;
-            std::vector<GameTimer*> vecTopTimes;
+            std::vector<std::vector<Text*>> vecTime;
+            // std::vector<GameTimer*> vecTopTimes;
             Text* pReturn;
 
         public:
@@ -33,6 +33,7 @@ namespace views {
             void initialize();
             
         public:
+            Text* copyText(Text* pReference, std::string strText, float fScale);
             void loadScores();
 
             void onClick(Button* pButton);
