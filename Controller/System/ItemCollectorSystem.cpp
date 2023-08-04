@@ -14,7 +14,12 @@ void ItemCollectorSystem::collect(sf::Vector2f vecLocation) {
         float fDistance = sqrt(pow(vecLocation.x - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().x, 2) + pow(vecLocation.y - this->vecCollectable[i]->getOwner()->getSprite()->getPosition().y, 2));
         if (fDistance < fCollectThreshold && nCollect != 1) {
             if (this->vecCollectable[i]->getOwner()->isEnabled()) {
-                //this->vecKillable[i]->getOwner()->setAnimationType(AnimationType::KILLED);
+                Item* pItem = (Item*) this->vecCollectable[i]->getOwner();
+
+                //if this becomes false, then wtf
+                if(pItem){
+                    pItem->collect();
+                }
                 this->vecCollectable[i]->setCollected(true);
                 //nCollect = 1;
             }
