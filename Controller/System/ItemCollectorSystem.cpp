@@ -45,6 +45,10 @@ void ItemCollectorSystem::unregisterComponent(Collectable* pCollectable) {
     }
 }
 
+void ItemCollectorSystem::clearAll(){
+    this->vecCollectable.clear();
+}
+
 /* * * * * * * * * * * * * * * * * * * * * 
  *       SINGLETON-RELATED CONTENT       * 
  * * * * * * * * * * * * * * * * * * * * */

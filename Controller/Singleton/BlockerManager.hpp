@@ -16,6 +16,8 @@ namespace controllers {
 
 			std::vector<PoolableObject*> getBlockers();
 
+			void clearAll();
+
         private:
 		    static BlockerManager* P_SHARED_INSTANCE;
 

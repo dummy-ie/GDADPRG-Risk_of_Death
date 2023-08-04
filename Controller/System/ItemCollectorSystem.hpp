@@ -28,6 +28,7 @@ namespace systems {
             void perform();
             void registerComponent(Collectable* pCollectable);
             void unregisterComponent(Collectable* pCollectable);
+            void clearAll();
 
         /* * * * * * * * * * * * * * * * * * * * * 
         *       SINGLETON-RELATED CONTENT       * 

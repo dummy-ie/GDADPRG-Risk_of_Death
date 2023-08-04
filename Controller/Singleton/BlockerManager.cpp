@@ -6,29 +6,7 @@ void BlockerManager::addBlocker(PoolableObject* pBlocker){
     this->vecBlocker.push_back(pBlocker);
 }
 
-void BlockerManager::deleteBlocker(PoolableObject* pBlocker){
-    std::string strName = pBlocker->getName();
-    int nIndex = -1;
-
-    for (int i = 0; i < this->vecBlocker.size() && nIndex == -1; i++)
-    {
-        if (this->vecBlocker[i] == pBlocker)
-            nIndex = i;
-    }
-
-    if (nIndex != -1)
-    {
-        this->vecBlocker.erase(this->vecBlocker.begin() + nIndex);
-        delete pBlocker;
-    }
-}
-
-void BlockerManager::deleteAllBlockers(){
-    for (PoolableObject *pBlocker : this->vecBlocker)
-    {
-        this->deleteBlocker(pBlocker);
-    }
-
+void BlockerManager::clearAll(){
     this->vecBlocker.clear();
 }
 
