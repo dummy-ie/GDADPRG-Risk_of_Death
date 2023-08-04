@@ -15,12 +15,16 @@ void GameOverScreen::initialize() {
     float fWidth = this->pGameOver->getText()->getLocalBounds().width;
     float fHeight = this->pGameOver->getText()->getLocalBounds().height;
     this->pGameOver->getText()->setPosition(SCREEN_WIDTH / 2 - fWidth / 2, SCREEN_HEIGHT / 2 - fHeight / 2);
+    this->pGameOver->getText()->setOutlineThickness(5.f);
+    this->pGameOver->getText()->setOutlineColor(sf::Color::White);
     this->attachChild(this->pGameOver);
 
     this->pContinue = new Text(this->strName + " Continue", "Continue", FontManager::getInstance()->getFont(FontType::DEFAULT), 24);
     this->attachChild(this->pContinue);
     fWidth = this->pContinue->getText()->getLocalBounds().width;
     this->pContinue->getText()->setPosition(SCREEN_WIDTH / 2 - fWidth / 2, 600);
+    this->pContinue->getText()->setOutlineThickness(5.f);
+    this->pContinue->getText()->setOutlineColor(sf::Color::White);
     sf::FloatRect CBounds = this->pContinue->getText()->getGlobalBounds();
     this->pButton = new Button(this->strName + " Continue Button", CBounds);
     this->attachChild(this->pButton);
@@ -43,7 +47,7 @@ void GameOverScreen::onHover(Button *pButton)
 void GameOverScreen::onRelease(Button* pButton) {
     if (pButton->getName().find("Continue Button") != std::string::npos) {
         std::cout << "[CONTINUE]" << std::endl;
-        //SceneManager::getInstance()->loadScene(SceneTag::GAME_LEADERBOARD);
+        SceneManager::getInstance()->loadScene(SceneTag::GAME_LEADERBOARD);
     }
 }
 

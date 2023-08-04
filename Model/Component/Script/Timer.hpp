@@ -14,6 +14,8 @@ namespace components {
         private:
             Timeable* pTimeable;
 
+            bool bIsCounting = true;
+
             float fTicks;
             float fUpdateTicks;
             float fUpdateInterval;
@@ -23,7 +25,7 @@ namespace components {
 
         public:
             void perform();
-            void start();
+            void reset();
             void stop();
 
         private:

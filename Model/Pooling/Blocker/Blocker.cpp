@@ -71,6 +71,7 @@ void Blocker::randomizePosition()
 
     float fWidth = this->pSprite->getTexture()->getSize().x;
     float fHeight = this->pSprite->getTexture()->getSize().y;
+    this->fZ = 0.f;
 
     float fHalfWidth = fWidth / 2.0f;
     float fHalfHeight = fHeight / 2.0f;
