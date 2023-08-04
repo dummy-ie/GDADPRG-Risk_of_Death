@@ -36,6 +36,9 @@ void Item::initialize() {
     pHitboxRenderer->assignDrawable(this->pHitbox->getShape());
     this->attachComponent(pHitboxRenderer);
 
+    if (!RENDER_HITBOX)
+        pHitboxRenderer->disable();
+
 }
 
 void Item::collect(){
