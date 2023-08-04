@@ -3,7 +3,8 @@
 
 enum class SFXType : int {
     PLAYER_SHOOT = 0,
-    RELOAD
+    RELOAD,
+    HURT
 };
 
 #endif

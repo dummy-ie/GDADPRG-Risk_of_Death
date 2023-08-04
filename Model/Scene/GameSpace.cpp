@@ -18,9 +18,9 @@ void GameSpace::onLoadObjects() {
     this->createBackground();
     this->createNullObjectComponents();
     this->createPlayer();
-    this->createUserInterface();
     this->createBlockerPool();
     this->createItemPool();
+    this->createUserInterface();
     this->createCrosshair();
 }
 

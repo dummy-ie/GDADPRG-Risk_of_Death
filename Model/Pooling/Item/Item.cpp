@@ -47,7 +47,8 @@ void Item::collect(){
             ItemManager::getInstance()->addItem(this->EType);
             break;
     }
-    
+    GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
+    pGameSpaceUI->update();
     //ObjectPoolManager::getInstance()->getPool(this->ETag)->releasePoolable(this);
 }
 

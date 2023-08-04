@@ -12,7 +12,9 @@
 #include "../Model/Enum/EnumSceneTag.hpp"
 #include "../Model/Scene/GameMenu.hpp"
 #include "../Model/Scene/GameLeaderboard.hpp"
+#include "../Model/Scene/GameSelection.hpp"
 #include "../Model/Scene/GameSpace.hpp"
+
 namespace controllers {
     class Game {
         private:

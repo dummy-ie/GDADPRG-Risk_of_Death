@@ -62,6 +62,8 @@ void WindowManager::generatePartitions(int nCol, int nRow)
         return;
     }
 
+    this->vecPartitions.clear();
+
     for (size_t i = 0; i < nRow; i++)
     {
         for (size_t j = 0; j < nCol; j++)

@@ -40,6 +40,31 @@ void GameSpaceUI::initialize()
     this->pBullets->getText()->setOutlineThickness(5.f);
     this->attachChild(this->pBullets);
     this->pBullets->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 165.f));
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ITEM));
+    Image* pImage = new Image("Slot 1", pTexture);
+    pImage->getSprite()->setScale(0.2,0.2);
+    pImage->setPosition(50.f,50.f,-1.f);
+    pImage->getSprite()->setColor(sf::Color(255,255,255,0));
+    this->attachChild(pImage);
+    this->vecImage.push_back(pImage);
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ITEM));
+    pImage = new Image("Slot 2", pTexture);
+    pImage->getSprite()->setScale(0.2,0.2);
+    pImage->setPosition(this->vecImage[0]->getPosition().x + 70.f, this->vecImage[0]->getPosition().y, -1.f);
+    pImage->getSprite()->setColor(sf::Color(255,255,255,0));
+    this->attachChild(pImage);
+    this->vecImage.push_back(pImage);
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ITEM));
+    pImage = new Image("Slot 3", pTexture);
+    pImage->getSprite()->setScale(0.2,0.2);
+    pImage->setPosition(this->vecImage[0]->getPosition().x + 70.f * 2, this->vecImage[0]->getPosition().y, -1.f);
+    pImage->getSprite()->setColor(sf::Color(255,255,255,0));
+    this->attachChild(pImage);
+    this->vecImage.push_back(pImage);
+
 }
 
 void GameSpaceUI::update()
@@ -48,6 +73,17 @@ void GameSpaceUI::update()
     this->pHealth->setText(std::to_string(pPlayer->getHealth()));
     this->pBullets->setText(std::to_string(pPlayer->getBullets()));
 
+    for(int i = 0; i < 3; i++){
+        ItemType EType = ItemManager::getInstance()->getItem(i);
+        if(EType != ItemType::NONE){
+            this->vecImage[i]->setFrame((int)EType);
+            //this is wrong but i am tired
+            this->vecImage[i]->getSprite()->setColor(sf::Color(255,255,255,255));
+        }
+        else{
+            this->vecImage[i]->getSprite()->setColor(sf::Color(255,255,255,0));
+        }
+    }
     // std::cout << "gamespace ui update" << std::endl;
 
     // this->pHeart->setPosition(sf::Vector2f(75.f, SCREEN_HEIGHT - 75.f));

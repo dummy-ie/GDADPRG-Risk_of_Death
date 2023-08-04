@@ -5,6 +5,8 @@ using namespace controllers;
 void SFXManager::loadAll() {
     this->create(SFXType::PLAYER_SHOOT, "View/SFX/pew.ogg");
     this->create(SFXType::RELOAD, "View/SFX/reload.ogg");
+    this->mapSound[SFXType::RELOAD]->setVolume(70);
+    this->create(SFXType::HURT, "View/SFX/oof.mp3");
 }
 
 void SFXManager::unloadAll() {

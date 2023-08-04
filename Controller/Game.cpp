@@ -6,10 +6,12 @@ Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Risk of Dea
     this->rwWindow.setFramerateLimit(FRAME_RATE_LIMIT);
 
     WindowManager::getInstance()->setWindow(&this->rwWindow);
-    WindowManager::getInstance()->generatePartitions(sf::Vector2i(2, 3));
+    //WindowManager::getInstance()->generatePartitions(sf::Vector2i(2, 3));
     FontManager::getInstance()->loadAll();
 
+    
     SceneManager::getInstance()->registerScene(new GameMenu());
+    SceneManager::getInstance()->registerScene(new GameSelection());
     SceneManager::getInstance()->registerScene(new GameLeaderboard());
     SceneManager::getInstance()->registerScene(new GameSpace());
 

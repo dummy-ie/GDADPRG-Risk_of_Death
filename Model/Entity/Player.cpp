@@ -57,6 +57,8 @@ void Player::decrementHealth()
     }
     GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
     pGameSpaceUI->update();
+
+    SFXManager::getInstance()->getSound(SFXType::HURT)->play();
 }
 
 void Player::decrementBullets()

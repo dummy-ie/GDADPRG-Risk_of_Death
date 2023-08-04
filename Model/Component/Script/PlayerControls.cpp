@@ -28,6 +28,7 @@ void PlayerControls::perform() {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
+        GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
         if(pInput->isLeft()) {
             Player* pPlayer = (Player*)this->getOwner();
             GameObjectManager::getInstance()->findObjectByName("Background")->setFrame(1);
@@ -52,6 +53,7 @@ void PlayerControls::perform() {
                 std::cout << "[ERROR] : No item." << std::endl;
                 this->vecTimer[0] = this->fCooldown;
             }
+            pGameSpaceUI->update();
         }
 
         if(pInput->is2() && this->vecTimer[1] == 0.f){
@@ -65,6 +67,7 @@ void PlayerControls::perform() {
                 std::cout << "[ERROR] : No item." << std::endl;
                 this->vecTimer[1] = this->fCooldown;
             }
+            pGameSpaceUI->update();
         }
 
         if(pInput->is3() && this->vecTimer[2] == 0.f){
@@ -78,6 +81,7 @@ void PlayerControls::perform() {
                 std::cout << "[ERROR] : No item." << std::endl;
                 this->vecTimer[2] = this->fCooldown;
             }
+            pGameSpaceUI->update();
         }
 
         if (pInput->isR()) {
@@ -89,7 +93,9 @@ void PlayerControls::perform() {
                 
                 pPlayer->start();
                 pInput->resetR();
+                SFXManager::getInstance()->getSound(SFXType::RELOAD)->play();
             }
+            
         }
 
         if(pInput->isZoomOut())
@@ -103,7 +109,6 @@ void PlayerControls::perform() {
                 pPlayer->setZoomedIn(false);
             }
         }
-
     }
     
 }

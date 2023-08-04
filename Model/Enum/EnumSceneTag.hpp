@@ -4,7 +4,8 @@
 enum class SceneTag : int {
     GAME_MENU = 0,
     GAME_SPACE,
-    GAME_LEADERBOARD
+    GAME_LEADERBOARD,
+    GAME_SELECTION
 };
 
 #endif

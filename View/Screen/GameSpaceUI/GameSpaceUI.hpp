@@ -14,14 +14,17 @@
 
 #include "../../../Model/Enum/EnumFontType.hpp"
 #include "../../../Model/Enum/EnumViewTag.hpp"
+#include "../../../Model/Enum/EnumItemType.hpp"
 
 #include "../../../Controller/Singleton/FontManager.hpp"
+#include "../../../Controller/Singleton/ItemManager.hpp"
 #include "../../../Controller/System/ViewManager.hpp"
 #include "../../../Controller/System/SceneManager.hpp"
 
 #include "../../../Controller/System/Interface/EventListener.hpp"
 
 namespace views {
+    using namespace controllers;
     using namespace systems;
     class GameSpaceUI : public View, public Timeable {
         private:
@@ -29,6 +32,8 @@ namespace views {
             Timer* pTimer;
             // float fTime = 0.f;
             std::vector<Text*> vecTime;
+
+            std::vector<Image*> vecImage;
 
             Image* pHeart;
             Image* pBullet;

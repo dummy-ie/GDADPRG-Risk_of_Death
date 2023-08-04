@@ -71,7 +71,6 @@ void PoolableKillerSystem::hit() {
     float fKillThreshold = 150.f;
 
     //EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");
-
     Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
     for (int i = 0; i < this->vecKillable.size(); i++) {
         if (this->vecKillable[i]->getOwner()->getZ() <= 0.0f) {
