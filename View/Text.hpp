@@ -20,7 +20,7 @@ namespace views {
         
         public:
             sf::Text* getText();
-            void setText(std::string strText);
+            void setText(std::string strText, bool bUpdateOrigin = false);
             void setColor(sf::Color CColor);
 
         public:

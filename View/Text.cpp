@@ -22,8 +22,10 @@ sf::Text* Text::getText() {
     return this->pText;
 }
 
-void Text::setText(std::string strText) {
+void Text::setText(std::string strText, bool bUpdateOrigin) {
     this->pText->setString(strText);
+    if(bUpdateOrigin)
+        this->pText->setOrigin(this->getGlobalBounds().width / 2.0f, this->getGlobalBounds().height / 2.0f);
 }
 
 void Text::setColor(sf::Color CColor) {

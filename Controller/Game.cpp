@@ -10,6 +10,7 @@ Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Risk of Dea
     FontManager::getInstance()->loadAll();
 
     SceneManager::getInstance()->registerScene(new GameMenu());
+    SceneManager::getInstance()->registerScene(new GameLeaderboard());
     SceneManager::getInstance()->registerScene(new GameSpace());
 
     SceneManager::getInstance()->loadScene(SceneTag::GAME_MENU);

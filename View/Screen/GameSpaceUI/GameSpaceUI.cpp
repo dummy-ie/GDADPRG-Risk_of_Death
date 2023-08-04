@@ -12,7 +12,7 @@ GameSpaceUI::~GameSpaceUI() {}
 void GameSpaceUI::initialize() {
     this->pGameTimer = new GameTimer(this->strName + " Game Timer");
     this->attachChild(pGameTimer);
-    this->pGameTimer->setEnabled(true);
+    // this->pGameTimer->setEnabled(true);
 
     Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::HEART));

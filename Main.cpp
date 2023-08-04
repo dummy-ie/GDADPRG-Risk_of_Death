@@ -45,6 +45,7 @@
 #include "Model/Pooling/Item/Item.cpp"
 
 #include "Model/Scene/GameMenu.cpp"
+#include "Model/Scene/GameLeaderboard.cpp"
 #include "Model/Scene/GameSpace.cpp"
 
 #include "View/Button.cpp"
@@ -53,6 +54,7 @@
 #include "View/View.cpp"
 
 #include "View/Screen/TitleScreen.cpp"
+#include "View/Screen/LeaderboardScreen.cpp"
 #include "View/Screen/GameSpaceUI/GameSpaceUI.cpp"
 #include "View/Screen/GameSpaceUI/Parts/GameTimer.cpp"
 

@@ -1,6 +1,9 @@
 #ifndef VIEWS_GAME_TIMER_HPP
 #define VIEWS_GAME_TIMER_HPP
 
+#include <iomanip>
+#include <sstream>
+
 #include "../../../View.hpp"
 
 #include "../../../Text.hpp"
@@ -21,7 +24,7 @@ namespace views {
             void initialize();
 
         public:
-            void setTime();
+            void setTime(float fSeconds);
 
         private:
             void createTimer();
