@@ -12,7 +12,7 @@ namespace models {
         public:
             void initialize();
             bool contains(sf::Vector2f vecLocation);
-            void move(sf::Time tDeltaTime);
+            void move(float fTicks, sf::Time tDeltaTime);
     };
 }
 

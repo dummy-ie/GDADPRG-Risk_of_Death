@@ -10,9 +10,13 @@ const float FRAME_RATE_LIMIT = 60.0f;
 
 const float GAME_SPEED = 1.0f;
 
-const float COMMON_ENEMY_SPEED = 1.0f;
-const float UNCOMMON_ENEMY_SPEED = 5.0f;
-const float ELITE_ENEMY_SPEED = 10.0f;
+const float MIN_COMMON_ENEMY_SPEED = 0.5f;
+const float MIN_UNCOMMON_ENEMY_SPEED = 5.0f;
+const float MIN_ELITE_ENEMY_SPEED = 10.0f;
+
+const float MAX_COMMON_ENEMY_SPEED = 2.0f;
+const float MAX_UNCOMMON_ENEMY_SPEED = 8.0f;
+const float MAX_ELITE_ENEMY_SPEED = 12.5f;
 
 const float COMMON_SPRITE_SIZE = 0.3f;
 const float UNCOMMON_SPRITE_SIZE = 0.6f;

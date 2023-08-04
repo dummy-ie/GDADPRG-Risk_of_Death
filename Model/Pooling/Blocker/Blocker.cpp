@@ -36,6 +36,11 @@ void Blocker::initialize()
         this->pHitbox->setOffset(5.f,20.f);
 
     this->attachChild(this->pHitbox);
+
+    this->pMover = new Mover(this->strName + " Mover");
+    this->pMover->setMovable(this);
+
+    this->attachComponent(this->pMover); 
     
     this->pHitboxRenderer = new Renderer(this->strName + " Hitbox");
     this->pHitboxRenderer->assignDrawable(this->pHitbox->getShape());
@@ -81,10 +86,6 @@ void Blocker::randomizePosition()
 void Blocker::onActivate()
 {
     this->randomizePosition();
-    this->pMover = new Mover(this->strName + " Mover");
-    this->pMover->setMovable(this);
-
-    this->attachComponent(this->pMover); 
 }
 
 void Blocker::onRelease() {
@@ -98,7 +99,7 @@ PoolableObject *Blocker::clone()
     return pClone;
 }
 
-void Blocker::move(sf::Time tDeltaTime)
+void Blocker::move(float fTicks, sf::Time tDeltaTime)
 {
     float fMovement = this->fSpeed * tDeltaTime.asSeconds();
     switch(this->EType){
@@ -121,7 +122,7 @@ void Blocker::move(sf::Time tDeltaTime)
         default:
             break;
     }
-    this->pHitbox->move(tDeltaTime);
+    this->pHitbox->move(0.0f, tDeltaTime);
 }
 
 bool Blocker::contains(sf::Vector2f vecLocation) {

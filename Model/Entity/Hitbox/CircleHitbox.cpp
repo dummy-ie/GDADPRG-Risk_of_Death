@@ -37,7 +37,7 @@ bool CircleHitbox::contains(sf::Vector2f vecLocation) {
     return false;
 }
 
-void CircleHitbox::move(sf::Time tDeltaTime) {
+void CircleHitbox::move(float fTicks, sf::Time tDeltaTime) {
     float fX = this->getParent()->getSprite()->getPosition().x + this->COffset.width;
     float fY = this->getParent()->getSprite()->getPosition().y + this->COffset.height;
     float fWidth = this->getParent()->getSprite()->getTexture()->getSize().x;

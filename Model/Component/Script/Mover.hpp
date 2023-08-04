@@ -17,7 +17,9 @@ namespace components {
         private:
             Movable* pMovable;
             
-            float fTicks;
+            float fSpeedMultiplier;
+            float fUpdateTicks;
+            float fUpdateTicks2;
         
         public:
             Mover(std::string strName);
