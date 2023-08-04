@@ -9,6 +9,14 @@ enum class PoolTag : int {
     RED_SLIME,
     BLUE_SLIME,
 
+    COMMON_LAND,
+    UNCOMMON_LAND,
+    ELITE_LAND,
+
+    COMMON_INSECT,
+    UNCOMMON_INSECT,
+    ELITE_INSECT,
+
     ITEM,
 
     BLOCKER,
