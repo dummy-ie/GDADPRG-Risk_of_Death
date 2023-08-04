@@ -11,8 +11,6 @@ namespace controllers {
 		
 		public:
 			void addBlocker(PoolableObject* pBlocker);
-            void deleteBlocker(PoolableObject* pBlocker);
-            void deleteAllBlockers();
 
 			std::vector<PoolableObject*> getBlockers();
 
