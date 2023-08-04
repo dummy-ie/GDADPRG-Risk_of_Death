@@ -36,6 +36,19 @@ void Blocker::initialize()
         this->pHitbox->setOffset(5.f,20.f);
 
     this->attachChild(this->pHitbox);
+    
+    this->CColor = sf::Color::Cyan;
+
+    this->pRectangle = new sf::RectangleShape(sf::Vector2f(50, this->pSprite->getTexture()->getSize().y));
+
+    this->pRectangleRenderer = new Renderer(this->strName + " Rectangle");
+    this->pRectangleRenderer->assignDrawable(this->pRectangle);
+    this->attachComponent(this->pRectangleRenderer);
+    this->pRectangle->setFillColor(this->CColor);
+
+    this->pSwitcher = new Switcher(this->strName + " Switcher");
+    this->attachComponent(this->pSwitcher);
+    this->pSwitcher->setSwitchable(this);
 
     this->pMover = new Mover(this->strName + " Mover");
     this->pMover->setMovable(this);
@@ -47,6 +60,8 @@ void Blocker::initialize()
     this->attachComponent(this->pHitboxRenderer);
     if (!RENDER_HITBOX)
         this->pHitboxRenderer->disable();
+
+    ViewSwitcherSystem::getInstance()->registerComponent(this->pSwitcher);
 }
 
 void Blocker::randomizePosition()
@@ -123,8 +138,19 @@ void Blocker::move(float fTicks, sf::Time tDeltaTime)
             break;
     }
     this->pHitbox->move(0.0f, tDeltaTime);
+    this->pRectangle->setPosition(this->fZ, this->getPosition().y);
 }
 
 bool Blocker::contains(sf::Vector2f vecLocation) {
     return this->pHitbox->contains(vecLocation);
+}
+
+void Blocker::switchLeftView() {
+    this->pSpriteRenderer->disable();
+    this->pRectangleRenderer->enable();
+}
+
+void Blocker::switchFrontView() {
+    this->pSpriteRenderer->enable();
+    this->pRectangleRenderer->disable();
 }
