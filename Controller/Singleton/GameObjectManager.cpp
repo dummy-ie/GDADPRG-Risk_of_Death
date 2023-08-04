@@ -78,8 +78,8 @@ void GameObjectManager::sortObjectsByZ()
     std::sort(this->vecGameObject.begin(), this->vecGameObject.end(), [](GameObject *a, GameObject *b)
                                                                         { return a->getZ() > b->getZ(); });
     
-    for (GameObject *pGameObject : this->vecGameObject)
-        std::cout << pGameObject->getName() << " Z value: " << pGameObject->getZ() << std::endl;
+    // for (GameObject *pGameObject : this->vecGameObject)
+    //     std::cout << pGameObject->getName() << " Z value: " << pGameObject->getZ() << std::endl;
 }
 
 void GameObjectManager::sortObjectsByX()
@@ -87,8 +87,8 @@ void GameObjectManager::sortObjectsByX()
     std::sort(this->vecGameObject.begin(), this->vecGameObject.end(), [](GameObject *a, GameObject *b)
                                                                         { return a->getPosition().x < b->getPosition().x; });
 
-    for (GameObject *pGameObject : this->vecGameObject)
-        std::cout << pGameObject->getName() << " X value: " << pGameObject->getPosition().x << std::endl;
+    // for (GameObject *pGameObject : this->vecGameObject)
+    //     std::cout << pGameObject->getName() << " X value: " << pGameObject->getPosition().x << std::endl;
 }
 
 GameObject *GameObjectManager::findObjectByName(std::string strName)

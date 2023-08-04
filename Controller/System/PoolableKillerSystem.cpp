@@ -17,7 +17,7 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
         bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1;
         Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
         if (pEnemy->contains(vecLocation) && nKill != 1) {
-            if (pEnemy->isEnabled() && pPlayer->isZoomedIn() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading() && !bPlayerHasToZoom) {
+            if (pEnemy->isEnabled() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading() && !bPlayerHasToZoom) {
                 
                 pEnemy->decrementHealth();
                 if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
