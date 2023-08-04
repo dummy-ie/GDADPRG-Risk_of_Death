@@ -49,7 +49,10 @@ ItemType ItemManager::getItem(int nIndex){
 }
 
 void ItemManager::clearAll(){
-    this->mapItems.clear();
+    //idk
+    this->mapItems[0] = ItemType::NONE;
+    this->mapItems[1] = ItemType::NONE;
+    this->mapItems[2] = ItemType::NONE;
 }
 
 ItemManager* ItemManager::P_SHARED_INSTANCE = NULL;
