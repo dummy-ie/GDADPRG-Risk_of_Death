@@ -7,8 +7,11 @@ EnemyDirector::EnemyDirector(std::string strName) : Component(strName, Component
     this->fUpdateTicks = 0.0f;
     this->fTicks = 0.0f;
 
-    for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::COMMON))
+    for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::COMMON)) {
+
         this->createEnemyPool(6, pEnemy);
+
+    }
     for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::UNCOMMON))
         this->createEnemyPool(3, pEnemy);
     for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::ELITE))
@@ -24,7 +27,7 @@ void EnemyDirector::createEnemyPool(int nPoolSize, Enemy* pEnemy) {
 }
 
 void EnemyDirector::spawnWave() {
-    int nEnemySpawnCount = this->fTicks * /*subscreen count*/1.0f;
+    int nEnemySpawnCount = this->fTicks * WindowManager::getInstance()->getPartitions()->size();
     float fLuck = (float)nEnemySpawnCount * randomizePercent(0.20f);
     nEnemySpawnCount -= fLuck;
 
@@ -33,20 +36,27 @@ void EnemyDirector::spawnWave() {
     float fUncommonSpawn = (1 - fCommonSpawn) * 0.6f;
     float fEliteSpawn = 1 - (fCommonSpawn + fUncommonSpawn);
 
-    int nCommon = fCommonSpawn * nEnemySpawnCount;
-    int nUncommon = fUncommonSpawn * nEnemySpawnCount;
-    int nElite = fEliteSpawn * nEnemySpawnCount;
+    int nCommonTags = EnemyManager::getInstance()->getAllType(EnemyType::COMMON).size();
+    int nUncommonTags  = EnemyManager::getInstance()->getAllType(EnemyType::UNCOMMON).size();
+    int nEliteTags = EnemyManager::getInstance()->getAllType(EnemyType::ELITE).size();
+
+    int nCommon = fCommonSpawn * nEnemySpawnCount / nCommonTags;
+    int nUncommon = fUncommonSpawn * nEnemySpawnCount / nUncommonTags;
+    int nElite = fEliteSpawn * nEnemySpawnCount / nEliteTags;
 
     for (int i = 0; i < nCommon; i++) {
-        ObjectPoolManager::getInstance()->getPool(PoolTag::GREEN_SLIME)->requestPoolable();
+        for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::COMMON)) 
+            ObjectPoolManager::getInstance()->getPool(pEnemy->getTag())->requestPoolable();
 
     }
     for (int i = 0; i < nUncommon; i++) {
-        ObjectPoolManager::getInstance()->getPool(PoolTag::PURPLE_SLIME)->requestPoolable();
+        for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::UNCOMMON)) 
+            ObjectPoolManager::getInstance()->getPool(pEnemy->getTag())->requestPoolable();
 
     }
     for (int i = 0; i < nElite; i++) {
-        ObjectPoolManager::getInstance()->getPool(PoolTag::RED_SLIME)->requestPoolable();
+        for (Enemy *pEnemy : EnemyManager::getInstance()->getAllType(EnemyType::ELITE)) 
+            ObjectPoolManager::getInstance()->getPool(pEnemy->getTag())->requestPoolable();
 
     }
 }

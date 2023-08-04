@@ -15,7 +15,6 @@ void Reloader::perform() {
     //     std::cout << "reloader performing " << bReloading << std::endl;
 
     if (this->bReloading) {
-        std::cout << "reloader performing " << bReloading << std::endl;
         this->fTicks += this->tDeltaTime.asSeconds();
 
         if (this->fTicks >= this->fFrameInterval) {
@@ -28,7 +27,6 @@ void Reloader::perform() {
 
 void Reloader::start() {
     this->bReloading = true;
-    std::cout << "bReloading now true (crash)" << std::endl;
 }
 
 void Reloader::stop() {
@@ -40,7 +38,6 @@ void Reloader::reload() {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
-        std::cout << "trying to call pReloadable reload()" << std::endl;
         this->pReloadable->reload();
     }
 }
