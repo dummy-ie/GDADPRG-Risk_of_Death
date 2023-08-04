@@ -27,6 +27,7 @@ namespace models {
         private:
             Mover* pMover;
             Switcher* pSwitcher;
+            
             Renderer* pSpriteRenderer;
             Renderer* pRectangleRenderer;
             Renderer* pHitboxRenderer;

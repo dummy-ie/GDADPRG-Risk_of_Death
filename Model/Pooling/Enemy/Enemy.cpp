@@ -138,7 +138,12 @@ void Enemy::initializeHitbox() {
         //this->pHitboxRenderer->assignDrawable(this->pHitbox);
     }
     if (this->EHitbox == HitboxType::RECTANGLE) {
-
+        //float fRadius = fHalfHeight * this->getSprite()->getScale().x;
+        this->pHitbox = new sf::RectangleShape(sf::Vector2f(fWidth, fHeight));
+        this->CColor.a = 100;
+        this->pHitbox->setFillColor(this->CColor);
+        this->pHitbox->setPosition(fX, fY);
+        this->pHitbox->setOrigin(fHalfWidth, fHalfHeight);
     }
 }
 
@@ -184,6 +189,7 @@ void Enemy::move(sf::Time tDeltaTime)
     float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
     this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
     this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
+
     if (this->EHitbox == HitboxType::CIRCLE) {
         float fHeight = this->pSprite->getTexture()->getSize().y;
         float fHalfHeight = fHeight / 2.0f;
@@ -192,6 +198,19 @@ void Enemy::move(sf::Time tDeltaTime)
         this->pHitbox->setOrigin(fRadius, fRadius);
     }
 
+    if (this->EHitbox == HitboxType::RECTANGLE) {
+        float fWidth = this->pSprite->getTexture()->getSize().x;
+        float fHeight = this->pSprite->getTexture()->getSize().y;
+
+        fWidth *= this->getSprite()->getScale().x;
+        fHeight *= this->getSprite()->getScale().y;
+
+        float fHalfWidth = fWidth / 2.0f;
+        float fHalfHeight = fHeight / 2.0f;
+
+        ((sf::RectangleShape*)this->pHitbox)->setSize(sf::Vector2f(fWidth, fHeight));
+        this->pHitbox->setOrigin(fHalfWidth, fHalfHeight);
+    }
 
     //if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
     //    this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
@@ -210,7 +229,11 @@ bool Enemy::contains(sf::Vector2f vecLocation) {
         }
     }
     if (this->EHitbox == HitboxType::RECTANGLE) {
-
+        sf::Vector2f vecCenter = this->pHitbox->getPosition();
+        float fWidth = ((sf::RectangleShape*)this->pHitbox)->getSize().x;
+        float fHeight = ((sf::RectangleShape*)this->pHitbox)->getSize().y;
+        sf::FloatRect CBounds = sf::FloatRect(vecCenter.x - fWidth / 2, vecCenter.y - fHeight / 2, fWidth, fHeight);
+        return CBounds.contains(vecLocation);
     }
     return false;
 }
