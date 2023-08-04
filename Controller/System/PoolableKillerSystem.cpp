@@ -72,8 +72,8 @@ void PoolableKillerSystem::hit() {
 
     //EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");
 
+    Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
     for (int i = 0; i < this->vecKillable.size(); i++) {
-        Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
         if (this->vecKillable[i]->getOwner()->getZ() <= 0.0f) {
             if (!this->vecKillable[i]->isKilled()) {
                 pPlayer->decrementHealth();
@@ -128,12 +128,20 @@ void PoolableKillerSystem::perform() {
 }
 
 void PoolableKillerSystem::playerDeath() {
-    std::ofstream scores("File/scores.txt", std::ios::app);
-    float currentTime = ((Timer*)(GameObjectManager::getInstance()->findObjectByName("Game Space UI")->findComponentByName("Game Space UI Timer")))->getTime();
-    scores << currentTime << std::endl;
-    scores.close();
+    if (!ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled())
+    {
+        ((Timer*)(GameObjectManager::getInstance()->findObjectByName("Game Space UI")->findComponentByName("Game Space UI Timer")))->stop();
+
+        std::ofstream scores("File/scores.txt", std::ios::app);
+        float currentTime = ((Timer*)(GameObjectManager::getInstance()->findObjectByName("Game Space UI")->findComponentByName("Game Space UI Timer")))->getTime();
+        scores << currentTime << std::endl;
+        scores.close();
+
+    }
+
+    WindowManager::getInstance()->getWindow()->setView(WindowManager::getInstance()->getWindow()->getDefaultView());
     ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
-    std::exit(69);
+    // std::exit(69);
 }
 
 void PoolableKillerSystem::registerComponent(Killable* pKillable) {

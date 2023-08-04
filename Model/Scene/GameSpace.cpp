@@ -26,7 +26,7 @@ void GameSpace::onLoadObjects() {
 
 void GameSpace::onUnloadResources() {
     TextureManager::getInstance()->clearAll();
-    SFXManager::getInstance()->unloadAll();
+    // SFXManager::getInstance()->unloadAll();
 }
 
 void GameSpace::onUnloadObjects() {

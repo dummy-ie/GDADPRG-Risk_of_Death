@@ -27,6 +27,8 @@ void GameSpaceUI::initialize()
     this->createImage(this->strName + " Heart", pTexture, 0.05f, 75.f, SCREEN_HEIGHT - 75.f);
 
     this->pHealth = new Text(this->strName + " Health", std::to_string(pPlayer->getHealth()), FontManager::getInstance()->getFont(FontType::DEFAULT));
+    this->pHealth->getText()->setOutlineColor(sf::Color::White);
+    this->pHealth->getText()->setOutlineThickness(5.f);
     this->attachChild(this->pHealth);
     this->pHealth->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 90.f));
 
@@ -34,6 +36,8 @@ void GameSpaceUI::initialize()
     this->createImage(this->strName + " Bullet", pTexture, 0.15f, 75.f, SCREEN_HEIGHT - 150.f);
 
     this->pBullets = new Text(this->strName + " Bullets", std::to_string(pPlayer->getBullets()), FontManager::getInstance()->getFont(FontType::DEFAULT));
+    this->pBullets->getText()->setOutlineColor(sf::Color::White);
+    this->pBullets->getText()->setOutlineThickness(5.f);
     this->attachChild(this->pBullets);
     this->pBullets->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 165.f));
 }
@@ -57,7 +61,7 @@ void GameSpaceUI::createTimer()
     pTimer = new Timer(this->strName + " Timer");
     this->attachComponent(pTimer);
     pTimer->setTimeable(this);
-    pTimer->start();
+    pTimer->reset();
 
     float fScale = 50.f;
     Text *pColon = new Text(this->strName + " Time",

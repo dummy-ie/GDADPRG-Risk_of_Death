@@ -15,7 +15,8 @@ void Timer::perform()
     if (this->fUpdateTicks >= this->fUpdateInterval)
     {
         this->fUpdateTicks = 0.0f;
-        this->pTimeable->setTime(this->fTicks);
+        if (this->bIsCounting)
+            this->pTimeable->setTime(this->fTicks);
         // this->pTimeable->update();
     }
 }
@@ -29,14 +30,16 @@ void Timer::perform()
     }
 }*/
 
-void Timer::start()
+void Timer::reset()
 {
+    this->bIsCounting = true;
     this->fTicks = 0.0f;
     // this->fUpdateTicks = 0.0f;
 }
 
 void Timer::stop()
 {
+    this->bIsCounting = false;
 }
 
 void Timer::setTimeable(Timeable *pTimeable)

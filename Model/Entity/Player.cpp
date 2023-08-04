@@ -52,7 +52,7 @@ void Player::randomIncrementHealth() {
 
 void Player::decrementHealth()
 {
-    if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_INVINCIBILITY)){
+    if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_INVINCIBILITY) && this->nHealth >= 0){
         this->nHealth--;
     }
     GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");

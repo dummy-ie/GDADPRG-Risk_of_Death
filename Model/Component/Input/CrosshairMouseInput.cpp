@@ -40,7 +40,7 @@ void CrosshairMouseInput::processMouseInput(sf::Mouse::Button inMouse, bool bPre
                 if (GameObjectManager::getInstance()->findObjectByName("Background")->getCurrentFrame() != 0)
                     return;
                 
-                bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1; // if the player isn't zoomed in AND there is more than 1 view on the partitions (more than 1x1)
+                bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1 && !(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled()); // if the player isn't zoomed in AND there is more than 1 view on the partitions (more than 1x1)
                 if (!bPlayerHasToZoom && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading()) {
                     pPlayer->decrementBullets();
                     pGameSpaceUI->update();
