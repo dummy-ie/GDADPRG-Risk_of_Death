@@ -16,10 +16,12 @@ void ItemManager::addItem(ItemType EType, bool bActive){
             }
         }
         this->nItems++;
-        std::cout << "[INFO] : Slots be at " << this->nItems << std::endl;
+        //std::cout << "[INFO] : Slots be at " << this->nItems << std::endl;
+        std::cout << (int)this->mapItems[0] << " " << (int)this->mapItems[1] << " " << (int)this->mapItems[2] << std::endl;
     }
     else{
         std::cout << "[WARNING] : No slots." << std::endl;
+        std::cout << (int)this->mapItems[0] << " " << (int)this->mapItems[1] << " " << (int)this->mapItems[2] << std::endl;
     }
 }
 
@@ -27,12 +29,12 @@ bool ItemManager::useItem(int nIndex){
     if(this->mapItems[nIndex] != ItemType::NONE){
         this->mapItems[nIndex] = ItemType::NONE;
         this->nItems--;
-        std::cout << "[INFO] : Slots be at " << this->nItems << std::endl;
-        std::cout << (int)this->mapItems[0] << " " << (int)this->mapItems[1] << " " << (int)this->mapItems[2] << std::endl;
+        //std::cout << "[INFO] : Slots be at " << this->nItems << std::endl;
+        //std::cout << (int)this->mapItems[0] << " " << (int)this->mapItems[1] << " " << (int)this->mapItems[2] << std::endl;
         return true;
     }
-    this->nItems--;
-    std::cout << (int)this->mapItems[0] << " " << (int)this->mapItems[1] << " " << (int)this->mapItems[2] << std::endl;
+    //this->nItems--;
+    //std::cout << (int)this->mapItems[0] << " " << (int)this->mapItems[1] << " " << (int)this->mapItems[2] << std::endl;
     return false;
 }
 
