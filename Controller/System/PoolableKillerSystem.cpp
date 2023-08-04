@@ -6,29 +6,7 @@
 
 using namespace systems;
 
-/* [NOTE] : This Component is a type of [System]. It has a vector attribute that contains
-            ALL [Killable] Components in the game.
-
-            This Component listens to [CrosshairMouseInput] LEFT clicks. Once detected,
-            It calls its [this->kill()] method to enable the correct [Killable] Component.
-
-            Enabling a [Killable] Component is done by setting its [bKilled] attribute
-            to TRUE (i.e [setKilled(true)]).
-*/
-
 void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
-    /* [TODO] : Check if there is an object in [vecLocation]. If so, KILL (a.k.a RELEASE) that object.
-                Make sure to check the following :
-                    [1] Only KILL the object if it is ENABLED.
-                    [2] Only KILL the object if it is NOT currently playing its [Killable] animation.
-                    [3] Only KILL the object that is drawn at the VERY TOP. */
-
-    /* [IMPORTANT] : Do [this->pOwner->setAnimationType(AnimationType::KILLED)] BEFORE you do
-                     [this->vecKillable[?]->setKilled(true)]. This switches the GameObject's
-                     [AnimatedTexture] to the KILLED version as opposed to the IDLE version.
-                     
-                     Calling [incrementFrame()] in the resulting [Killable] Component's
-                     [perform()] will then display and increment the KILLED version. */
     int nKill = -1;
     float fKillThreshold = 150.f;
 
@@ -42,12 +20,13 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
         Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
         if (pEnemy->contains(vecLocation) && nKill != 1) {
             if (pEnemy->isEnabled() && pPlayer->isZoomedIn() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading() && !bPlayerHasToZoom) {
+                
                 pEnemy->decrementHealth();
+                if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
+                    nKill = 1;
+                }
                 if (pEnemy->getHealth() <= 0) {
                     this->vecKillable[i]->setKilled(true);
-                    if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
-                        nKill = 1;
-                    }
 
                     int nChance = std::rand() % 10000;
                     switch(pEnemy->getType()){
@@ -102,28 +81,19 @@ void PoolableKillerSystem::perform() {
             std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
         }
         else {
-            /* Listen for LEFT clicks. */
             if(pCrosshairMouseInput->isLeftClick()) {
-                
-                /* When a LEFT click is detected, call [this->kill()], passing the location of the click. */
                 ItemCollectorSystem::getInstance()->collect(pCrosshairMouseInput->getLocation());
                 this->kill(pCrosshairMouseInput->getLocation());
-
-                /* It is important to force the click back to FALSE, to prevent multiple
-                   triggers when the LEFT click is held. */
                 pCrosshairMouseInput->resetLeftClick();
             }
         }
     }
 }
 
-/* Register a [Killable*] Component to the System. */
 void PoolableKillerSystem::registerComponent(Killable* pKillable) {
     this->vecKillable.push_back(pKillable);
 }
 
-/* Unregister a [Killable*] Component from the System.
-   This isn't actually used in the program yet. */
 void PoolableKillerSystem::unregisterComponent(Killable* pKillable) {
     int nIndex = -1;
 
