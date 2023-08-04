@@ -30,6 +30,7 @@ namespace components {
 
         public:
             void setTimeable(Timeable* pTimeable);
+            float getTime();
     };
 }
 

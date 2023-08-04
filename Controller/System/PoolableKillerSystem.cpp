@@ -128,7 +128,12 @@ void PoolableKillerSystem::perform() {
 }
 
 void PoolableKillerSystem::playerDeath() {
+    std::ofstream scores("File/scores.txt", std::ios::app);
+    float currentTime = ((Timer*)(GameObjectManager::getInstance()->findObjectByName("Game Space UI")->findComponentByName("Game Space UI Timer")))->getTime();
+    scores << currentTime << std::endl;
+    scores.close();
 
+    std::exit(69);
 }
 
 void PoolableKillerSystem::registerComponent(Killable* pKillable) {
