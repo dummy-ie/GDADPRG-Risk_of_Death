@@ -29,7 +29,7 @@ void ViewSwitcherSystem::perform() {
             std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
         }
         else {
-            if(pPlayerInput->isLeft()) {
+            if(pPlayerInput->isLeft() && !pPlayer->isZoomedIn()) {
                 this->bSort = true;
                 this->bFront = false;
             }
