@@ -98,6 +98,9 @@ void PoolableKillerSystem::perform() {
         }
         else {
             if(pCrosshairMouseInput->isLeftClick()) {
+                Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
+                GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
+
                 ItemCollectorSystem::getInstance()->collect(pCrosshairMouseInput->getLocation());
                 bool isBlocked = false;
 
@@ -108,17 +111,24 @@ void PoolableKillerSystem::perform() {
                         if(pBlocker){
                             if(pBlocker->contains(pCrosshairMouseInput->getLocation())){
                                 isBlocked = true;
-                                //std::cout << "BLOCKED " << i << std::endl;
+                                
+                                if(pPlayer->hasBullets())
+                                    SFXManager::getInstance()->getSound(SFXType::BLOCKER)->play();
                             }
                         }
                     }
                 }
                 
                 if(!isBlocked || PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
-                    //std::cout << "KILL" << std::endl;
                     this->kill(pCrosshairMouseInput->getLocation());
                 }
                 
+                //This was moved from CrosshairMouseInput.cpp because otherwise the last bullet wont hit
+                if(pPlayer->hasBullets()){
+                    pPlayer->decrementBullets();
+                    pGameSpaceUI->update();
+                }
+
                 pCrosshairMouseInput->resetLeftClick();
             }
             this->hit();

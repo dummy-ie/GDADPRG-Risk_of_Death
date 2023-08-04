@@ -14,7 +14,9 @@ enum class SFXType : int {
     INVINCIBILITY,
     FREEZE,
 
-    SHINY
+    SHINY,
+
+    BLOCKER
 };
 
 #endif

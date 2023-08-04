@@ -5,7 +5,7 @@ using namespace controllers;
 void SFXManager::loadAll() {
     this->create(SFXType::PLAYER_SHOOT, "View/SFX/pew.ogg");
     this->create(SFXType::RELOAD, "View/SFX/reload.ogg");
-    this->mapSound[SFXType::RELOAD]->setVolume(70);
+    this->mapSound[SFXType::RELOAD]->setVolume(40);
     this->create(SFXType::HURT, "View/SFX/oof.ogg");
     this->create(SFXType::HITMARKER, "View/SFX/hitmarker.ogg");
     this->mapSound[SFXType::HITMARKER]->setVolume(40);
@@ -16,6 +16,8 @@ void SFXManager::loadAll() {
     this->create(SFXType::FREEZE, "View/SFX/freeze.ogg");
     this->create(SFXType::SHINY, "View/SFX/shiny.ogg");
     this->mapSound[SFXType::SHINY]->setVolume(30);
+    this->create(SFXType::BLOCKER, "View/SFX/blocker.ogg");
+    this->mapSound[SFXType::BLOCKER]->setVolume(55);
 }
 
 void SFXManager::unloadAll() {
