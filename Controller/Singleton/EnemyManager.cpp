@@ -11,7 +11,7 @@ void EnemyManager::loadAll() {
     this->create(PoolTag::UNCOMMON_LAND, "Walky Monster", AssetType::UNCOMMON_LAND, EnemyType::UNCOMMON, HitboxType::RECTANGLE);
     this->create(PoolTag::ELITE_LAND, "Chompy Monster", AssetType::ELITE_LAND, EnemyType::ELITE, HitboxType::RECTANGLE);
 
-    this->create(PoolTag::COMMON_INSECT, "Black Spider", AssetType::COMMON_LAND, EnemyType::COMMON, HitboxType::CIRCLE);
+    this->create(PoolTag::COMMON_INSECT, "Black Spider", AssetType::COMMON_INSECT, EnemyType::COMMON, HitboxType::CIRCLE);
     this->create(PoolTag::UNCOMMON_INSECT, "Orange Spider", AssetType::UNCOMMON_INSECT, EnemyType::UNCOMMON, HitboxType::CIRCLE);
     this->create(PoolTag::ELITE_INSECT, "Yellow Bee", AssetType::ELITE_INSECT, EnemyType::ELITE, HitboxType::CIRCLE);
 }

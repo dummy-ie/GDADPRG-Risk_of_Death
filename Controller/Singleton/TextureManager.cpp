@@ -97,7 +97,7 @@ void TextureManager::loadEnemyFolder() {
         int nTemp = static_cast<int>(AssetType::COMMON_LAND) + i;
         AssetType EType = static_cast<AssetType>(nTemp);
         pTexture1 = new sf::Texture();
-        pTexture1->loadFromFile("View/Image/land" + std::to_string(i) + ".png");
+        pTexture1->loadFromFile("View/Image/land_" + std::to_string(i) + ".png");
         this->mapTexture[EType].push_back(pTexture1);
 
         this->vecKey.push_back(EType);
@@ -107,7 +107,7 @@ void TextureManager::loadEnemyFolder() {
         int nTemp = static_cast<int>(AssetType::COMMON_INSECT) + i;
         AssetType EType = static_cast<AssetType>(nTemp);
         pTexture1 = new sf::Texture();
-        pTexture1->loadFromFile("View/Image/insect" + std::to_string(i) + ".png");
+        pTexture1->loadFromFile("View/Image/insect_" + std::to_string(i) + ".png");
         this->mapTexture[EType].push_back(pTexture1);
 
         this->vecKey.push_back(EType);
