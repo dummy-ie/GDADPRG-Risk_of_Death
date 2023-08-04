@@ -67,6 +67,23 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
     }
 }
 
+void PoolableKillerSystem::hit() {
+    float fKillThreshold = 150.f;
+
+    //EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");
+
+    for (int i = 0; i < this->vecKillable.size(); i++) {
+        Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
+        if (this->vecKillable[i]->getOwner()->getZ() <= 0.0f) {
+            if (!this->vecKillable[i]->isKilled()) {
+                pPlayer->decrementHealth();
+                this->vecKillable[i]->getOwner()->setZ(1920.f);
+                this->vecKillable[i]->setKilled(true);
+            }
+        }
+    }
+}
+
 void PoolableKillerSystem::perform() {
     Crosshair* pCrosshair = (Crosshair*)GameObjectManager::getInstance()->findObjectByName("Crosshair");
     if(pCrosshair == NULL) {
@@ -84,6 +101,7 @@ void PoolableKillerSystem::perform() {
                 this->kill(pCrosshairMouseInput->getLocation());
                 pCrosshairMouseInput->resetLeftClick();
             }
+            this->hit();
         }
     }
 }

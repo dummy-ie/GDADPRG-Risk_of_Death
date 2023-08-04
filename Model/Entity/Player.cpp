@@ -39,10 +39,14 @@ void Player::stop() {
 
 void Player::reload() {
     this->nBullets = 5 * WindowManager::getInstance()->getPartitions()->size();
+    GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
+    pGameSpaceUI->update();
 }
 
 void Player::randomIncrementHealth() {
     this->nHealth += (std::rand()%3) + 1;
+    GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
+    pGameSpaceUI->update();
 }
 
 void Player::decrementHealth()
@@ -50,6 +54,8 @@ void Player::decrementHealth()
     if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_INVINCIBILITY)){
         this->nHealth--;
     }
+    GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
+    pGameSpaceUI->update();
 }
 
 void Player::decrementBullets()
@@ -57,6 +63,8 @@ void Player::decrementBullets()
     if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_INVINCIBILITY)){
         this->nBullets--;
     }
+    GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
+    pGameSpaceUI->update();
 }
 
 void Player::setZoomedIn(bool bIsZoomedIn)

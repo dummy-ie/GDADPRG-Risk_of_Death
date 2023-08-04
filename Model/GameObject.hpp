@@ -53,6 +53,7 @@ namespace models {
             virtual void setFrame(int nFrame);
             virtual sf::Vector2f getPosition();
             float getZ();
+            void setZ(float fZ);
             virtual void setPosition(sf::Vector2f vecPosition);
             virtual void setPosition(float fX, float fY, float fZ);
 

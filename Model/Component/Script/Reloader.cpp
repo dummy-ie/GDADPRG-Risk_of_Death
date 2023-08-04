@@ -22,8 +22,6 @@ void Reloader::perform() {
             this->fTicks = 0.0f;
             this->reload();
             this->stop();
-            GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
-            pGameSpaceUI->update();
         }
     }
 }

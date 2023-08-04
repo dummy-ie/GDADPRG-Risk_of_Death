@@ -28,6 +28,7 @@ namespace systems {
 
         public:
             void kill(sf::Vector2f vecLocation);
+            void hit();
 
             void perform();
             void registerComponent(Killable* pKillable);

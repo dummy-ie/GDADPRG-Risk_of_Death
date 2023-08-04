@@ -39,12 +39,18 @@ void EnemyDirector::spawnWave() {
     int nUncommon = fUncommonSpawn * nEnemySpawnCount;
     int nElite = fEliteSpawn * nEnemySpawnCount;
 
-    for (int i = 0; i < nCommon; i++)
+    for (int i = 0; i < nCommon; i++) {
         ObjectPoolManager::getInstance()->getPool(PoolTag::GREEN_SLIME)->requestPoolable();
-    for (int i = 0; i < nUncommon; i++)
+
+    }
+    for (int i = 0; i < nUncommon; i++) {
         ObjectPoolManager::getInstance()->getPool(PoolTag::PURPLE_SLIME)->requestPoolable();
-    for (int i = 0; i < nElite; i++)
+
+    }
+    for (int i = 0; i < nElite; i++) {
         ObjectPoolManager::getInstance()->getPool(PoolTag::RED_SLIME)->requestPoolable();
+
+    }
 }
 
 float EnemyDirector::randomizePercent(float fMax) {

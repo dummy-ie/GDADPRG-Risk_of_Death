@@ -3,7 +3,7 @@
 using namespace controllers;
 
 void EnemyManager::create(EnemyType EType, std::string strName) {
-
+    
 }
 
 void EnemyManager::addEnemy(Enemy* pEnemy) {
@@ -13,18 +13,6 @@ void EnemyManager::addEnemy(Enemy* pEnemy) {
 std::vector<Enemy*> EnemyManager::getEnemies() {
     return this->vecEnemies;
 }
-
-/*void EnemyManager::switchLeftView() {
-    for (Enemy* pEnemy : this->vecEnemies) {
-        pEnemy->switchLeftView();
-    }
-}
-
-void EnemyManager::switchFrontView() {
-    for (Enemy* pEnemy : this->vecEnemies) {
-        pEnemy->switchFrontView();
-    }
-}*/
 
 EnemyManager* EnemyManager::P_SHARED_INSTANCE = NULL;
 EnemyManager::EnemyManager() {}
