@@ -30,14 +30,14 @@ bool TriangleHitbox::contains(sf::Vector2f vecLocation) {
     sf::Vector2f vecCenter = this->pShape->getPosition();
     float fRadius = ((sf::CircleShape*)this->pShape)->getRadius();
 
-    sf::Vector2f vecPoint1 = sf::Vector2f(vecCenter.x, vecCenter.y + fRadius);
-    sf::Vector2f vecPoint2 = sf::Vector2f(vecCenter.x - fRadius, vecCenter.y - fRadius);
-    sf::Vector2f vecPoint3 = sf::Vector2f(vecCenter.x + fRadius, vecCenter.y - fRadius);
+    sf::Vector2f vecPoint1 = sf::Vector2f(vecCenter.x, vecCenter.y - fRadius);
+    sf::Vector2f vecPoint2 = sf::Vector2f(vecCenter.x - fRadius, vecCenter.y + fRadius);
+    sf::Vector2f vecPoint3 = sf::Vector2f(vecCenter.x + fRadius, vecCenter.y + fRadius);
 
-    float fTriangleArea = calculateDeterminant(vecPoint1, vecPoint2, vecPoint3);
-    float fArea1 = calculateDeterminant(vecLocation, vecPoint2, vecPoint3);
-    float fArea2 = calculateDeterminant(vecLocation, vecPoint1, vecPoint3);
-    float fArea3 = calculateDeterminant(vecLocation, vecPoint1, vecPoint2);
+    float fTriangleArea = calculateArea(vecPoint1, vecPoint2, vecPoint3);
+    float fArea1 = calculateArea(vecLocation, vecPoint2, vecPoint3);
+    float fArea2 = calculateArea(vecLocation, vecPoint1, vecPoint3);
+    float fArea3 = calculateArea(vecLocation, vecPoint1, vecPoint2);
 
     if ((fArea1 + fArea2 + fArea3) <= fTriangleArea) {
         return true;
@@ -57,7 +57,7 @@ void TriangleHitbox::move(sf::Time tDeltaTime) {
     ((sf::CircleShape*)this->pShape)->setRadius(fRadius);
 }
 
-float TriangleHitbox::calculateDeterminant(sf::Vector2f vecPoint1, sf::Vector2f vecPoint2, sf::Vector2f vecPoint3) {
-    float fDet = ((vecPoint1.x - vecPoint3.x) * (vecPoint2.y - vecPoint3.y)) - ((vecPoint2.x - vecPoint3.x) * (vecPoint1.y - vecPoint3.y));
-    return fDet / 2.0f;
+float TriangleHitbox::calculateArea(sf::Vector2f vecPoint1, sf::Vector2f vecPoint2, sf::Vector2f vecPoint3) {
+    float fArea = abs(vecPoint1.x * (vecPoint2.y - vecPoint3.y) + vecPoint2.x * (vecPoint3.y - vecPoint1.y) + vecPoint3.x * (vecPoint1.y - vecPoint2.y));
+    return fArea / 2.0f;
 }
