@@ -94,8 +94,9 @@ void GameObjectManager::sortObjectsByX()
 GameObject *GameObjectManager::findObjectByName(std::string strName)
 {
     if (this->mapGameObject[strName] != NULL)
+    {
         return this->mapGameObject[strName];
-
+    }
     else
     {
         std::cout << "[ERROR] : Object [" << strName << "] NOT found." << std::endl;

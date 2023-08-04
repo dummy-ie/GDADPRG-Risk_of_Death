@@ -15,16 +15,16 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
     for (int i = this->vecKillable.size() - 1; i >= 0; i--) {
         Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
         bool bPlayerHasToZoom = !pPlayer->isZoomedIn() && WindowManager::getInstance()->getPartitions()->size() > 1;
-        Enemy* pEnemy = (Enemy*)this->vecKillable[i]->getOwner();
+        Enemy* pEnemy = (Enemy*)this->vecKillable.at(i)->getOwner();
         if (pEnemy->contains(vecLocation) && nKill != 1) {
             if (pEnemy->isEnabled() && pPlayer->hasBullets() && !pPlayer->getReloader()->isReloading() && !bPlayerHasToZoom) {
-                
+                std::cout << "about to decrement enemy health" << std::endl;
                 pEnemy->decrementHealth();
                 if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
                     nKill = 1;
                 }
                 if (pEnemy->getHealth() <= 0) {
-                    this->vecKillable[i]->setKilled(true);
+                    this->vecKillable.at(i)->setKilled(true);
 
                     int nChance = std::rand() % 10000;
                     switch(pEnemy->getType()){
@@ -32,7 +32,7 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                             if(nChance < COMMON_DROP_RATE * 10000){
                                 
                                 if(pSpawnPoint){
-                                    pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
+                                    pSpawnPoint->setPosition(this->vecKillable.at(i)->getOwner()->getSprite()->getPosition());
                                 }
                                 ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
                             }
@@ -41,7 +41,7 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                             if(nChance < UNCOMMON_DROP_RATE * 10000){
                                 
                                 if(pSpawnPoint){
-                                    pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
+                                    pSpawnPoint->setPosition(this->vecKillable.at(i)->getOwner()->getSprite()->getPosition());
                                 }
                                 ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
                             }
@@ -50,7 +50,7 @@ void PoolableKillerSystem::kill(sf::Vector2f vecLocation) {
                             if(nChance < ELITE_DROP_RATE * 10000){
                                 
                                 if(pSpawnPoint){
-                                    pSpawnPoint->setPosition(this->vecKillable[i]->getOwner()->getSprite()->getPosition());
+                                    pSpawnPoint->setPosition(this->vecKillable.at(i)->getOwner()->getSprite()->getPosition());
                                 }
                                 ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->requestPoolable();
                             }
@@ -98,7 +98,6 @@ void PoolableKillerSystem::perform() {
         }
         else {
             if(pCrosshairMouseInput->isLeftClick()) {
-                std::cout << "pCrosshairMouseInput left click in poolablekillersystem" << std::endl;
                 Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
                 GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
 
@@ -108,7 +107,6 @@ void PoolableKillerSystem::perform() {
                 if (!pGameSpaceUI)
                     std::cout << "pGameSpaceUI doesn't exist" << std::endl;
 
-                std::cout << "proceeding in poolablekillersystem" << std::endl;
 
                 ItemCollectorSystem::getInstance()->collect(pCrosshairMouseInput->getLocation());
                 bool isBlocked = false;
@@ -141,10 +139,8 @@ void PoolableKillerSystem::perform() {
                 }
 
                 pCrosshairMouseInput->resetLeftClick();
-                std::cout << "if statement over" << std::endl;
             }
             this->hit();
-            std::cout << "hit statement over" << std::endl;
         }
     }
 }
