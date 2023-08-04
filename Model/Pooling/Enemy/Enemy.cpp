@@ -46,10 +46,12 @@ void Enemy::initialize()
         this->pHitbox = new TriangleHitbox(this->strName + " Hitbox");
 
     this->attachChild(this->pHitbox);
-
+    
     this->pHitboxRenderer = new Renderer(this->strName + " Hitbox");
     this->pHitboxRenderer->assignDrawable(this->pHitbox->getShape());
     this->attachComponent(this->pHitboxRenderer);
+    if (!RENDER_HITBOX)
+        this->pHitboxRenderer->disable();
 }
 
 void Enemy::randomizePosition()
@@ -119,42 +121,6 @@ void Enemy::initializeType()
     }
 }
 
-/*void Enemy::initializeHitbox() {
-    float fX = this->getSprite()->getPosition().x;
-    float fY = this->getSprite()->getPosition().y; 
-    float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
-
-    float fWidth = this->pSprite->getTexture()->getSize().x;
-    float fHeight = this->pSprite->getTexture()->getSize().y;
-
-    float fHalfWidth = fWidth / 2.0f;
-    float fHalfHeight = fHeight / 2.0f;
-    
-    if (this->EHitbox == HitboxType::TRIANGLE) {
-        float fRadius = fHalfHeight * this->getSprite()->getScale().x;
-        this->pHitbox = new sf::CircleShape(fRadius, 3);
-        this->CColor.a = 100;
-        this->pHitbox->setFillColor(this->CColor);
-        this->pHitbox->setPosition(fX, fY);
-        this->pHitbox->setOrigin(fRadius, fRadius);
-    }
-    if (this->EHitbox == HitboxType::CIRCLE) {
-        float fRadius = fHalfHeight * this->getSprite()->getScale().x;
-        this->pHitbox = new sf::CircleShape(fRadius);
-        this->CColor.a = 100;
-        this->pHitbox->setFillColor(this->CColor);
-        this->pHitbox->setPosition(fX, fY);
-        this->pHitbox->setOrigin(fRadius, fRadius);
-    }
-    if (this->EHitbox == HitboxType::RECTANGLE) {
-        this->pHitbox = new sf::RectangleShape(sf::Vector2f(fWidth * this->getSprite()->getScale().x, fHeight * this->getSprite()->getScale().y));
-        this->CColor.a = 100;
-        this->pHitbox->setFillColor(this->CColor);
-        this->pHitbox->setPosition(fX, fY);
-        this->pHitbox->setOrigin((fWidth * this->getSprite()->getScale().x) / 2, (fHeight * this->getSprite()->getScale().y) / 2);
-    }
-}*/
-
 void Enemy::decrementHealth()
 {
     if (PowerUpSystem::getInstance()->isActive(ItemType::PWR_DAMAGE))
@@ -168,15 +134,8 @@ void Enemy::onActivate()
 {
     this->setFrame(0);
 
-    //this->initializeType();
-    //this->randomizePosition();
-    //this->initializeHitbox();
-
     this->pMover = new Mover(this->strName + " Mover");
     this->pMover->setMovable(this);
-
-    //Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
-    //if (pPlayer->isFrontView);
 
     this->attachComponent(this->pMover); 
     ViewSwitcherSystem::getInstance()->registerComponent(this->pSwitcher);
@@ -198,70 +157,12 @@ void Enemy::move(sf::Time tDeltaTime)
     this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
     this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
     this->pHitbox->move(tDeltaTime);
-    /*if (this->EHitbox == HitboxType::TRIANGLE) {
-        float fHeight = this->pSprite->getTexture()->getSize().y;
-        float fHalfHeight = fHeight / 2.0f;
-        float fRadius = fHalfHeight * this->getSprite()->getScale().x;
-        ((sf::CircleShape*)this->pHitbox)->setRadius(fRadius);
-        this->pHitbox->setOrigin(fRadius, fRadius);
-    }
-
-    if (this->EHitbox == HitboxType::CIRCLE) {
-        float fHeight = this->pSprite->getTexture()->getSize().y;
-        float fHalfHeight = fHeight / 2.0f;
-        float fRadius = fHalfHeight * this->getSprite()->getScale().x;
-        ((sf::CircleShape*)this->pHitbox)->setRadius(fRadius);
-        this->pHitbox->setOrigin(fRadius, fRadius);
-    }
-
-    if (this->EHitbox == HitboxType::RECTANGLE) {
-        float fWidth = this->pSprite->getTexture()->getSize().x;
-        float fHeight = this->pSprite->getTexture()->getSize().y;
-
-        fWidth *= this->getSprite()->getScale().x;
-        fHeight *= this->getSprite()->getScale().y;
-
-        float fHalfWidth = fWidth / 2.0f;
-        float fHalfHeight = fHeight / 2.0f;
-
-        ((sf::RectangleShape*)this->pHitbox)->setSize(sf::Vector2f(fWidth, fHeight));
-        this->pHitbox->setOrigin(fHalfWidth, fHalfHeight);
-    }*/
 
     //if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
     //    this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
 }
 
 bool Enemy::contains(sf::Vector2f vecLocation) {
-/*    if (this->EHitbox == HitboxType::TRIANGLE) {
-        sf::Vector2f vecCenter = this->pHitbox->getPosition();
-        float fRadius = ((sf::CircleShape*)this->pHitbox)->getRadius();
-
-        sf::Vector2f vecPoint1 = sf::Vector2f(vecCenter.x, vecCenter.y - fRadius);
-        sf::Vector2f vecPoint2 = sf::Vector2f(vecCenter.x - fRadius, vecCenter.y + fRadius);
-        sf::Vector2f vecPoint3 = sf::Vector2f(vecCenter.x + fRadius, vecCenter.y + fRadius);
-
-        float fDistance = sqrt(pow(vecLocation.x - vecCenter.x, 2) + pow(vecLocation.y - vecCenter.y, 2));
-        if (fDistance <= fRadius) {
-            return true;
-        }
-    }
-    if (this->EHitbox == HitboxType::CIRCLE) {
-        sf::Vector2f vecCenter = this->pHitbox->getPosition();
-        float fRadius = ((sf::CircleShape*)this->pHitbox)->getRadius();
-        float fDistance = sqrt(pow(vecLocation.x - vecCenter.x, 2) + pow(vecLocation.y - vecCenter.y, 2));
-        if (fDistance <= fRadius) {
-            return true;
-        }
-    }
-    if (this->EHitbox == HitboxType::RECTANGLE) {
-        sf::Vector2f vecCenter = this->pHitbox->getPosition();
-        float fWidth = ((sf::RectangleShape*)this->pHitbox)->getSize().x;
-        float fHeight = ((sf::RectangleShape*)this->pHitbox)->getSize().y;
-        sf::FloatRect CBounds = sf::FloatRect(vecCenter.x - fWidth / 2, vecCenter.y - fHeight / 2, fWidth, fHeight);
-        return CBounds.contains(vecLocation);
-    }
-    return false;*/
     return this->pHitbox->contains(vecLocation);
 }
 

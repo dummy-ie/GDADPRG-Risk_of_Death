@@ -22,4 +22,6 @@ const float PWR_DAMAGE_DURATION = 5.0f;
 const float PWR_INVINCIBILITY_DURATION = 5.0f;
 const float PWR_FREEZE_DURATION = 5.0f;
 
+const bool RENDER_HITBOX = true;
+
 #endif
