@@ -29,6 +29,8 @@ void Enemy::initialize()
     this->initializeType();
     this->randomizePosition();
 
+    this->pRectangle->setSize(sf::Vector2f(this->pRectangle->getSize().x, this->pRectangle->getSize().y * this->fSize));
+
     this->pRectangleRenderer = new Renderer(this->strName + " Rectangle");
     this->pRectangleRenderer->assignDrawable(this->pRectangle);
     this->attachComponent(this->pRectangleRenderer);
