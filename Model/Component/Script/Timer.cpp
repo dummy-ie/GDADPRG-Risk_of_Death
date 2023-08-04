@@ -43,3 +43,8 @@ void Timer::setTimeable(Timeable *pTimeable)
 {
     this->pTimeable = pTimeable;
 }
+
+float components::Timer::getTime()
+{
+    return fTicks;
+}

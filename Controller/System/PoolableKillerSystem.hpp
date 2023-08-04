@@ -1,6 +1,9 @@
 #ifndef SYSTEMS_POOLABLE_KILLER_SYSTEM_HPP
 #define SYSTEMS_POOLABLE_KILLER_SYSTEM_HPP
 
+#include <ostream>
+#include <fstream>
+
 #include "../../Model/Pooling/PoolableObject.hpp"
 
 #include "../../Model/Component/Component.hpp"
