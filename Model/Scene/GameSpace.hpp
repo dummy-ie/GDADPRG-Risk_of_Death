@@ -32,6 +32,7 @@
 #include "../Pooling/Item/Item.hpp"
 
 #include "../../View/Screen/GameSpaceUI/GameSpaceUI.hpp"
+#include "../../View/Screen/GameOverScreen.hpp"
 
 namespace scenes {
     using namespace models;

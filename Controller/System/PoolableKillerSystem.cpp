@@ -81,9 +81,9 @@ void PoolableKillerSystem::hit() {
                 this->vecKillable[i]->setKilled(true);
             }
         }
-        if (pPlayer->getHealth() <= 0)
-            this->playerDeath();
     }
+    if (pPlayer->getHealth() <= 0)
+        this->playerDeath();
 }
 
 void PoolableKillerSystem::perform() {
@@ -132,7 +132,7 @@ void PoolableKillerSystem::playerDeath() {
     float currentTime = ((Timer*)(GameObjectManager::getInstance()->findObjectByName("Game Space UI")->findComponentByName("Game Space UI Timer")))->getTime();
     scores << currentTime << std::endl;
     scores.close();
-
+    ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
     std::exit(69);
 }
 

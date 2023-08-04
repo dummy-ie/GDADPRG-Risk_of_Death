@@ -76,6 +76,10 @@ void GameSpace::createUserInterface() {
     GameSpaceUI* pGameSpaceUI = new GameSpaceUI("Game Space UI");
     pGameSpaceUI->setPosition(0.f, 0.f, -999.f);
     this->registerObject(pGameSpaceUI);
+
+    GameOverScreen* pGameOverScreen = new GameOverScreen("Game Over Screen");
+    this->registerObject(pGameOverScreen);
+    pGameOverScreen->setEnabled(false);
     //float nOffset = 211;
 
     //for (int i = 0; i < 10; i++) {

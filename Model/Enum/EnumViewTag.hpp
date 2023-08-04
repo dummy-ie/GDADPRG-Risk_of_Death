@@ -7,7 +7,8 @@ enum class ViewTag : int {
     LEADERBOARD_SCREEN,
     SETTINGS_SCREEN,
     GAME_SPACE_UI,
-    GAME_TIMER
+    GAME_TIMER,
+    GAME_OVER_SCREEN
 };
 
 #endif
