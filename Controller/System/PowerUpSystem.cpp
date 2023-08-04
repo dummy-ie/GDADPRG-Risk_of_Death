@@ -19,17 +19,9 @@ using namespace systems;
 void PowerUpSystem::perform() {
     this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
     if (this->fTicks > this->fFrameInterval){
-
-        if(ItemManager::getInstance()->getItemCount(ItemType::PWR_HEALTH)){
-            while(ItemManager::getInstance()->useItem(ItemType::PWR_HEALTH)){
-                this->activatePowerUp(ItemType::PWR_HEALTH);
-            }
-        }
-
-        if(ItemManager::getInstance()->getItemCount(ItemType::PWR_INVINCIBILITY)){
-            while(ItemManager::getInstance()->useItem(ItemType::PWR_INVINCIBILITY)){
-                this->activatePowerUp(ItemType::PWR_INVINCIBILITY);
-            }
+        
+        for(ItemType EType : ItemManager::getInstance()->getActiveItems()){
+            this->activatePowerUp(EType);
         }
 
         if(this->mapPowerUps[ItemType::PWR_HEALTH] > 0){

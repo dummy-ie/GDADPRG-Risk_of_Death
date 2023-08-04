@@ -39,7 +39,15 @@ void Item::initialize() {
 }
 
 void Item::collect(){
-    ItemManager::getInstance()->addItem(this->EType);
+    switch(this->EType){
+        case ItemType::PWR_HEALTH: case ItemType::PWR_INVINCIBILITY:
+            ItemManager::getInstance()->addItem(this->EType, true);
+            break;
+        default:
+            ItemManager::getInstance()->addItem(this->EType);
+            break;
+    }
+    
     //ObjectPoolManager::getInstance()->getPool(this->ETag)->releasePoolable(this);
 }
 

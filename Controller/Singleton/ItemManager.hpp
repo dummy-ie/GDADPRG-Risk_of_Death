@@ -6,15 +6,21 @@
 
 namespace controllers {
     class ItemManager {
+		private:
+			//std::unordered_map<ItemType, int> mapItems;
+			int nItems;
+			std::unordered_map<int, ItemType> mapItems;
+			std::vector<ItemType> vecActiveItems;
+
         private:
 		    static ItemManager* P_SHARED_INSTANCE;
-			std::unordered_map<ItemType, int> mapItems;
 
 		public:
-			void addItem(ItemType EType);
-			bool useItem(ItemType EType);
+			void addItem(ItemType EType, bool bActive = false);
+			bool useItem(int nIndex);
 
-			int getItemCount(ItemType EType);
+			std::vector<ItemType> getActiveItems();
+			ItemType getItem(int nIndex);
 
 			void deleteAllItems();
 

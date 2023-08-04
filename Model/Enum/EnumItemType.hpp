@@ -9,7 +9,7 @@
 enum class ItemType : int {
     NONE = -1,
     
-    PWR_HEALTH = 0,     //active
+    PWR_HEALTH,     //active
     PWR_DAMAGE,         //acquire
     PWR_PIERCE,         //acquire
     PWR_INVINCIBILITY,  //active

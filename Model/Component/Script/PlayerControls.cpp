@@ -42,37 +42,40 @@ void PlayerControls::perform() {
         }
 
         if(pInput->is1() && this->vecTimer[0] == 0.f){
-            if(ItemManager::getInstance()->useItem(ItemType::PWR_DAMAGE)){
-                PowerUpSystem::getInstance()->activatePowerUp(ItemType::PWR_DAMAGE);
-                std::cout << "[ITEM] : Damage item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_DAMAGE) << " left." << std::endl;
+            ItemType EType = ItemManager::getInstance()->getItem(0);
+            if(EType != ItemType::NONE){
+                ItemManager::getInstance()->useItem(0);
+                PowerUpSystem::getInstance()->activatePowerUp(EType);
                 this->vecTimer[0] = this->fCooldown * 2.f;
             }
             else{
-                std::cout << "[ERROR] : No damage items left." << std::endl;
+                std::cout << "[ERROR] : No item." << std::endl;
                 this->vecTimer[0] = this->fCooldown;
             }
         }
 
         if(pInput->is2() && this->vecTimer[1] == 0.f){
-            if(ItemManager::getInstance()->useItem(ItemType::PWR_PIERCE)){
-                PowerUpSystem::getInstance()->activatePowerUp(ItemType::PWR_PIERCE);
-                std::cout << "[ITEM] : Pierce item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_PIERCE) << " left." << std::endl;
+            ItemType EType = ItemManager::getInstance()->getItem(0);
+            if(EType != ItemType::NONE){
+                ItemManager::getInstance()->useItem(1);
+                PowerUpSystem::getInstance()->activatePowerUp(EType);
                 this->vecTimer[1] = this->fCooldown * 2.f;
             }
             else{
-                std::cout << "[ERROR] : No pierce items left." << std::endl;
+                std::cout << "[ERROR] : No item." << std::endl;
                 this->vecTimer[1] = this->fCooldown;
             }
         }
 
         if(pInput->is3() && this->vecTimer[2] == 0.f){
-            if(ItemManager::getInstance()->useItem(ItemType::PWR_FREEZE)){
-                PowerUpSystem::getInstance()->activatePowerUp(ItemType::PWR_FREEZE);
-                std::cout << "[ITEM] : Freeze item used, " << ItemManager::getInstance()->getItemCount(ItemType::PWR_FREEZE) << " left." << std::endl;
+            ItemType EType = ItemManager::getInstance()->getItem(0);
+            if(EType != ItemType::NONE){
+                ItemManager::getInstance()->useItem(2);
+                PowerUpSystem::getInstance()->activatePowerUp(EType);
                 this->vecTimer[2] = this->fCooldown * 2.f;
             }
             else{
-                std::cout << "[ERROR] : No freeze items left." << std::endl;
+                std::cout << "[ERROR] : No item." << std::endl;
                 this->vecTimer[2] = this->fCooldown;
             }
         }
