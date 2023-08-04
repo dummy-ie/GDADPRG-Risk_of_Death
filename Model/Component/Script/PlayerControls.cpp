@@ -29,7 +29,7 @@ void PlayerControls::perform() {
     }
     else {
         GameSpaceUI* pGameSpaceUI = (GameSpaceUI*)GameObjectManager::getInstance()->findObjectByName("Game Space UI");
-        if(pInput->isLeft()) {
+        if(pInput->isLeft() && !(((Player*)this->getOwner())->isZoomedIn())) {
             Player* pPlayer = (Player*)this->getOwner();
             GameObjectManager::getInstance()->findObjectByName("Background")->setFrame(1);
             //pPlayer->setFrontView(false);
@@ -105,7 +105,6 @@ void PlayerControls::perform() {
 
             if (pPlayer && WindowManager::getInstance()->getPartitions()->size() > 1)
             {
-
                 pPlayer->setZoomedIn(false);
             }
         }
