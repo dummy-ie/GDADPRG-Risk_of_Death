@@ -18,6 +18,7 @@ namespace models {
     class Item : public PoolableObject {
         private:
             ItemType EType;
+            Hitbox* pHitbox;
 
         public:
             Item(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, ItemType EType, float fX = 0.0f, float fY = 0.0f);
@@ -30,6 +31,7 @@ namespace models {
         public:
             void initialize();
             void collect();
+            bool contains(sf::Vector2f vecLocation);
             void onActivate();
             void onRelease();
             PoolableObject* clone();

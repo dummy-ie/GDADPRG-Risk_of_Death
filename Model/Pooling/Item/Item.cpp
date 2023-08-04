@@ -28,10 +28,22 @@ void Item::initialize() {
     this->getSprite()->setScale(0.2,0.2);
 
     this->centerSpriteOrigin();
+
+    this->pHitbox = new RectangleHitbox(this->strName + " Hitbox");
+    this->attachChild(this->pHitbox);
+
+    Renderer* pHitboxRenderer = new Renderer(this->strName + " Hitbox Renderer");
+    pHitboxRenderer->assignDrawable(this->pHitbox->getShape());
+    this->attachComponent(pHitboxRenderer);
+
 }
 
 void Item::collect(){
     ObjectPoolManager::getInstance()->getPool(this->ETag)->releasePoolable(this);
+}
+
+bool Item::contains(sf::Vector2f vecLocation) {
+    return this->pHitbox->contains(vecLocation);
 }
 
 void Item::randomizeType(){
