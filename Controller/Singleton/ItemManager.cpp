@@ -48,7 +48,7 @@ ItemType ItemManager::getItem(int nIndex){
     return this->mapItems[nIndex];
 }
 
-void ItemManager::deleteAllItems(){
+void ItemManager::clearAll(){
     this->mapItems.clear();
 }
 

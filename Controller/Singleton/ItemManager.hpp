@@ -22,7 +22,7 @@ namespace controllers {
 			std::vector<ItemType> getActiveItems();
 			ItemType getItem(int nIndex);
 
-			void deleteAllItems();
+			void clearAll();
 
 	    private:
 		    ItemManager();
