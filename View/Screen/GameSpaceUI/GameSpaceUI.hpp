@@ -27,7 +27,7 @@ namespace views {
         private:
             // GameTimer* pGameTimer;
             Timer* pTimer;
-            float fTime = 0.f;
+            // float fTime = 0.f;
             std::vector<Text*> vecTime;
 
             Image* pHeart;
@@ -43,6 +43,7 @@ namespace views {
             void initialize();
             void update();
 
+            void createTimer();
             Text* copyText(Text* pReference, std::string strText, float fScale);
             void setTime(float fSeconds);
 

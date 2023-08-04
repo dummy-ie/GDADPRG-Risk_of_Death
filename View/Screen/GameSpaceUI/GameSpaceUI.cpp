@@ -2,7 +2,8 @@
 
 using namespace views;
 
-GameSpaceUI::GameSpaceUI(std::string strName) : View(ViewTag::GAME_SPACE_UI, strName) {
+GameSpaceUI::GameSpaceUI(std::string strName) : View(ViewTag::GAME_SPACE_UI, strName)
+{
     ViewManager::getInstance()->registerView(this);
     // this->pGameTimer = NULL;
     this->vecTime = {};
@@ -10,16 +11,53 @@ GameSpaceUI::GameSpaceUI(std::string strName) : View(ViewTag::GAME_SPACE_UI, str
 
 GameSpaceUI::~GameSpaceUI() {}
 
-void GameSpaceUI::initialize() {
+void GameSpaceUI::initialize()
+{
     // this->pGameTimer = new GameTimer(this->strName + " Game Timer");
     // this->attachChild(pGameTimer);
     // pGameTimer->setPosition(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT - 20.f));
     // pGameTimer->initialize();
     // this->pGameTimer->setEnabled(true);
 
+    createTimer();
+
+    Player *pPlayer = (Player *)GameObjectManager::getInstance()->findObjectByName("Player");
+    AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::HEART));
+    // this->pHeart =
+    this->createImage(this->strName + " Heart", pTexture, 0.05f, 75.f, SCREEN_HEIGHT - 75.f);
+
+    this->pHealth = new Text(this->strName + " Health", std::to_string(pPlayer->getHealth()), FontManager::getInstance()->getFont(FontType::DEFAULT));
+    this->attachChild(this->pHealth);
+    this->pHealth->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 90.f));
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BULLET));
+    this->createImage(this->strName + " Bullet", pTexture, 0.15f, 75.f, SCREEN_HEIGHT - 150.f);
+
+    this->pBullets = new Text(this->strName + " Bullets", std::to_string(pPlayer->getBullets()), FontManager::getInstance()->getFont(FontType::DEFAULT));
+    this->attachChild(this->pBullets);
+    this->pBullets->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 165.f));
+}
+
+void GameSpaceUI::update()
+{
+    Player *pPlayer = (Player *)GameObjectManager::getInstance()->findObjectByName("Player");
+    this->pHealth->setText(std::to_string(pPlayer->getHealth()));
+    this->pBullets->setText(std::to_string(pPlayer->getBullets()));
+
+    // std::cout << "gamespace ui update" << std::endl;
+
+    // this->pHeart->setPosition(sf::Vector2f(75.f, SCREEN_HEIGHT - 75.f));
+    // this->pBullet->setPosition(sf::Vector2f(75.f, SCREEN_HEIGHT - 75.f));
+    // this->pHealth->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 90.f));
+    // this->pBullets->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 165.f));
+}
+
+void GameSpaceUI::createTimer()
+{
     pTimer = new Timer(this->strName + " Timer");
     this->attachComponent(pTimer);
     pTimer->setTimeable(this);
+    pTimer->start();
 
     float fScale = 50.f;
     Text *pColon = new Text(this->strName + " Time",
@@ -68,35 +106,6 @@ void GameSpaceUI::initialize() {
     fX = this->vecTime[2]->getPosition().x;
     fX = fX + (pColon->getText()->getGlobalBounds().width + fPadding);
     pText->setPosition({fX, fY});
-
-    Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::HEART));
-    //this->pHeart = 
-    this->createImage(this->strName + " Heart", pTexture, 0.05f, 75.f, SCREEN_HEIGHT - 75.f);
-
-    this->pHealth = new Text(this->strName + " Health", std::to_string(pPlayer->getHealth()), FontManager::getInstance()->getFont(FontType::DEFAULT));
-    this->attachChild(this->pHealth);
-    this->pHealth->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 90.f));
-
-    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BULLET));
-    this->createImage(this->strName + " Bullet", pTexture, 0.15f, 75.f, SCREEN_HEIGHT - 150.f);
-
-    this->pBullets = new Text(this->strName + " Bullets", std::to_string(pPlayer->getBullets()), FontManager::getInstance()->getFont(FontType::DEFAULT));
-    this->attachChild(this->pBullets);
-    this->pBullets->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 165.f));
-}
-
-void GameSpaceUI::update() {
-    Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
-    this->pHealth->setText(std::to_string(pPlayer->getHealth()));
-    this->pBullets->setText(std::to_string(pPlayer->getBullets()));
-
-    // std::cout << "gamespace ui update" << std::endl;
-    
-    // this->pHeart->setPosition(sf::Vector2f(75.f, SCREEN_HEIGHT - 75.f));
-    // this->pBullet->setPosition(sf::Vector2f(75.f, SCREEN_HEIGHT - 75.f));
-    // this->pHealth->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 90.f));
-    // this->pBullets->setPosition(sf::Vector2f(125.f, SCREEN_HEIGHT - 165.f));
 }
 
 Text *views::GameSpaceUI::copyText(Text *pReference, std::string strText, float fScale)
@@ -120,17 +129,30 @@ Text *views::GameSpaceUI::copyText(Text *pReference, std::string strText, float 
 
 void GameSpaceUI::setTime(float fSeconds)
 {
+    int ms = (int)(fSeconds * 1000.f);
+
+    int h = ms / (1000 * 60 * 60);
+    ms -= h * (1000 * 60 * 60);
+
+    int m = ms / (1000 * 60);
+    ms -= m * (1000 * 60);
+
+    int s = ms / 1000;
+    ms -= s * 1000;
+
     std::stringstream CStream;
-    CStream << std::fixed << std::setprecision(2) << fSeconds;
+    CStream << std::setfill('0') << std::setw(2) << m << std::setw(2) << s;
     std::string strTime = CStream.str();
+    // std::cout << "m: " << strTime.at() << std::endl;
+    // std::cout << "s: " << s << std::endl;
 
-    if (strTime.length() < 5)
-        strTime = "0" + strTime;
+    // if (strTime.length() < 5)
+    //     strTime = "0" + strTime;
 
-    strTime.erase(2, 1);
+    // strTime.erase(2, 1);
 
     for (int i = 0; i < strTime.length(); i++)
     {
-        this->vecTime[i]->setText(std::string(1, strTime[i]), false);
+        this->vecTime.at(i)->setText(std::string(1, strTime.at(i)), false);
     }
 }
