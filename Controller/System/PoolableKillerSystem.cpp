@@ -100,18 +100,21 @@ void PoolableKillerSystem::perform() {
                 ItemCollectorSystem::getInstance()->collect(pCrosshairMouseInput->getLocation());
                 bool isBlocked = false;
 
-                std::vector<PoolableObject*> vecPool = BlockerManager::getInstance()->getBlockers();
-                for(int i = 0; i < vecPool.size(); i++){
-                    Blocker* pBlocker = (Blocker*)vecPool[i];
-                    if(pBlocker){
-                        if(pBlocker->contains(pCrosshairMouseInput->getLocation())){
-                            bool isBlocked = true;
-                            std::cout << "BLOCKED" << std::endl;
+                if(!PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
+                    std::vector<PoolableObject*> vecPool = BlockerManager::getInstance()->getBlockers();
+                    for(int i = 0; i < vecPool.size() && !isBlocked; i++){
+                        Blocker* pBlocker = (Blocker*)vecPool[i];
+                        if(pBlocker){
+                            if(pBlocker->contains(pCrosshairMouseInput->getLocation())){
+                                isBlocked = true;
+                                //std::cout << "BLOCKED " << i << std::endl;
+                            }
                         }
                     }
                 }
+                
                 if(!isBlocked || PowerUpSystem::getInstance()->isActive(ItemType::PWR_PIERCE)){
-                    std::cout << "KILL" << std::endl;
+                    //std::cout << "KILL" << std::endl;
                     this->kill(pCrosshairMouseInput->getLocation());
                 }
                 
