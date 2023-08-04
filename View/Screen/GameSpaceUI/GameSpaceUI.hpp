@@ -1,6 +1,9 @@
 #ifndef VIEWS_GAME_SPACE_UI_HPP
 #define VIEWS_GAME_SPACE_UI_HPP
 
+#include "../../../Model/Component/Script/Interface/Timeable.hpp"
+#include "../../../Model/Component/Script/Timer.hpp"
+
 #include "../../View.hpp"
 #include "../../Text.hpp"
 #include "../../Button.hpp"
@@ -20,9 +23,12 @@
 
 namespace views {
     using namespace systems;
-    class GameSpaceUI : public View {
+    class GameSpaceUI : public View, public Timeable {
         private:
-            GameTimer* pGameTimer;
+            // GameTimer* pGameTimer;
+            Timer* pTimer;
+            float fTime = 0.f;
+            std::vector<Text*> vecTime;
 
             Image* pHeart;
             Image* pBullet;
@@ -36,6 +42,11 @@ namespace views {
         public:
             void initialize();
             void update();
+
+            Text* copyText(Text* pReference, std::string strText, float fScale);
+            void setTime(float fSeconds);
+
+
         //public: 
         //    void onEventTrigger(std::unordered_map<std::string, void*> mapParameter);
         //    EventKey getKey();

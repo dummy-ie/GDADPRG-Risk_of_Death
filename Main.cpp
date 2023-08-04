@@ -30,6 +30,7 @@
 #include "Model/Component/Script/Killable.cpp"
 #include "Model/Component/Script/Mover.cpp"
 #include "Model/Component/Script/Switcher.cpp"
+#include "Model/Component/Script/Timer.cpp"
 #include "Model/Component/Script/Reloader.cpp"
 
 #include "Model/Entity/Background.cpp"

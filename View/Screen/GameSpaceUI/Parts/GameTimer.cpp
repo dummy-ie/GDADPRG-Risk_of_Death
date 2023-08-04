@@ -5,7 +5,7 @@ using namespace views;
 GameTimer::GameTimer(std::string strName) : View(ViewTag::GAME_TIMER, strName)
 {
     this->vecTime = {};
-    // ViewManager::getInstance()->registerView(this);
+    ViewManager::getInstance()->registerView(this);
 }
 
 GameTimer::~GameTimer() {}
@@ -35,53 +35,53 @@ void GameTimer::setTime(float fSeconds)
 void GameTimer::createTimer()
 {
     std::cout << this->isEnabled() << " creating timer at " << this->getPosition().x << ", " << this->getPosition().y << std::endl;
-    float fScale = 60.f;
-    Text *pColon = new Text(this->strName + " Time",
-                            ":",
-                            FontManager::getInstance()->getFont(FontType::DEFAULT),
-                            fScale);
+    // float fScale = 60.f;
+    // Text *pColon = new Text(this->strName + " Time",
+    //                         ":",
+    //                         FontManager::getInstance()->getFont(FontType::DEFAULT),
+    //                         fScale);
 
-    sf::Color CColor = sf::Color::Black;
-    pColon->getText()->setStyle(sf::Text::Bold);
-    pColon->getText()->setOutlineThickness(5.0f);
-    pColon->getText()->setOutlineColor(CColor);
-    this->attachChild(pColon);
+    // sf::Color CColor = sf::Color::Black;
+    // pColon->getText()->setStyle(sf::Text::Bold);
+    // pColon->getText()->setOutlineThickness(5.0f);
+    // pColon->getText()->setOutlineColor(CColor);
+    // this->attachChild(pColon);
 
-    CColor = sf::Color::Blue;
-    CColor.a = 150;
-    pColon->getText()->setFillColor(CColor);
+    // CColor = sf::Color::Blue;
+    // CColor.a = 150;
+    // pColon->getText()->setFillColor(CColor);
 
-    float fX = this->getPosition().x;
-    float fY = this->getPosition().y;
-    pColon->setPosition({fX, fY});
+    // float fX = this->getPosition().x;
+    // float fY = this->getPosition().y;
+    // pColon->setPosition({fX, fY});
 
-    fX = pColon->getGlobalBounds().left - pColon->getGlobalBounds().width;
-    fY = pColon->getGlobalBounds().top;
-    float fPadding = 10.f;
+    // fX = pColon->getGlobalBounds().left - pColon->getGlobalBounds().width;
+    // fY = pColon->getGlobalBounds().top;
+    // float fPadding = 10.f;
 
-    Text *pText = this->copyText(pColon, "0", fScale);
-    this->vecTime.push_back(pText);
-    fX = fX - ((pColon->getText()->getGlobalBounds().width + fPadding) * 1.5f);
-    fY -= (20.0f);
-    pText->setPosition({fX, fY});
+    // Text *pText = this->copyText(pColon, "0", fScale);
+    // this->vecTime.push_back(pText);
+    // fX = fX - ((pColon->getText()->getGlobalBounds().width + fPadding) * 1.5f);
+    // fY -= (20.0f);
+    // pText->setPosition({fX, fY});
 
-    pText = this->copyText(pColon, "0", fScale);
-    this->vecTime.push_back(pText);
-    fX = this->vecTime[0]->getPosition().x;
-    fX = fX + (pColon->getText()->getGlobalBounds().width + fPadding);
-    pText->setPosition({fX, fY});
+    // pText = this->copyText(pColon, "0", fScale);
+    // this->vecTime.push_back(pText);
+    // fX = this->vecTime[0]->getPosition().x;
+    // fX = fX + (pColon->getText()->getGlobalBounds().width + fPadding);
+    // pText->setPosition({fX, fY});
 
-    pText = this->copyText(pColon, "0", fScale);
-    this->vecTime.push_back(pText);
-    fX = pColon->getPosition().x;
-    fX = fX + (pColon->getText()->getGlobalBounds().width + fPadding);
-    pText->setPosition({fX, fY});
+    // pText = this->copyText(pColon, "0", fScale);
+    // this->vecTime.push_back(pText);
+    // fX = pColon->getPosition().x;
+    // fX = fX + (pColon->getText()->getGlobalBounds().width + fPadding);
+    // pText->setPosition({fX, fY});
 
-    pText = this->copyText(pColon, "0", fScale);
-    this->vecTime.push_back(pText);
-    fX = this->vecTime[2]->getPosition().x;
-    fX = fX + (pColon->getText()->getGlobalBounds().width + fPadding);
-    pText->setPosition({fX, fY});
+    // pText = this->copyText(pColon, "0", fScale);
+    // this->vecTime.push_back(pText);
+    // fX = this->vecTime[2]->getPosition().x;
+    // fX = fX + (pColon->getText()->getGlobalBounds().width + fPadding);
+    // pText->setPosition({fX, fY});
 
     for (auto &time : vecTime)
     {

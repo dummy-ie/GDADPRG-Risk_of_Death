@@ -73,6 +73,7 @@ void GameSpace::createPlayer() {
 
 void GameSpace::createUserInterface() {
     GameSpaceUI* pGameSpaceUI = new GameSpaceUI("Game Space UI");
+    pGameSpaceUI->setPosition(0.f, 0.f, -999.f);
     this->registerObject(pGameSpaceUI);
     //float nOffset = 211;
 

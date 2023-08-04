@@ -38,9 +38,8 @@ void LeaderboardScreen::initialize()
         vecTopTimes.at(i)->setPosition(sf::Vector2f(SCREEN_WIDTH / 2 - fWidth / 2, pText->getText()->getPosition().y + 30.f * (i + 1)));
         vecTopTimes.at(i)->setEnabled(true);
         this->attachChild(vecTopTimes.at(i));
+        // vecTopTimes.at(i)->initialize();
     }
-        
-
 }
 
 void LeaderboardScreen::loadScores()
@@ -68,7 +67,7 @@ void LeaderboardScreen::loadScores()
         std::cout << "vecTopTimes does not have 5 gameTimers" << std::endl;
         return;
     }
-    
+
     for (size_t i = 0; i < std::min(5, (int)vecScores.size()); i++)
     {
         this->vecTopTimes.at(i)->setTime(vecScores.at(i));        
