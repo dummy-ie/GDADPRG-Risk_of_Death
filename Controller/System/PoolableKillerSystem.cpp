@@ -124,6 +124,7 @@ void PoolableKillerSystem::perform() {
                 }
                 
                 //This was moved from CrosshairMouseInput.cpp because otherwise the last bullet wont hit
+                //This is like really bad. like really really bad. but hey it works...
                 if(pPlayer->hasBullets()){
                     pPlayer->decrementBullets();
                     pGameSpaceUI->update();
