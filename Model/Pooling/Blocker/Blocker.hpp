@@ -52,7 +52,7 @@ namespace models {
             PoolableObject* clone();
 
         public:
-            void move(sf::Time tDeltaTime);
+            void move(float fTicks, sf::Time tDeltaTime);
             bool contains(sf::Vector2f vecLocation);
 
         private:

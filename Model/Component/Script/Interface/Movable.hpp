@@ -9,7 +9,7 @@ namespace interfaces {
             ~Movable() {}
 
         public:
-            virtual void move(sf::Time tDeltaTime) = 0;
+            virtual void move(float fTicks, sf::Time tDeltaTime) = 0;
     };
 }
 

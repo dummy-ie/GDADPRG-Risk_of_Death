@@ -45,7 +45,7 @@ bool TriangleHitbox::contains(sf::Vector2f vecLocation) {
     return false;
 }
 
-void TriangleHitbox::move(sf::Time tDeltaTime) {
+void TriangleHitbox::move(float fTicks, sf::Time tDeltaTime) {
     float fX = this->getParent()->getSprite()->getPosition().x + this->COffset.width;
     float fY = this->getParent()->getSprite()->getPosition().y + this->COffset.height;
     float fWidth = this->getParent()->getSprite()->getTexture()->getSize().x;

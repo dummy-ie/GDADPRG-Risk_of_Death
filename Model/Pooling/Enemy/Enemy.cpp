@@ -29,6 +29,8 @@ void Enemy::initialize()
     this->initializeType();
     this->randomizePosition();
 
+    this->pRectangle->setSize(sf::Vector2f(this->pRectangle->getSize().x, this->pRectangle->getSize().y * this->fSize));
+
     this->pRectangleRenderer = new Renderer(this->strName + " Rectangle");
     this->pRectangleRenderer->assignDrawable(this->pRectangle);
     this->attachComponent(this->pRectangleRenderer);
@@ -46,6 +48,10 @@ void Enemy::initialize()
         this->pHitbox = new TriangleHitbox(this->strName + " Hitbox");
 
     this->attachChild(this->pHitbox);
+    
+    this->pMover = new Mover(this->strName + " Mover");
+    this->pMover->setMovable(this);
+    this->attachComponent(this->pMover); 
     
     this->pHitboxRenderer = new Renderer(this->strName + " Hitbox");
     this->pHitboxRenderer->assignDrawable(this->pHitbox->getShape());
@@ -85,7 +91,7 @@ void Enemy::randomizePosition()
     //    this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
     //else
     //    this->getSprite()->scale(sf::Vector2f(0.5f, 0.5f));
-
+    
     this->centerSpriteOrigin();
     
     this->pRectangle->setPosition(sf::Vector2f(this->fZ, fY));
@@ -102,21 +108,21 @@ void Enemy::initializeType()
     {
         this->nHealth = 1;
         this->CColor = sf::Color::Green;
-        this->fSpeed = COMMON_ENEMY_SPEED;
+        this->fSpeed = MIN_COMMON_ENEMY_SPEED + ((float)(std::rand() % ((int)MAX_COMMON_ENEMY_SPEED * 100)) / 100.f);
         this->fSize = COMMON_SPRITE_SIZE;
     }
     if (this->EType == EnemyType::UNCOMMON)
     {
         this->nHealth = 3;
         this->CColor = sf::Color::Magenta;
-        this->fSpeed = UNCOMMON_ENEMY_SPEED;
+        this->fSpeed = MIN_UNCOMMON_ENEMY_SPEED + ((float)(std::rand() % ((int)MAX_UNCOMMON_ENEMY_SPEED * 100)) / 100.f);;
         this->fSize = UNCOMMON_SPRITE_SIZE;
     }
     if (this->EType == EnemyType::ELITE)
     {
         this->nHealth = 5;
         this->CColor = sf::Color::Red;
-        this->fSpeed = ELITE_ENEMY_SPEED;
+        this->fSpeed = MIN_ELITE_ENEMY_SPEED + ((float)(std::rand() % ((int)MAX_ELITE_ENEMY_SPEED * 100)) / 100.f);;
         this->fSize = ELITE_SPRITE_SIZE;
     }
 }
@@ -134,14 +140,18 @@ void Enemy::onActivate()
 {
     this->setFrame(0);
 
-    this->pMover = new Mover(this->strName + " Mover");
-    this->pMover->setMovable(this);
+    this->randomizePosition();
+    this->initializeType();
 
-    this->attachComponent(this->pMover); 
+    
+    
+
+    
     ViewSwitcherSystem::getInstance()->registerComponent(this->pSwitcher);
 }
 
 void Enemy::onRelease() {
+
     ViewSwitcherSystem::getInstance()->unregisterComponent(this->pSwitcher);
 }
 
@@ -151,14 +161,14 @@ PoolableObject *Enemy::clone()
     return pClone;
 }
 
-void Enemy::move(sf::Time tDeltaTime)
-{
-    float fMovement = this->fSpeed * tDeltaTime.asSeconds();
+void Enemy::move(float fTicks, sf::Time tDeltaTime)
+{   
+    float fMovement = this->fSpeed * fTicks * tDeltaTime.asSeconds();
     this->fZ = this->fZ - fMovement;
     float fZ = (SCREEN_WIDTH - this->fZ) / SCREEN_WIDTH;
     this->getSprite()->setScale(this->fSize + fZ, this->fSize + fZ);
     this->pRectangle->setPosition(this->fZ, this->pRectangle->getPosition().y);
-    this->pHitbox->move(tDeltaTime);
+    this->pHitbox->move(0.0f, tDeltaTime);
 
     //if (WindowManager::getInstance()->getWindow()->getView().getSize() == WindowManager::getInstance()->getWindow()->getDefaultView().getSize())
     //    this->getSprite()->scale(sf::Vector2f(1.f / (float)WindowManager::getInstance()->getPartitions()->size(), 1.f / (float)WindowManager::getInstance()->getPartitions()->size()));
