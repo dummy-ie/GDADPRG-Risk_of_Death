@@ -47,8 +47,6 @@ void GameSpace::createNullObjectComponents() {
     PowerUpSystem::initialize("Power Up System", pComponentHolder);
     this->registerObject(pComponentHolder);
 
-    PowerUpSystem::getInstance()->clearPowerUp(ItemType::PWR_PIERCE);
-
     pComponentHolder = new EmptyGameObject("Enemy Director Holder");
     EnemyDirector* pEnemyDirector = new EnemyDirector("Enemy Director");
     pComponentHolder->attachComponent(pEnemyDirector);
