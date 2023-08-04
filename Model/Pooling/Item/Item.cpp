@@ -20,10 +20,10 @@ void Item::initialize() {
         this->randomizeType();
     }
 
-    Collectable* pCollectableComponent = new Collectable(this->strName + " Collectable");
-    this->attachComponent(pCollectableComponent);
+    this->pCollectable = new Collectable(this->strName + " Collectable");
+    this->attachComponent(this->pCollectable);
 
-    ItemCollectorSystem::getInstance()->registerComponent(pCollectableComponent);
+    ItemCollectorSystem::getInstance()->registerComponent(this->pCollectable);
     
     this->getSprite()->setScale(0.2,0.2);
 
@@ -39,7 +39,8 @@ void Item::initialize() {
 }
 
 void Item::collect(){
-    ObjectPoolManager::getInstance()->getPool(this->ETag)->releasePoolable(this);
+    ItemManager::getInstance()->addItem(this->EType);
+    //ObjectPoolManager::getInstance()->getPool(this->ETag)->releasePoolable(this);
 }
 
 bool Item::contains(sf::Vector2f vecLocation) {
@@ -58,10 +59,11 @@ void Item::randomizeType(){
 
 void Item::onActivate() {
     this->randomizeType();
+    this->pCollectable->startTimer();
 }
 
 void Item::onRelease() {
-    ItemManager::getInstance()->addItem(this->EType);
+    
 }
 
 PoolableObject* Item::clone() {

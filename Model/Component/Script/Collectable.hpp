@@ -1,6 +1,8 @@
 #ifndef COMPONENTS_COLLECTABLE_HPP
 #define COMPONENTS_COLLECTABLE_HPP
 
+#include "../../../Config/Settings.hpp"
+
 #include "../../../Controller/Singleton/TextureManager.hpp"
 #include "../../../Controller/Singleton/ObjectPoolManager.hpp"
 
@@ -23,12 +25,16 @@ namespace components {
     class Collectable : public Component {
         private:
             bool bCollected;
+            float fTimer;
+            float fFrameInterval;
+            float fTicks;
 
         public:
             Collectable(std::string strName);
 
         public:
             void perform();
+            void startTimer();
         
         public:
             bool isCollected();

@@ -4,6 +4,8 @@
 #include "../../Model/Component/Component.hpp"
 #include "../../Model/Component/Input/CrosshairMouseInput.hpp"
 
+#include "../../Model/Entity/Player.hpp"
+
 #include "../../Model/Enum/EnumItemType.hpp"
 
 namespace systems {

@@ -19,6 +19,31 @@ using namespace systems;
 void PowerUpSystem::perform() {
     this->fTicks += this->tDeltaTime.asSeconds() * GAME_SPEED;
     if (this->fTicks > this->fFrameInterval){
+
+        if(ItemManager::getInstance()->getItemCount(ItemType::PWR_HEALTH)){
+            while(ItemManager::getInstance()->useItem(ItemType::PWR_HEALTH)){
+                this->activatePowerUp(ItemType::PWR_HEALTH);
+            }
+        }
+
+        if(ItemManager::getInstance()->getItemCount(ItemType::PWR_INVINCIBILITY)){
+            while(ItemManager::getInstance()->useItem(ItemType::PWR_INVINCIBILITY)){
+                this->activatePowerUp(ItemType::PWR_INVINCIBILITY);
+            }
+        }
+
+        if(this->mapPowerUps[ItemType::PWR_HEALTH] > 0){
+            Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
+            
+            if(pPlayer){
+                //in case we picked up more than 1 health powerup
+                while(this->mapPowerUps[ItemType::PWR_HEALTH] > 0){
+                    this->mapPowerUps[ItemType::PWR_HEALTH] -= 1;
+                    pPlayer->randomIncrementHealth();
+                    std::cout<<"HEALTH IS NOW "<<pPlayer->getHealth()<<std::endl;
+                }
+            }
+        }
         if(this->mapPowerUps[ItemType::PWR_DAMAGE] > 0){
             this->mapPowerUps[ItemType::PWR_DAMAGE] -= 1.f;
             std::cout<<"DAMAGE "<<this->mapPowerUps[ItemType::PWR_DAMAGE]<<std::endl;
@@ -45,13 +70,12 @@ void PowerUpSystem::perform() {
         }
         this->fTicks = 0.f;
     }
-    
 }
 
 void PowerUpSystem::activatePowerUp(ItemType EType){
     switch(EType){
         case ItemType::PWR_HEALTH:
-            this->mapPowerUps[EType] = 1.f;
+            this->mapPowerUps[EType] += 1.f;
             break;
         case ItemType::PWR_DAMAGE:
             this->mapPowerUps[EType] = PWR_DAMAGE_DURATION;

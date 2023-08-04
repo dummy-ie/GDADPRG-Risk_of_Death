@@ -18,6 +18,7 @@ namespace models {
     class Item : public PoolableObject {
         private:
             ItemType EType;
+            Collectable* pCollectable;
             Hitbox* pHitbox;
 
         public:
