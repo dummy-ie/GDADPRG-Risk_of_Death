@@ -7,6 +7,9 @@
 #include "../../Enum/EnumPoolTag.hpp"
 
 #include "../../Component/Script/Collectable.hpp"
+#include "../../Component/Script/Switcher.hpp"
+
+#include "../../Component/Script/Interface/Switchable.hpp"
 
 #include "../PoolableObject.hpp"
 
@@ -15,11 +18,14 @@
 
 namespace models {
     using namespace systems;
-    class Item : public PoolableObject {
+    class Item : public PoolableObject, public Switchable {
         private:
             ItemType EType;
             Collectable* pCollectable;
             Hitbox* pHitbox;
+
+            Renderer* pSpriteRenderer;
+            Switcher* pSwitcher;
 
         public:
             Item(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, ItemType EType, float fX = 0.0f, float fY = 0.0f);
@@ -33,6 +39,8 @@ namespace models {
             void initialize();
             void collect();
             bool contains(sf::Vector2f vecLocation);
+            void switchLeftView();
+            void switchFrontView();
             void onActivate();
             void onRelease();
             PoolableObject* clone();

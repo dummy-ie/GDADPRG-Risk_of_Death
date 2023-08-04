@@ -147,10 +147,6 @@ void Enemy::onActivate()
     this->randomizePosition();
     this->initializeType();
 
-    
-    
-
-    
     ViewSwitcherSystem::getInstance()->registerComponent(this->pSwitcher);
 }
 
