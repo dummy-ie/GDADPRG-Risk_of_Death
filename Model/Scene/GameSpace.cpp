@@ -29,6 +29,9 @@ void GameSpace::onUnloadResources() {
 }
 
 void GameSpace::onUnloadObjects() {
+    PoolableKillerSystem::getInstance()->clearAll();
+    ItemCollectorSystem::getInstance()->clearAll();
+    BlockerManager::getInstance()->clearAll();
     Scene::onUnloadObjects();
 }
 

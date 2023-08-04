@@ -179,6 +179,10 @@ void PoolableKillerSystem::unregisterComponent(Killable* pKillable) {
     }
 }
 
+void PoolableKillerSystem::clearAll(){
+    this->vecKillable.clear();
+}
+
 /* * * * * * * * * * * * * * * * * * * * * 
  *       SINGLETON-RELATED CONTENT       * 
  * * * * * * * * * * * * * * * * * * * * */

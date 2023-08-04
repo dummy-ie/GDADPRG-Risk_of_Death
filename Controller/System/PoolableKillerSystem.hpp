@@ -37,6 +37,7 @@ namespace systems {
             void perform();
             void registerComponent(Killable* pKillable);
             void unregisterComponent(Killable* pKillable);
+            void clearAll();
 
         /* * * * * * * * * * * * * * * * * * * * * 
         *       SINGLETON-RELATED CONTENT       * 
