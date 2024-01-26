@@ -72,7 +72,7 @@ void Item::switchFrontView(){
 }
 
 void Item::randomizeType(){
-    this->EType = (ItemType)(std::rand() % 5);
+    this->EType = (ItemType)5;
     this->setFrame((int)EType);
 
     EmptyGameObject* pSpawnPoint = (EmptyGameObject*)GameObjectManager::getInstance()->findObjectByName("Item Spawn Location");

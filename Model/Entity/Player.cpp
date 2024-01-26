@@ -109,3 +109,7 @@ Reloader* Player::getReloader() {
 PlayerInput* Player::getInput() {
     return this->pPlayerInput;
 }
+
+void Player::setHealth(int nHealth) {
+    this->nHealth = nHealth;
+}

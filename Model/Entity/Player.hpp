@@ -46,6 +46,7 @@ namespace models {
             bool hasBullets();
             Reloader* getReloader();
             PlayerInput* getInput();
+            void setHealth(int nHealth);
 
     };
 }

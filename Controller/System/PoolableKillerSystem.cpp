@@ -81,8 +81,23 @@ void PoolableKillerSystem::hit() {
             }
         }
     }
-    if (pPlayer->getHealth() <= 0)
-        this->playerDeath();
+    if (pPlayer->getHealth() <= 0) {
+        int nRevive = -1;
+        for (int i = 0; i < 3 && nRevive == -1; i++) {
+            if (ItemManager::getInstance()->getItem(i) == ItemType::PWR_REVIVE) {
+                nRevive = i;
+            }
+           
+        }
+        if (nRevive != -1) {
+            ItemManager::getInstance()->useItem(nRevive);
+            PowerUpSystem::getInstance()->activatePowerUp(ItemType::PWR_REVIVE);
+            pPlayer->setHealth(PLAYER_MAX);
+        }
+        else
+            this->playerDeath();
+    }
+        
 }
 
 void PoolableKillerSystem::perform() {
@@ -137,7 +152,7 @@ void PoolableKillerSystem::perform() {
                     pPlayer->decrementBullets();
                     pGameSpaceUI->update();
                 }
-
+                
                 pCrosshairMouseInput->resetLeftClick();
             }
             this->hit();

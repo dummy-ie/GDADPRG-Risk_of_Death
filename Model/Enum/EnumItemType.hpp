@@ -8,7 +8,8 @@ enum class ItemType : int {
     PWR_DAMAGE,         //acquire
     PWR_PIERCE,         //acquire
     PWR_INVINCIBILITY,  //active
-    PWR_FREEZE          //acquire
+    PWR_FREEZE,          //acquire
+    PWR_REVIVE
 };
 
 #endif
